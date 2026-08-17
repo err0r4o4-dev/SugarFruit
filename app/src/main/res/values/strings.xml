@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Suger Fruits</string>
+    <string name="spinner_prompt">เลือกตัวเลือก</string>
+    <string-array name="fruit_array">
+        <item>แอปเปิ้ล</item>
+        <item>กล้วย</item>
+        <item>ส้ม</item>
+        <item>มะม่วง</item>
+    </string-array>
+</resources>
