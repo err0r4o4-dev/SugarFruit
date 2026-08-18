@@ -19,6 +19,7 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class App_page3 extends AppCompatActivity {
 
@@ -113,21 +114,22 @@ public class App_page3 extends AppCompatActivity {
     private void setupRecyclerView() {
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        level = getIntent().getStringExtra("level");
+        level = getIntent().getStringExtra(AppContracts.EXTRA_LEVEL);
         adapter = new FruitAdapter(filteredFruits, level);
         recyclerView.setAdapter(adapter);
     }
 
     private void setupSafetyLevelDropdown() {
         AutoCompleteTextView safetyDropdown = findViewById(R.id.inputTureOrFalse);
-        final String[] safetyOptions = {"ทั้งหมด", "ปลอดภัย", "ควรจำกัด", "ควรหลีกเลี่ยง"};
+        final String[] safetyOptions = getResources().getStringArray(R.array.safety_options);
         ArrayAdapter<String> dropdownAdapter = new ArrayAdapter<>(
                 this,
                 android.R.layout.simple_dropdown_item_1line,
                 safetyOptions
         );
         safetyDropdown.setAdapter(dropdownAdapter);
-        safetyDropdown.setText("ทั้งหมด", false);
+        selectedSafetyLevel = getString(R.string.safety_all);
+        safetyDropdown.setText(selectedSafetyLevel, false);
         safetyDropdown.setFocusable(false);
 
         safetyDropdown.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -141,9 +143,8 @@ public class App_page3 extends AppCompatActivity {
 
     private void setupSeasonFilter() {
         ChipGroup chipGroup = findViewById(R.id.chipGroup);
-        chipGroup.setOnCheckedChangeListener(new ChipGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(ChipGroup group, int checkedId) {
+        chipGroup.setOnCheckedStateChangeListener((group, checkedIds) -> {
+                int checkedId = checkedIds.isEmpty() ? View.NO_ID : checkedIds.get(0);
                 for (int i = 0; i < group.getChildCount(); i++) {
                     Chip chip = (Chip) group.getChildAt(i);
 
@@ -157,7 +158,6 @@ public class App_page3 extends AppCompatActivity {
                     }
                 }
                 applyFilters();
-            }
         });
     }
 
@@ -173,7 +173,7 @@ public class App_page3 extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                searchKeyword = s.toString().trim().toLowerCase();
+                searchKeyword = s.toString().trim().toLowerCase(Locale.ROOT);
                 applyFilters();
             }
 
@@ -184,7 +184,7 @@ public class App_page3 extends AppCompatActivity {
         searchBox.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_ACTION_SEARCH) {
                 // ✅ ทำการค้นหา
-                searchKeyword = searchBox.getText().toString().trim().toLowerCase();
+                searchKeyword = searchBox.getText().toString().trim().toLowerCase(Locale.ROOT);
                 applyFilters();
 
                 // ✅ ปิดคีย์บอร์ด
@@ -204,15 +204,16 @@ public class App_page3 extends AppCompatActivity {
         filteredFruits.clear();
         for (int i = 0; i < allFruits.size(); i++) {
             Fruit fruit = allFruits.get(i);
-            if (fruit.getName().toLowerCase().contains(searchKeyword)) {
+            if (fruit.getName().toLowerCase(Locale.ROOT).contains(searchKeyword)) {
                 if (selectedSeason.equals("All") || fruit.getSeason().equalsIgnoreCase(selectedSeason)) {
-                    if (selectedSafetyLevel.equals("ทั้งหมด") || fruit.getTrue().contains(selectedSafetyLevel)) {
+                    if (FruitSafety.matchesFilter(
+                            fruit, level, selectedSafetyLevel, getString(R.string.safety_all))) {
                         filteredFruits.add(fruit);
                     }
                 }
             }
         }
-        adapter.notifyDataSetChanged();
+        adapter.updateFruits(filteredFruits);
     }
 
 }

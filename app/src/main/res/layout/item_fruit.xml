@@ -2,6 +2,7 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
@@ -15,17 +16,17 @@
         android:orientation="horizontal"
         android:gravity="center_vertical">
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/imageView4"
-            android:layout_width="20dp"
+            android:layout_width="0dp"
             android:layout_height="100dp"
             android:layout_marginEnd="10dp"
             android:layout_marginStart="10dp"
             android:layout_weight="1"
+            android:contentDescription="@string/fruit_image"
             android:scaleType="centerCrop"
             android:src="@drawable/q1"
-            android:background="@drawable/image_box"
-            android:clipToOutline="true" />
+            app:shapeAppearanceOverlay="@style/RoundedFruitImage" />
 
         <LinearLayout
             android:layout_width="0dp"
@@ -37,7 +38,7 @@
                 android:id="@+id/fruitName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="สตรอว์เบอร์รี่"
+                tools:text="สตรอว์เบอร์รี่"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:layout_marginTop="5dp"
@@ -49,7 +50,7 @@
                 android:id="@+id/fruitIndex"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ดัชนีน้ำตาล (GI): 40 (ต่ำ)"
+                tools:text="ดัชนีน้ำตาล (GI): 40 (ต่ำ)"
                 android:textSize="14sp"
                 android:layout_marginTop="10dp" />
 
@@ -58,7 +59,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:text="ปริมาณน้ำตาล: 4.9/100 กรัม"
+                tools:text="ปริมาณน้ำตาล: 4.9/100 กรัม"
                 android:textSize="14sp"
                 android:layout_marginTop="2dp" />
 
@@ -73,14 +74,14 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="สามารถกินได้"
+                    tools:text="สามารถกินได้"
                     android:textSize="14sp" />
 
                 <Button
                     android:id="@+id/button_Next"
                     android:layout_width="wrap_content"
-                    android:layout_height="35dp"
-                    android:text="Next"
+                    android:layout_height="48dp"
+                    android:text="@string/next"
                     android:textColor="@android:color/white"
                     android:textSize="12sp"
                     android:minWidth="60dp"

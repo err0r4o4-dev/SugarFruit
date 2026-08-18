@@ -14,6 +14,8 @@
             android:id="@+id/backgroundImage"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:contentDescription="@null"
+            android:importantForAccessibility="no"
             android:scaleType="centerCrop"
             android:src="@drawable/blackgroud_2"
             app:layout_constraintTop_toTopOf="parent"
@@ -41,7 +43,7 @@
                 android:id="@+id/labelName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="ชื่อผู้ใช้"
+                android:text="@string/user_name_label"
                 android:textStyle="bold"
                 android:textSize="16sp"
                 android:textColor="@color/black" />
@@ -49,13 +51,15 @@
             <EditText
                 android:id="@+id/inputName"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="48dp"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/inputdata"
-                android:hint="ชื่อ"
+                android:hint="@string/name_hint"
                 android:inputType="text"
+                android:autofillHints="name"
                 android:textSize="16sp"
                 android:paddingStart="12dp"
+                android:paddingEnd="12dp"
                 android:imeOptions="actionDone" />
 
 
@@ -75,7 +79,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="ส่วนสูง"
+                        android:text="@string/height_label"
                         android:textStyle="bold"
                         android:textSize="16sp"
                         android:textColor="@color/black" />
@@ -83,12 +87,14 @@
                     <EditText
                         android:id="@+id/inputHeight"
                         android:layout_width="match_parent"
-                        android:layout_height="35dp"
+                        android:layout_height="48dp"
                         android:background="@drawable/inputdata"
-                        android:hint="ซม."
+                        android:hint="@string/height_hint"
                         android:layout_marginTop="5dp"
                         android:inputType="number"
                         android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        android:importantForAutofill="no"
                         android:textSize="16sp" />
                 </LinearLayout>
 
@@ -103,7 +109,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="น้ำหนัก"
+                        android:text="@string/weight_label"
                         android:textStyle="bold"
                         android:textSize="16sp"
                         android:textColor="@color/black" />
@@ -111,12 +117,14 @@
                     <EditText
                         android:id="@+id/inputWeight"
                         android:layout_width="match_parent"
-                        android:layout_height="35dp"
+                        android:layout_height="48dp"
                         android:background="@drawable/inputdata"
-                        android:hint="กก."
+                        android:hint="@string/weight_hint"
                         android:layout_marginTop="5dp"
                         android:inputType="number"
                         android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        android:importantForAutofill="no"
                         android:textSize="16sp" />
                 </LinearLayout>
 
@@ -131,7 +139,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="เพศ"
+                        android:text="@string/sex_label"
                         android:textStyle="bold"
                         android:textSize="16sp"
                         android:textColor="@color/black" />
@@ -147,11 +155,13 @@
                         <AutoCompleteTextView
                             android:id="@+id/inputSex"
                             android:layout_width="match_parent"
-                            android:layout_height="35dp"
+                            android:layout_height="48dp"
                             android:background="@drawable/inputdata"
-                            android:hint="เพศ"
+                            android:hint="@string/sex_label"
                             android:textSize="16sp"
                             android:paddingStart="12dp"
+                            android:paddingEnd="12dp"
+                            android:importantForAutofill="no"
                             android:paddingTop="6dp"
                             android:paddingBottom="6dp" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -164,7 +174,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="วันเกิด"
+                android:text="@string/birth_date_label"
                 android:textStyle="bold"
                 android:textSize="16sp"
                 android:textColor="@color/black"
@@ -174,19 +184,21 @@
             <EditText
                 android:id="@+id/inputDay"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="48dp"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/inputdata"
-                android:hint="วัน/เดือน/ปี"
+                android:hint="@string/birth_date_hint"
                 android:inputType="text"
+                android:importantForAutofill="no"
                 android:textSize="16sp"
-                android:paddingStart="12dp" />
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp" />
 
             <!-- ประเภทโรคเบาหวาน -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ประเภทโรคเบาหวาน"
+                android:text="@string/diabetes_type_label"
                 android:textStyle="bold"
                 android:textSize="16sp"
                 android:textColor="@color/black"
@@ -204,11 +216,13 @@
                 <AutoCompleteTextView
                     android:id="@+id/inputDiabetes"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="48dp"
                     android:background="@drawable/inputdata"
-                    android:hint="ประเภทโรคเบาหวาน"
+                    android:hint="@string/diabetes_type_label"
                     android:textSize="16sp"
                     android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:importantForAutofill="no"
                     android:paddingTop="6dp"
                     android:paddingBottom="6dp" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -217,11 +231,11 @@
             <Button
                 android:id="@+id/button_Record"
                 android:layout_width="200dp"
-                android:layout_height="45dp"
+                android:layout_height="48dp"
                 android:layout_marginTop="50dp"
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/button_background"
-                android:text="Save"
+                android:text="@string/save"
                 android:textColor="@android:color/white"
                 android:textSize="16sp" />
 
@@ -231,7 +245,6 @@
                 android:id="@+id/buttonErrorText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text=""
                 android:textColor="#FF0000"
                 android:gravity="center"
                 android:textSize="14sp"
