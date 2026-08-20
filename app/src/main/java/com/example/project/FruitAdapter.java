@@ -69,6 +69,15 @@ public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.FruitViewHol
             intent.putExtra(AppContracts.EXTRA_FRUIT_END, f.getEnd_());
             intent.putExtra(AppContracts.EXTRA_FRUIT_IMAGE, f.getImageResId());
             intent.putExtra(AppContracts.EXTRA_FRUIT_SAFETY, safety);
+            putOptionalExtra(intent, AppContracts.EXTRA_FRUIT_INTRODUCTION,
+                    f.getDetailIntroduction());
+            putOptionalExtra(intent, AppContracts.EXTRA_FRUIT_RECOMMENDED_AMOUNT,
+                    f.getRecommendedAmount());
+            putOptionalExtra(intent, AppContracts.EXTRA_FRUIT_RECOMMENDED_EQUIVALENT,
+                    f.getRecommendedEquivalent());
+            putOptionalExtra(intent, AppContracts.EXTRA_FRUIT_TIP_1, f.getDetailTip1());
+            putOptionalExtra(intent, AppContracts.EXTRA_FRUIT_TIP_2, f.getDetailTip2());
+            putOptionalExtra(intent, AppContracts.EXTRA_FRUIT_TIP_3, f.getDetailTip3());
             intent.putExtra(AppContracts.EXTRA_LEVEL, level);
             v.getContext().startActivity(intent);
         });
@@ -77,6 +86,12 @@ public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.FruitViewHol
     @Override
     public int getItemCount() {
         return fruitList.size();
+    }
+
+    private void putOptionalExtra(Intent intent, String key, String value) {
+        if (value != null && !value.trim().isEmpty()) {
+            intent.putExtra(key, value);
+        }
     }
 
     public void updateFruits(List<Fruit> newFruits) {

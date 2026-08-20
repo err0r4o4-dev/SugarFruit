@@ -18,6 +18,12 @@ public final class AppContracts {
     public static final String EXTRA_FRUIT_END = "fruitEnd_";
     public static final String EXTRA_FRUIT_IMAGE = "fruitImage";
     public static final String EXTRA_FRUIT_SAFETY = "fruitSafety";
+    public static final String EXTRA_FRUIT_INTRODUCTION = "fruitIntroduction";
+    public static final String EXTRA_FRUIT_RECOMMENDED_AMOUNT = "fruitRecommendedAmount";
+    public static final String EXTRA_FRUIT_RECOMMENDED_EQUIVALENT = "fruitRecommendedEquivalent";
+    public static final String EXTRA_FRUIT_TIP_1 = "fruitTip1";
+    public static final String EXTRA_FRUIT_TIP_2 = "fruitTip2";
+    public static final String EXTRA_FRUIT_TIP_3 = "fruitTip3";
 
     private AppContracts() {
     }

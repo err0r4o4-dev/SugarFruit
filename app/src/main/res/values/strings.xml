@@ -67,6 +67,19 @@
     <string name="detail_type1_short_label">Type 1</string>
     <string name="detail_type2_short_label">Type 2</string>
     <string name="detail_general_advice_title">รับประทานอย่างไรให้เหมาะสม</string>
+    <string name="detail_recommended_amount_title">ปริมาณที่แนะนำ</string>
+    <string name="detail_tip_format">• %1$s</string>
+    <string name="detail_disclaimer">ข้อมูลนี้เป็นเพียงคำแนะนำเบื้องต้น หากคุณมีภาวะแทรกซ้อน หรือไม่แน่ใจ ควรปรึกษาแพทย์หรือนักกำหนดอาหาร</string>
+    <string name="detail_source">แนวทางการรับประทานอ้างอิงจากศูนย์เบาหวานศิริราช และ American Diabetes Association</string>
+    <string name="mango_detail_introduction">มะม่วงมีคาร์โบไฮเดรต จึงควรนับรวมในแผนมื้ออาหารและควบคุมปริมาณต่อมื้อ</string>
+    <string name="mango_detail_recommended_amount">ประมาณครึ่งผลต่อครั้ง</string>
+    <string name="mango_detail_recommended_equivalent">1 ส่วน ให้คาร์โบไฮเดรตประมาณ 15 กรัม</string>
+    <string name="mango_detail_impact">มะม่วงมีคาร์โบไฮเดรตที่ส่งผลต่อระดับน้ำตาลในเลือด จึงควรรับประทานในปริมาณที่เหมาะสมและนับรวมกับคาร์โบไฮเดรตในมื้ออาหาร</string>
+    <string name="mango_detail_type_1">นับคาร์โบไฮเดรตจากมะม่วงรวมกับมื้ออาหาร และปรับอินซูลินตามแผนที่ได้รับจากทีมดูแล</string>
+    <string name="mango_detail_type_2">รับประทานเป็นส่วนหนึ่งของมื้ออาหาร และควบคุมปริมาณคาร์โบไฮเดรตรวมในมื้อนั้น</string>
+    <string name="mango_detail_tip_1">เลือกมะม่วงสดที่ไม่สุกงอมมาก และควบคุมปริมาณต่อมื้อ</string>
+    <string name="mango_detail_tip_2">จัดมะม่วงร่วมกับมื้อที่มีโปรตีนและผักไม่หวานตามหลักจานอาหาร</string>
+    <string name="mango_detail_tip_3">เลือกผลไม้ทั้งผลแทนน้ำผลไม้ และหลีกเลี่ยงผลไม้แปรรูปที่เติมน้ำตาล</string>
 
     <string-array name="sex_options">
         <item>ชาย</item>

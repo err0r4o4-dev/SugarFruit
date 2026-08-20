@@ -17,6 +17,12 @@ public class Fruit {
     public String level1;
     public String level2;
     public String level3;
+    private String detailIntroduction;
+    private String recommendedAmount;
+    private String recommendedEquivalent;
+    private String detailTip1;
+    private String detailTip2;
+    private String detailTip3;
     public int imageResId;
     public Fruit(int imageResId, String name, String sugar, String sugar_, String index, String index_, String True_, String Season
             , String carbohydrate_, String fiber_, String impact_, String type1_, String type2_, String end_, String level1, String level2, String level3) {
@@ -56,5 +62,24 @@ public class Fruit {
     public String getLevel3() { return level3; }
     public String getSeason() { return Season; }
     public int getImageResId() { return imageResId; }
+
+    public Fruit withDetailGuide(String detailIntroduction, String recommendedAmount,
+            String recommendedEquivalent, String detailTip1, String detailTip2,
+            String detailTip3) {
+        this.detailIntroduction = detailIntroduction;
+        this.recommendedAmount = recommendedAmount;
+        this.recommendedEquivalent = recommendedEquivalent;
+        this.detailTip1 = detailTip1;
+        this.detailTip2 = detailTip2;
+        this.detailTip3 = detailTip3;
+        return this;
+    }
+
+    public String getDetailIntroduction() { return detailIntroduction; }
+    public String getRecommendedAmount() { return recommendedAmount; }
+    public String getRecommendedEquivalent() { return recommendedEquivalent; }
+    public String getDetailTip1() { return detailTip1; }
+    public String getDetailTip2() { return detailTip2; }
+    public String getDetailTip3() { return detailTip3; }
 
 }
