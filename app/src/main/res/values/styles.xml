@@ -33,4 +33,27 @@
         <item name="endIconTint">@color/sugarfruit_text_secondary</item>
         <item name="hintTextColor">@color/sugarfruit_text_secondary</item>
     </style>
+    <style name="Widget.SugarFruit.ProfileField" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxBackgroundColor">@color/profile_field_background</item>
+        <item name="boxStrokeColor">@color/profile_field_stroke</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="boxStrokeWidthFocused">2dp</item>
+        <item name="boxCornerRadiusTopStart">15dp</item>
+        <item name="boxCornerRadiusTopEnd">15dp</item>
+        <item name="boxCornerRadiusBottomStart">15dp</item>
+        <item name="boxCornerRadiusBottomEnd">15dp</item>
+        <item name="hintEnabled">false</item>
+    </style>
+    <style name="Widget.SugarFruit.ProfileDropdownField" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="boxBackgroundColor">@color/profile_field_background</item>
+        <item name="boxStrokeColor">@color/profile_field_stroke</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="boxStrokeWidthFocused">2dp</item>
+        <item name="boxCornerRadiusTopStart">15dp</item>
+        <item name="boxCornerRadiusTopEnd">15dp</item>
+        <item name="boxCornerRadiusBottomStart">15dp</item>
+        <item name="boxCornerRadiusBottomEnd">15dp</item>
+        <item name="endIconTint">@color/profile_text_primary</item>
+        <item name="hintEnabled">false</item>
+    </style>
 </resources>

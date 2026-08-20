@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.MaterialAutoCompleteTextView;
+import com.google.android.material.textfield.TextInputLayout;
 import android.widget.Button;
 import com.google.android.material.datepicker.CalendarConstraints;
 import com.google.android.material.datepicker.DateValidatorPointBackward;
@@ -22,13 +23,16 @@ public class App_page2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ui_page2);
+        findViewById(R.id.buttonBack).setOnClickListener(view -> finish());
+
         EditText inputName = findViewById(R.id.inputName);
 
         EditText inputHeight = findViewById(R.id.inputHeight);
         EditText inputWeight = findViewById(R.id.inputWeight);
         EditText inputDay = findViewById(R.id.inputDay);
+        TextInputLayout birthDateLayout = findViewById(R.id.birthDateLayout);
         inputDay.setKeyListener(null);
-        inputDay.setOnClickListener(view -> {
+        View.OnClickListener datePickerClickListener = view -> {
             CalendarConstraints constraints = new CalendarConstraints.Builder()
                     .setValidator(DateValidatorPointBackward.now())
                     .build();
@@ -43,11 +47,17 @@ public class App_page2 extends AppCompatActivity {
                 calendar.setTime(date);
                 int yearAD = calendar.get(Calendar.YEAR);
                 int yearBE = yearAD + 543;
-                String dayMonth = new java.text.SimpleDateFormat("d MMMM", new Locale("th", "TH")).format(date);
-                String selectedDate = dayMonth + " " + yearBE;
+                String selectedDate = String.format(
+                        new Locale("th", "TH"),
+                        "%02d/%02d/%d",
+                        calendar.get(Calendar.DAY_OF_MONTH),
+                        calendar.get(Calendar.MONTH) + 1,
+                        yearBE);
                 inputDay.setText(selectedDate);
             });
-        });
+        };
+        inputDay.setOnClickListener(datePickerClickListener);
+        birthDateLayout.setEndIconOnClickListener(datePickerClickListener);
 
 
         MaterialAutoCompleteTextView spinner1 = findViewById(R.id.inputSex);

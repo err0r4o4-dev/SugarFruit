@@ -20,4 +20,13 @@
     <color name="sugarfruit_on_primary">#FFFFFFFF</color>
     <color name="sugarfruit_error">#A63B38</color>
     <color name="sugarfruit_error_container">#FFF0EF</color>
+    <color name="profile_background">#FFFFFFFF</color>
+    <color name="profile_field_background">#FFFFFFFF</color>
+    <color name="profile_text_primary">#FF111111</color>
+    <color name="profile_text_secondary">#FF777777</color>
+    <color name="profile_outline">#FF111111</color>
+    <color name="profile_accent">#FF000000</color>
+    <color name="profile_button_text">#FFFFFFFF</color>
+    <color name="profile_privacy_background">#FFF2F2F2</color>
+    <color name="profile_privacy_outline">#FFE0E0E0</color>
 </resources>
