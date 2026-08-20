@@ -116,6 +116,45 @@ public class App_page3 extends AppCompatActivity {
         allFruits.add(new Fruit(R.drawable.q47, "ส้มแมนดาริน", "ปริมาณน้ำตาล: 9.0/100 กรัม","9.0/100 กรัม (ปานกลาง) มีผลให้น้ำตาลในเลือดขึ้นน้อย หากรับประทานมากหรือติดกันหลายมื้อ อาจทำให้ระดับน้ำตาลสะสมสูง","ดัชนีน้ำตาล (GI): 40-50","40-50 (ต่ำ) ดีต่อผู้ป่วยเบาหวาน","\uD83D\uDFE1 ควรจำกัด", "Winter","12.0/100 กรัม (ปานกลาง) ช่วยรักษาระดับน้ำตาลในเลือดไม่ให้สูงหรือต่ำเกินไป","2.0/100 กรัม (ปานกลาง) พอช่วยชะลอการดูดซึมน้ำตาลได้","\uD83D\uDFE1 ปานกลาง","สามารถกินได้ แต่ควรคำนวณคาร์โบไฮเดรตให้แม่นยำก่อนฉีดอินซูลิน","สามารถกินได้ในปริมาณ 1 ผลต่อวัน หากต้องการควบคุมระดับน้ำตาลอย่างเข้มงวด","สำหรับผู้ป่วยเบาหวานที่ควบคุมระดับน้ำตาลได้ไม่ดีหรือมีภาวะแทรกซ้อน ควรจำกัดปริมาณและทานร่วมกับอาหารที่มีไฟเบอร์สูงเพื่อควบคุมระดับน้ำตาล","\uD83D\uDFE2 ปลอดภัย","\uD83D\uDFE2 ปลอดภัย","\uD83D\uDFE1 ควรจำกัด"));
         allFruits.add(new Fruit(R.drawable.q48, "ส้มเช้ง", "ปริมาณน้ำตาล: 8.0/100 กรัม","8.0/100 กรัม (ปานกลาง) มีผลให้น้ำตาลในเลือดขึ้นน้อย หากรับประทานมากหรือติดกันหลายมื้อ อาจทำให้ระดับน้ำตาลสะสมสูง","ดัชนีน้ำตาล (GI): 40-45","40-45 (ต่ำ) ดีต่อผู้ป่วยเบาหวาน","\uD83D\uDFE1 ควรจำกัด", "Winter","11.0/100 กรัม (ปานกลาง) ช่วยรักษาระดับน้ำตาลในเลือดไม่ให้สูงหรือต่ำเกินไป","1.5/100 กรัม (ต่ำ) ชะลอการดูดซึมน้ำตาลได้น้อย","\uD83D\uDFE1 ปานกลาง","สามารถกินได้ แต่ควรคำนวณคาร์โบไฮเดรตให้แม่นยำก่อนฉีดอินซูลิน","สามารถกินได้ในปริมาณ 1 ผลต่อวัน หลีกเลี่ยงทานเกินในหนึ่งมื้อ","สำหรับผู้ป่วยเบาหวานที่ควบคุมระดับน้ำตาลได้ไม่ดีหรือมีภาวะแทรกซ้อน ควรจำกัดปริมาณการทานและทานร่วมกับอาหารที่มีไฟเบอร์สูง","\uD83D\uDFE2 ปลอดภัย","\uD83D\uDFE2 ปลอดภัย","\uD83D\uDFE2 ปลอดภัย"));
         allFruits.add(new Fruit(R.drawable.q49, "สาลี่", "ปริมาณน้ำตาล: 9.8/100 กรัม","9.8/100 กรัม (ปานกลาง) มีผลให้น้ำตาลในเลือดขึ้นน้อย หากรับประทานมากหรือติดกันหลายมื้อ อาจทำให้ระดับน้ำตาลสะสมสูง","ดัชนีน้ำตาล (GI): 30","30 (ต่ำ) ดีต่อผู้ป่วยเบาหวาน","\uD83D\uDFE1 ควรจำกัด", "Winter","15.2/100 กรัม (สูง) ระดับน้ำตาลในเลือดอาจเพิ่มสูงขึ้นอย่างรวดเร็ว","3.1/100 กรัม (สูง) ช่วยชะลอการดูดซึมน้ำตาลได้ดี","\uD83D\uDFE1 ปานกลาง","สามารถกินได้ในปริมาณที่ควบคุมได้","สามารถกินได้ในปริมาณที่เหมาะสม แต่ต้องระวังไม่ทานมากเกินไป","สำหรับผู้ป่วยเบาหวานที่ควบคุมระดับน้ำตาลได้ไม่ดีหรือมีภาวะแทรกซ้อน สามารถกินได้ในปริมาณที่เหมาะสมและระมัดระวังในการควบคุมระดับน้ำตาล","\uD83D\uDFE2 ปลอดภัย","\uD83D\uDFE1 ควรจำกัด","\uD83D\uDD34 ควรหลีกเลี่ยง"));
+
+        applyAdditionalDetailGuides();
+    }
+
+    private void applyAdditionalDetailGuides() {
+        for (Fruit fruit : allFruits) {
+            int[] resources = getDetailGuideResources(fruit.getName());
+            if (resources != null) {
+                String note = resources[2] == 0 ? null : getString(resources[2]);
+                fruit.withDetailGuide(
+                        getString(resources[0]),
+                        getString(resources[1]),
+                        getString(R.string.fruit_serving_carbohydrate_equivalent),
+                        note,
+                        null,
+                        null);
+            }
+        }
+    }
+
+    private int[] getDetailGuideResources(String fruitName) {
+        switch (fruitName) {
+            case "กล้วย": return new int[]{R.string.banana_detail_evidence, R.string.banana_recommended_amount, R.string.banana_detail_note};
+            case "แตงโม": return new int[]{R.string.watermelon_detail_evidence, R.string.watermelon_recommended_amount, 0};
+            case "มะละกอ": return new int[]{R.string.papaya_detail_evidence, R.string.papaya_recommended_amount, R.string.papaya_detail_note};
+            case "ลิ้นจี่": return new int[]{R.string.lychee_detail_evidence, R.string.lychee_recommended_amount, R.string.lychee_detail_note};
+            case "สับปะรด": return new int[]{R.string.pineapple_detail_evidence, R.string.pineapple_recommended_amount, R.string.pineapple_detail_note};
+            case "ฝรั่ง": return new int[]{R.string.guava_detail_evidence, R.string.guava_recommended_amount, 0};
+            case "มะขามหวาน": return new int[]{R.string.sweet_tamarind_detail_evidence, R.string.sweet_tamarind_recommended_amount, R.string.sweet_tamarind_detail_note};
+            case "พุทรา": return new int[]{R.string.jujube_detail_evidence, R.string.jujube_recommended_amount, R.string.jujube_detail_note};
+            case "ทุเรียน": return new int[]{R.string.durian_detail_evidence, R.string.durian_recommended_amount, R.string.durian_detail_note};
+            case "มังคุด": return new int[]{R.string.mangosteen_detail_evidence, R.string.mangosteen_recommended_amount, 0};
+            case "เงาะ": return new int[]{R.string.rambutan_detail_evidence, R.string.rambutan_recommended_amount, R.string.rambutan_detail_note};
+            case "ลำไย": return new int[]{R.string.longan_detail_evidence, R.string.longan_recommended_amount, R.string.longan_detail_note};
+            case "ลองกอง": return new int[]{R.string.longkong_detail_evidence, R.string.longkong_recommended_amount, 0};
+            case "ส้มโอ": return new int[]{R.string.pomelo_detail_evidence, R.string.pomelo_recommended_amount, 0};
+            case "แอปเปิล": return new int[]{R.string.apple_detail_evidence, R.string.apple_recommended_amount, 0};
+            default: return null;
+        }
     }
 
     private void setupRecyclerView() {
