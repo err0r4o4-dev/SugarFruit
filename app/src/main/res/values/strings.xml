@@ -56,6 +56,17 @@
     <string name="detail_type1_label">เบาหวานชนิดที่ 1 (Type 1 Diabetes)</string>
     <string name="detail_type2_label">เบาหวานชนิดที่ 2 (Type 2 Diabetes)</string>
     <string name="detail_unavailable">ไม่มีข้อมูล</string>
+    <string name="detail_safety_label">ระดับความเหมาะสม</string>
+    <string name="detail_nutrition_title">ข้อมูลโภชนาการ</string>
+    <string name="detail_sugar_summary_title">ปริมาณน้ำตาล</string>
+    <string name="detail_gi_short_label">ดัชนีน้ำตาล (GI)</string>
+    <string name="detail_carbohydrate_short_label">คาร์โบไฮเดรต</string>
+    <string name="detail_fiber_short_label">ใยอาหาร</string>
+    <string name="detail_impact_short_label">ผลต่อระดับน้ำตาล</string>
+    <string name="detail_diabetes_advice_title">คำแนะนำตามประเภทเบาหวาน</string>
+    <string name="detail_type1_short_label">Type 1</string>
+    <string name="detail_type2_short_label">Type 2</string>
+    <string name="detail_general_advice_title">รับประทานอย่างไรให้เหมาะสม</string>
 
     <string-array name="sex_options">
         <item>ชาย</item>

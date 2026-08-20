@@ -17,6 +17,7 @@ public final class AppContracts {
     public static final String EXTRA_FRUIT_TYPE_2 = "fruitType2_";
     public static final String EXTRA_FRUIT_END = "fruitEnd_";
     public static final String EXTRA_FRUIT_IMAGE = "fruitImage";
+    public static final String EXTRA_FRUIT_SAFETY = "fruitSafety";
 
     private AppContracts() {
     }

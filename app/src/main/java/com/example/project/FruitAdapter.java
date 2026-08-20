@@ -51,7 +51,8 @@ public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.FruitViewHol
         holder.fruitName.setText(f.getName());
         holder.fruitIndex.setText(f.getIndex());
         holder.fruitSugar.setText(f.getSugar());
-        holder.fruiTrue.setText(FruitSafety.forDiabetesLevel(f, level));
+        String safety = FruitSafety.forDiabetesLevel(f, level);
+        holder.fruiTrue.setText(safety);
         holder.imageView.setImageResource(f.getImageResId());
         holder.imageView.setContentDescription(
                 holder.itemView.getContext().getString(R.string.fruit_image_description, f.getName()));
@@ -67,6 +68,7 @@ public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.FruitViewHol
             intent.putExtra(AppContracts.EXTRA_FRUIT_TYPE_2, f.getType2_());
             intent.putExtra(AppContracts.EXTRA_FRUIT_END, f.getEnd_());
             intent.putExtra(AppContracts.EXTRA_FRUIT_IMAGE, f.getImageResId());
+            intent.putExtra(AppContracts.EXTRA_FRUIT_SAFETY, safety);
             intent.putExtra(AppContracts.EXTRA_LEVEL, level);
             v.getContext().startActivity(intent);
         });
