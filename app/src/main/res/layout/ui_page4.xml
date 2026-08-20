@@ -41,171 +41,248 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingStart="30dp"
-                android:paddingTop="30dp"
-                android:paddingEnd="30dp"
+                android:paddingStart="24dp"
+                android:paddingTop="28dp"
+                android:paddingEnd="24dp"
                 android:paddingBottom="36dp">
 
-                <TextView
-                    android:id="@+id/detail_name"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawablePadding="12dp"
-                    android:fontFamily="sans-serif-medium"
                     android:gravity="center_vertical"
-                    android:text="@string/detail_name_placeholder"
-                    android:textColor="@color/profile_text_primary"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    app:drawableStartCompat="@drawable/logo_50"
-                    tools:text="มะม่วง" />
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
-                    android:fontFamily="sans-serif-medium"
-                    android:text="@string/detail_safety_label"
-                    android:textColor="@color/profile_text_primary"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/detail_name"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="@string/detail_name_placeholder"
+                        android:textColor="@color/profile_text_primary"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        tools:text="มะม่วง" />
 
-                <TextView
-                    android:id="@+id/detail_safety"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:lineSpacingExtra="3dp"
-                    android:textColor="@color/profile_text_secondary"
-                    android:textSize="15sp"
-                    tools:text="🟡 ควรจำกัด" />
+                    <TextView
+                        android:id="@+id/detail_safety"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:layout_marginStart="12dp"
+                        android:background="@drawable/detail_badge_background"
+                        android:ellipsize="end"
+                        android:fontFamily="sans-serif-medium"
+                        android:gravity="center"
+                        android:maxWidth="150dp"
+                        android:maxLines="1"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        android:textColor="@color/profile_text_primary"
+                        android:textSize="12sp"
+                        tools:text="🟡 ควรจำกัด" />
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/detail_introduction"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="14dp"
                     android:lineSpacingExtra="3dp"
                     android:textColor="@color/profile_text_secondary"
-                    android:textSize="15sp"
+                    android:textSize="14sp"
                     android:visibility="gone"
                     tools:text="มะม่วงมีคาร์โบไฮเดรต จึงควรนับรวมในแผนมื้ออาหารและควบคุมปริมาณต่อมื้อ"
                     tools:visibility="visible" />
 
-                <LinearLayout
+                <com.google.android.material.card.MaterialCardView
                     android:id="@+id/detail_recommendation_group"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="26dp"
-                    android:orientation="vertical"
+                    android:layout_marginTop="18dp"
                     android:visibility="gone"
+                    app:cardBackgroundColor="@color/detail_card_background"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="0dp"
+                    app:strokeColor="@color/profile_outline"
+                    app:strokeWidth="1dp"
                     tools:visibility="visible">
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-medium"
-                        android:text="@string/detail_recommended_amount_title"
-                        android:textColor="@color/profile_text_primary"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:gravity="center_vertical"
+                        android:minHeight="104dp"
+                        android:orientation="horizontal"
+                        android:padding="16dp">
 
-                    <TextView
-                        android:id="@+id/detail_recommended_amount"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:fontFamily="sans-serif-medium"
-                        android:textColor="@color/profile_text_primary"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        tools:text="ประมาณครึ่งผลต่อครั้ง" />
+                        <ImageView
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:contentDescription="@null"
+                            android:src="@drawable/ic_detail_portion" />
 
-                    <TextView
-                        android:id="@+id/detail_recommended_equivalent"
-                        android:layout_width="match_parent"
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="14dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif-medium"
+                                android:text="@string/detail_recommended_amount_title"
+                                android:textColor="@color/profile_text_primary"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/detail_recommended_amount"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="6dp"
+                                android:fontFamily="sans-serif-medium"
+                                android:textColor="@color/profile_text_primary"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                tools:text="ประมาณครึ่งผลต่อครั้ง" />
+
+                            <TextView
+                                android:id="@+id/detail_recommended_equivalent"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:lineSpacingExtra="2dp"
+                                android:textColor="@color/profile_text_secondary"
+                                android:textSize="12sp"
+                                tools:text="1 ส่วน ให้คาร์โบไฮเดรตประมาณ 15 กรัม" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/detail_divider" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:minHeight="88dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:lineSpacingExtra="3dp"
-                        android:textColor="@color/profile_text_secondary"
-                        android:textSize="14sp"
-                        tools:text="1 ส่วน ให้คาร์โบไฮเดรตประมาณ 15 กรัม" />
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:paddingStart="4dp"
+                        android:paddingEnd="4dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/detail_gi_metric_label"
+                            android:textColor="@color/profile_text_secondary"
+                            android:textSize="11sp" />
+
+                        <TextView
+                            android:id="@+id/detail_index_"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:fontFamily="sans-serif-medium"
+                            android:gravity="center"
+                            android:textColor="@color/profile_text_primary"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            tools:text="41\n(ต่ำ)" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="56dp"
+                        android:background="@color/detail_divider" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:paddingStart="4dp"
+                        android:paddingEnd="4dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/detail_carbohydrate_short_label"
+                            android:textColor="@color/profile_text_secondary"
+                            android:textSize="11sp" />
+
+                        <TextView
+                            android:id="@+id/detail_carbohydrate_"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:fontFamily="sans-serif-medium"
+                            android:gravity="center"
+                            android:textColor="@color/profile_text_primary"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            tools:text="15 กรัม\nต่อ 100 กรัม" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="56dp"
+                        android:background="@color/detail_divider" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:paddingStart="4dp"
+                        android:paddingEnd="4dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/detail_fiber_short_label"
+                            android:textColor="@color/profile_text_secondary"
+                            android:textSize="11sp" />
+
+                        <TextView
+                            android:id="@+id/detail_fiber_"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:fontFamily="sans-serif-medium"
+                            android:gravity="center"
+                            android:textColor="@color/profile_text_primary"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            tools:text="1.6 กรัม\nต่อ 100 กรัม" />
+                    </LinearLayout>
                 </LinearLayout>
 
-                <TextView
+                <View
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="26dp"
-                    android:fontFamily="sans-serif-medium"
-                    android:text="@string/detail_nutrition_title"
-                    android:textColor="@color/profile_text_primary"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:layout_height="1dp"
+                    android:background="@color/detail_divider" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:fontFamily="sans-serif-medium"
-                    android:text="@string/detail_gi_short_label"
-                    android:textColor="@color/profile_text_primary"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/detail_index_"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:lineSpacingExtra="3dp"
-                    android:textColor="@color/profile_text_secondary"
-                    android:textSize="14sp"
-                    tools:text="41 (ต่ำ) ดีต่อผู้ป่วยเบาหวาน" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:fontFamily="sans-serif-medium"
-                    android:text="@string/detail_carbohydrate_short_label"
-                    android:textColor="@color/profile_text_primary"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/detail_carbohydrate_"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:lineSpacingExtra="3dp"
-                    android:textColor="@color/profile_text_secondary"
-                    android:textSize="14sp"
-                    tools:text="15.0/100 กรัม (ปานกลาง) ช่วยรักษาระดับน้ำตาลในเลือด" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:fontFamily="sans-serif-medium"
-                    android:text="@string/detail_fiber_short_label"
-                    android:textColor="@color/profile_text_primary"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/detail_fiber_"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:lineSpacingExtra="3dp"
-                    android:textColor="@color/profile_text_secondary"
-                    android:textSize="14sp"
-                    tools:text="1.6/100 กรัม (ต่ำ) ชะลอการดูดซึมน้ำตาลได้น้อย" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="26dp"
+                    android:layout_marginTop="22dp"
                     android:fontFamily="sans-serif-medium"
                     android:text="@string/detail_impact_short_label"
                     android:textColor="@color/profile_text_primary"
@@ -216,67 +293,94 @@
                     android:id="@+id/detail_impact_"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
+                    android:layout_marginTop="8dp"
                     android:lineSpacingExtra="3dp"
                     android:textColor="@color/profile_text_secondary"
                     android:textSize="14sp"
-                    tools:text="🟡 ปานกลาง" />
+                    tools:text="มะม่วงมีคาร์โบไฮเดรตที่ส่งผลต่อระดับน้ำตาลในเลือด จึงควรรับประทานในปริมาณที่เหมาะสม" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="26dp"
+                    android:layout_marginTop="24dp"
                     android:fontFamily="sans-serif-medium"
                     android:text="@string/detail_diabetes_advice_title"
                     android:textColor="@color/profile_text_primary"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:fontFamily="sans-serif-medium"
-                    android:text="@string/detail_type1_short_label"
-                    android:textColor="@color/profile_text_primary"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_vertical"
+                    android:minHeight="64dp"
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/detail_type1_"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:lineSpacingExtra="3dp"
-                    android:textColor="@color/profile_text_secondary"
-                    android:textSize="14sp"
-                    tools:text="สามารถกินได้ ถ้าคำนวณคาร์บและฉีดอินซูลินอย่างเหมาะสม" />
+                    <TextView
+                        android:layout_width="64dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="@string/detail_type1_short_label"
+                        android:textColor="@color/profile_text_primary"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:fontFamily="sans-serif-medium"
-                    android:text="@string/detail_type2_short_label"
-                    android:textColor="@color/profile_text_primary"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/detail_type1_"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="end|center_vertical"
+                        android:lineSpacingExtra="2dp"
+                        android:textColor="@color/profile_text_secondary"
+                        android:textSize="13sp"
+                        tools:text="นับคาร์โบไฮเดรตจากมะม่วงรวมกับมื้ออาหาร และปรับอินซูลินตามแผนที่ได้รับจากทีมดูแล" />
+                </LinearLayout>
 
-                <TextView
-                    android:id="@+id/detail_type2_"
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/detail_divider" />
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:lineSpacingExtra="3dp"
-                    android:textColor="@color/profile_text_secondary"
-                    android:textSize="14sp"
-                    tools:text="สามารถกินได้ในปริมาณจำกัดเท่านั้น" />
+                    android:gravity="center_vertical"
+                    android:minHeight="64dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="64dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="@string/detail_type2_short_label"
+                        android:textColor="@color/profile_text_primary"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/detail_type2_"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="end|center_vertical"
+                        android:lineSpacingExtra="2dp"
+                        android:textColor="@color/profile_text_secondary"
+                        android:textSize="13sp"
+                        tools:text="รับประทานเป็นส่วนหนึ่งของมื้ออาหาร และควบคุมปริมาณคาร์โบไฮเดรตรวมในมื้อนั้น" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/detail_divider" />
 
                 <LinearLayout
                     android:id="@+id/detail_general_advice_group"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="26dp"
+                    android:layout_marginTop="22dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -288,63 +392,138 @@
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/detail_end_"
+                    <LinearLayout
+                        android:id="@+id/detail_tip_1_row"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:gravity="top"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:contentDescription="@null"
+                            android:src="@drawable/ic_detail_check" />
+
+                        <TextView
+                            android:id="@+id/detail_end_"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_weight="1"
+                            android:lineSpacingExtra="3dp"
+                            android:textColor="@color/profile_text_secondary"
+                            android:textSize="14sp"
+                            tools:text="เลือกมะม่วงสดที่ไม่สุกงอมมาก และควบคุมปริมาณต่อมื้อ" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/detail_tip_2_row"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:lineSpacingExtra="3dp"
-                        android:textColor="@color/profile_text_secondary"
-                        android:textSize="14sp"
-                        tools:text="• เลือกมะม่วงสดที่ไม่สุกงอมมาก และควบคุมปริมาณต่อมื้อ" />
+                        android:gravity="top"
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/detail_tip_2"
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:contentDescription="@null"
+                            android:src="@drawable/ic_detail_check" />
+
+                        <TextView
+                            android:id="@+id/detail_tip_2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_weight="1"
+                            android:lineSpacingExtra="3dp"
+                            android:textColor="@color/profile_text_secondary"
+                            android:textSize="14sp"
+                            tools:text="จัดมะม่วงร่วมกับมื้อที่มีโปรตีนและผักไม่หวานตามหลักจานอาหาร" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/detail_tip_3_row"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:lineSpacingExtra="3dp"
-                        android:textColor="@color/profile_text_secondary"
-                        android:textSize="14sp"
-                        tools:text="• จัดมะม่วงร่วมกับมื้อที่มีโปรตีนและผักไม่หวานตามหลักจานอาหาร" />
+                        android:layout_marginTop="10dp"
+                        android:gravity="top"
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/detail_tip_3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:lineSpacingExtra="3dp"
-                        android:textColor="@color/profile_text_secondary"
-                        android:textSize="14sp"
-                        tools:text="• เลือกผลไม้ทั้งผลแทนน้ำผลไม้ และหลีกเลี่ยงผลไม้แปรรูปที่เติมน้ำตาล" />
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:contentDescription="@null"
+                            android:src="@drawable/ic_detail_check" />
+
+                        <TextView
+                            android:id="@+id/detail_tip_3"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_weight="1"
+                            android:lineSpacingExtra="3dp"
+                            android:textColor="@color/profile_text_secondary"
+                            android:textSize="14sp"
+                            tools:text="เลือกผลไม้ทั้งผลแทนน้ำผลไม้ และหลีกเลี่ยงผลไม้แปรรูปที่เติมน้ำตาล" />
+                    </LinearLayout>
                 </LinearLayout>
 
-                <TextView
+                <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="28dp"
-                    android:lineSpacingExtra="3dp"
-                    android:text="@string/detail_disclaimer"
-                    android:textColor="@color/profile_text_secondary"
-                    android:textSize="13sp" />
+                    android:layout_marginTop="24dp"
+                    app:cardBackgroundColor="@color/detail_card_background"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="0dp"
+                    app:strokeColor="@color/profile_outline"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:minHeight="96dp"
+                        android:orientation="horizontal"
+                        android:padding="16dp">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:contentDescription="@null"
+                            android:src="@drawable/ic_detail_warning" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:layout_weight="1"
+                            android:lineSpacingExtra="3dp"
+                            android:text="@string/detail_disclaimer"
+                            android:textColor="@color/profile_text_secondary"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="28dp"
+                    android:layout_marginTop="24dp"
+                    android:gravity="center"
                     android:lineSpacingExtra="3dp"
                     android:text="@string/detail_source"
                     android:textColor="@color/profile_text_secondary"
-                    android:textSize="12sp" />
+                    android:textSize="11sp" />
 
                 <Button
                     android:id="@+id/button_Next"
-                    android:layout_width="100dp"
+                    android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:layout_gravity="end"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="24dp"
                     android:text="@string/back"
-                    android:textColor="@android:color/white"
+                    android:textColor="@color/profile_button_text"
                     android:textSize="14sp" />
             </LinearLayout>
         </ScrollView>

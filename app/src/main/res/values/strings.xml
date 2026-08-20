@@ -68,7 +68,10 @@
     <string name="detail_type2_short_label">Type 2</string>
     <string name="detail_general_advice_title">รับประทานอย่างไรให้เหมาะสม</string>
     <string name="detail_recommended_amount_title">ปริมาณที่แนะนำ</string>
-    <string name="detail_tip_format">• %1$s</string>
+    <string name="detail_gi_metric_label">GI</string>
+    <string name="detail_metric_value_with_note">%1$s\n%2$s</string>
+    <string name="detail_metric_grams">%1$s กรัม</string>
+    <string name="detail_metric_per_100_grams">ต่อ 100 กรัม</string>
     <string name="detail_disclaimer">ข้อมูลนี้เป็นเพียงคำแนะนำเบื้องต้น หากคุณมีภาวะแทรกซ้อน หรือไม่แน่ใจ ควรปรึกษาแพทย์หรือนักกำหนดอาหาร</string>
     <string name="detail_source">แนวทางการรับประทานอ้างอิงจากศูนย์เบาหวานศิริราช และ American Diabetes Association</string>
     <string name="mango_detail_introduction">มะม่วงมีคาร์โบไฮเดรต จึงควรนับรวมในแผนมื้ออาหารและควบคุมปริมาณต่อมื้อ</string>

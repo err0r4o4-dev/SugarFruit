@@ -29,4 +29,6 @@
     <color name="profile_button_text">#FFFFFFFF</color>
     <color name="profile_privacy_background">#FFF2F2F2</color>
     <color name="profile_privacy_outline">#FFE0E0E0</color>
+    <color name="detail_divider">#FFB8B8B8</color>
+    <color name="detail_card_background">#FFF2F2F2</color>
 </resources>
