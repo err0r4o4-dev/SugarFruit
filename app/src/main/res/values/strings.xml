@@ -1,21 +1,22 @@
 <resources>
     <string name="app_name">SugarFruit</string>
     <string name="get_started">GET STARTED</string>
-    <string name="save">Save</string>
     <string name="back">Back</string>
     <string name="next">Next</string>
 
     <string name="user_name_label">ชื่อผู้ใช้</string>
-    <string name="name_hint">ชื่อ</string>
     <string name="height_label">ส่วนสูง</string>
-    <string name="height_hint">ซม.</string>
     <string name="weight_label">น้ำหนัก</string>
-    <string name="weight_hint">กก.</string>
     <string name="sex_label">เพศ</string>
     <string name="birth_date_label">วันเกิด</string>
-    <string name="birth_date_hint">วัน/เดือน/ปี</string>
     <string name="select_birth_date">เลือกวันเกิด</string>
     <string name="diabetes_type_label">ประเภทโรคเบาหวาน</string>
+    <string name="app_logo_description">โลโก้ SugarFruit</string>
+    <string name="profile_title">ข้อมูลของคุณ</string>
+    <string name="profile_subtitle">กรอกข้อมูลเพื่อดูผลไม้ที่เหมาะกับคุณ</string>
+    <string name="basic_info_title">ข้อมูลพื้นฐาน</string>
+    <string name="basic_info_caption">ตรวจสอบข้อมูลให้ถูกต้องก่อนดำเนินการต่อ</string>
+    <string name="view_fruits">ดูรายการผลไม้</string>
 
     <string name="error_missing_fields">กรอกข้อมูลให้ครบ</string>
     <string name="error_invalid_name">กรุณากรอกชื่อด้วยตัวอักษร</string>

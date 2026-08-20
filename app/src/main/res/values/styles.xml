@@ -10,4 +10,27 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">12dp</item>
     </style>
+    <style name="Widget.SugarFruit.FormField" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxBackgroundColor">@color/sugarfruit_field_fill</item>
+        <item name="boxStrokeColor">@color/sugarfruit_field_stroke</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="boxStrokeWidthFocused">2dp</item>
+        <item name="boxCornerRadiusTopStart">16dp</item>
+        <item name="boxCornerRadiusTopEnd">16dp</item>
+        <item name="boxCornerRadiusBottomStart">16dp</item>
+        <item name="boxCornerRadiusBottomEnd">16dp</item>
+        <item name="hintTextColor">@color/sugarfruit_text_secondary</item>
+    </style>
+    <style name="Widget.SugarFruit.DropdownField" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="boxBackgroundColor">@color/sugarfruit_field_fill</item>
+        <item name="boxStrokeColor">@color/sugarfruit_field_stroke</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="boxStrokeWidthFocused">2dp</item>
+        <item name="boxCornerRadiusTopStart">16dp</item>
+        <item name="boxCornerRadiusTopEnd">16dp</item>
+        <item name="boxCornerRadiusBottomStart">16dp</item>
+        <item name="boxCornerRadiusBottomEnd">16dp</item>
+        <item name="endIconTint">@color/sugarfruit_text_secondary</item>
+        <item name="hintTextColor">@color/sugarfruit_text_secondary</item>
+    </style>
 </resources>

@@ -6,4 +6,18 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="sugarfruit_background_start">#F0FAF3</color>
+    <color name="sugarfruit_background_end">#FFF8F1</color>
+    <color name="sugarfruit_surface">#FFFFFFFF</color>
+    <color name="sugarfruit_card_outline">#E4EDE7</color>
+    <color name="sugarfruit_field_fill">#FBFDFC</color>
+    <color name="sugarfruit_text_primary">#1C3327</color>
+    <color name="sugarfruit_text_secondary">#64766C</color>
+    <color name="sugarfruit_outline">#AFC2B6</color>
+    <color name="sugarfruit_outline_disabled">#D5DFD8</color>
+    <color name="sugarfruit_primary">#226A4B</color>
+    <color name="sugarfruit_primary_pressed">#174B36</color>
+    <color name="sugarfruit_on_primary">#FFFFFFFF</color>
+    <color name="sugarfruit_error">#A63B38</color>
+    <color name="sugarfruit_error_container">#FFF0EF</color>
 </resources>

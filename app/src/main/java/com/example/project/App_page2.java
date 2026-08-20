@@ -3,8 +3,8 @@ package com.example.project;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
+
+import com.google.android.material.textfield.MaterialAutoCompleteTextView;
 import android.widget.Button;
 import com.google.android.material.datepicker.CalendarConstraints;
 import com.google.android.material.datepicker.DateValidatorPointBackward;
@@ -27,7 +27,7 @@ public class App_page2 extends AppCompatActivity {
         EditText inputHeight = findViewById(R.id.inputHeight);
         EditText inputWeight = findViewById(R.id.inputWeight);
         EditText inputDay = findViewById(R.id.inputDay);
-        inputDay.setFocusable(false);
+        inputDay.setKeyListener(null);
         inputDay.setOnClickListener(view -> {
             CalendarConstraints constraints = new CalendarConstraints.Builder()
                     .setValidator(DateValidatorPointBackward.now())
@@ -50,17 +50,17 @@ public class App_page2 extends AppCompatActivity {
         });
 
 
-        AutoCompleteTextView spinner1 = findViewById(R.id.inputSex);
-        spinner1.setFocusable(false);
+        MaterialAutoCompleteTextView spinner1 = findViewById(R.id.inputSex);
         String[] sex = getResources().getStringArray(R.array.sex_options);
-        ArrayAdapter<String> adapter1 = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, sex);
-        spinner1.setAdapter(adapter1);
+        spinner1.setSimpleItems(sex);
 
-        AutoCompleteTextView spinner2 = findViewById(R.id.inputDiabetes);
-        spinner2.setFocusable(false);
+        spinner1.setOnClickListener(view -> spinner1.showDropDown());
+
+        MaterialAutoCompleteTextView spinner2 = findViewById(R.id.inputDiabetes);
         String[] diabetesLevels = getResources().getStringArray(R.array.diabetes_options);
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, diabetesLevels);
-        spinner2.setAdapter(adapter2);
+        spinner2.setSimpleItems(diabetesLevels);
+
+        spinner2.setOnClickListener(view -> spinner2.showDropDown());
 
         TextView buttonErrorText = findViewById(R.id.buttonErrorText);
 

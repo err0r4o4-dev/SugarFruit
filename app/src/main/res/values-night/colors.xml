@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="sugarfruit_background_start">#101A15</color>
+    <color name="sugarfruit_background_end">#1A201B</color>
+    <color name="sugarfruit_surface">#1C2821</color>
+    <color name="sugarfruit_card_outline">#34483C</color>
+    <color name="sugarfruit_field_fill">#17221C</color>
+    <color name="sugarfruit_text_primary">#ECF7F0</color>
+    <color name="sugarfruit_text_secondary">#B5C8BC</color>
+    <color name="sugarfruit_outline">#60776A</color>
+    <color name="sugarfruit_outline_disabled">#3D4D44</color>
+    <color name="sugarfruit_primary">#7BD5A8</color>
+    <color name="sugarfruit_primary_pressed">#9AE4BD</color>
+    <color name="sugarfruit_on_primary">#0A2A1A</color>
+    <color name="sugarfruit_error">#FFB4AB</color>
+    <color name="sugarfruit_error_container">#4B2525</color>
+</resources>
