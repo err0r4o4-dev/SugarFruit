@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.project">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <application
         android:allowBackup="true"
@@ -15,17 +14,17 @@
         tools:targetApi="31">
         <activity
             android:name=".App_page2"
-            android:windowSoftInputMode="adjustPan|stateHidden"
+            android:windowSoftInputMode="adjustResize|stateHidden"
 
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".App_page3"
             android:windowSoftInputMode="adjustPan|stateHidden"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".App_page4"
             android:windowSoftInputMode="adjustPan|stateHidden"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".App_page1"
             android:exported="true">

@@ -7,6 +7,8 @@ import android.widget.TextView;
 import android.widget.ImageView;
 import android.widget.Button;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.DiffUtil;
+import java.util.ArrayList;
 import java.util.List;
 import android.content.Intent;
 
@@ -16,7 +18,7 @@ public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.FruitViewHol
     String level;
 
     public FruitAdapter(List<Fruit> fruits, String level) {
-        this.fruitList = fruits;
+        this.fruitList = new ArrayList<>(fruits);
         this.level = level;
     }
 
@@ -45,33 +47,38 @@ public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.FruitViewHol
 
     @Override
     public void onBindViewHolder(FruitViewHolder holder, int position) {
-        Fruit f = fruitList.get(holder.getAdapterPosition());
+        Fruit f = fruitList.get(position);
         holder.fruitName.setText(f.getName());
         holder.fruitIndex.setText(f.getIndex());
         holder.fruitSugar.setText(f.getSugar());
-        if ("เบาหวานชนิดที่ 1".equals(level)) {
-            holder.fruiTrue.setText(f.getLevel1());
-        }else if ("เบาหวานชนิดที่ 2".equals(level)) {
-            holder.fruiTrue.setText(f.getLevel2());
-        }else if ("เบาหวานขณะตั้งครรภ์".equals(level)) {
-            holder.fruiTrue.setText(f.getLevel3());
-        }else {
-            holder.fruiTrue.setText(f.getTrue());
-        }
+        String safety = FruitSafety.forDiabetesLevel(f, level);
+        holder.fruiTrue.setText(safety);
         holder.imageView.setImageResource(f.getImageResId());
+        holder.imageView.setContentDescription(
+                holder.itemView.getContext().getString(R.string.fruit_image_description, f.getName()));
         holder.buttonNext.setOnClickListener(v -> {
             Intent intent = new Intent(v.getContext(), App_page4.class);
-            intent.putExtra("fruitName", f.getName());
-            intent.putExtra("fruitIndex_", f.getIndex_());
-            intent.putExtra("fruitSugar_", f.getSugar_());
-            intent.putExtra("fruitCarbohydrate_", f.getCarbohydrate_());
-            intent.putExtra("fruitFiber_", f.getFiber_());
-            intent.putExtra("fruitImpact_", f.getImpact_());
-            intent.putExtra("fruitType1_", f.getType1_());
-            intent.putExtra("fruitType2_", f.getType2_());
-            intent.putExtra("fruitEnd_", f.getEnd_());
-            intent.putExtra("fruitImage", f.getImageResId());
-            intent.putExtra("level", level);
+            intent.putExtra(AppContracts.EXTRA_FRUIT_NAME, f.getName());
+            intent.putExtra(AppContracts.EXTRA_FRUIT_INDEX, f.getIndex_());
+            intent.putExtra(AppContracts.EXTRA_FRUIT_SUGAR, f.getSugar_());
+            intent.putExtra(AppContracts.EXTRA_FRUIT_CARBOHYDRATE, f.getCarbohydrate_());
+            intent.putExtra(AppContracts.EXTRA_FRUIT_FIBER, f.getFiber_());
+            intent.putExtra(AppContracts.EXTRA_FRUIT_IMPACT, f.getImpact_());
+            intent.putExtra(AppContracts.EXTRA_FRUIT_TYPE_1, f.getType1_());
+            intent.putExtra(AppContracts.EXTRA_FRUIT_TYPE_2, f.getType2_());
+            intent.putExtra(AppContracts.EXTRA_FRUIT_END, f.getEnd_());
+            intent.putExtra(AppContracts.EXTRA_FRUIT_IMAGE, f.getImageResId());
+            intent.putExtra(AppContracts.EXTRA_FRUIT_SAFETY, safety);
+            putOptionalExtra(intent, AppContracts.EXTRA_FRUIT_INTRODUCTION,
+                    f.getDetailIntroduction());
+            putOptionalExtra(intent, AppContracts.EXTRA_FRUIT_RECOMMENDED_AMOUNT,
+                    f.getRecommendedAmount());
+            putOptionalExtra(intent, AppContracts.EXTRA_FRUIT_RECOMMENDED_EQUIVALENT,
+                    f.getRecommendedEquivalent());
+            putOptionalExtra(intent, AppContracts.EXTRA_FRUIT_TIP_1, f.getDetailTip1());
+            putOptionalExtra(intent, AppContracts.EXTRA_FRUIT_TIP_2, f.getDetailTip2());
+            putOptionalExtra(intent, AppContracts.EXTRA_FRUIT_TIP_3, f.getDetailTip3());
+            intent.putExtra(AppContracts.EXTRA_LEVEL, level);
             v.getContext().startActivity(intent);
         });
     }
@@ -79,6 +86,41 @@ public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.FruitViewHol
     @Override
     public int getItemCount() {
         return fruitList.size();
+    }
+
+    private void putOptionalExtra(Intent intent, String key, String value) {
+        if (value != null && !value.trim().isEmpty()) {
+            intent.putExtra(key, value);
+        }
+    }
+
+    public void updateFruits(List<Fruit> newFruits) {
+        List<Fruit> oldFruits = new ArrayList<>(fruitList);
+        DiffUtil.DiffResult result = DiffUtil.calculateDiff(new DiffUtil.Callback() {
+            @Override
+            public int getOldListSize() {
+                return oldFruits.size();
+            }
+
+            @Override
+            public int getNewListSize() {
+                return newFruits.size();
+            }
+
+            @Override
+            public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
+                return oldFruits.get(oldItemPosition).getImageResId()
+                        == newFruits.get(newItemPosition).getImageResId();
+            }
+
+            @Override
+            public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
+                return oldFruits.get(oldItemPosition) == newFruits.get(newItemPosition);
+            }
+        });
+        fruitList.clear();
+        fruitList.addAll(newFruits);
+        result.dispatchUpdatesTo(this);
     }
 
 }

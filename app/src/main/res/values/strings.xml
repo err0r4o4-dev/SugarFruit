@@ -1,10 +1,145 @@
 <resources>
-    <string name="app_name">Suger Fruits</string>
-    <string name="spinner_prompt">เลือกตัวเลือก</string>
-    <string-array name="fruit_array">
-        <item>แอปเปิ้ล</item>
-        <item>กล้วย</item>
-        <item>ส้ม</item>
-        <item>มะม่วง</item>
+    <string name="app_name">SugarFruit</string>
+    <string name="get_started">GET STARTED</string>
+    <string name="back">Back</string>
+    <string name="next">Next</string>
+
+    <string name="user_name_label">ชื่อผู้ใช้</string>
+    <string name="height_label">ส่วนสูง</string>
+    <string name="weight_label">น้ำหนัก</string>
+    <string name="sex_label">เพศ</string>
+    <string name="birth_date_label">วันเกิด</string>
+    <string name="select_birth_date">เลือกวันเกิด</string>
+    <string name="diabetes_type_label">ประเภทโรคเบาหวาน</string>
+    <string name="app_logo_description">โลโก้ SugarFruit</string>
+    <string name="profile_title">โปรไฟล์</string>
+    <string name="profile_subtitle">แตะเพื่อเปลี่ยนรูปโปรไฟล์</string>
+    <string name="personal_info_title">ข้อมูลส่วนตัว</string>
+    <string name="health_info_title">ข้อมูลสุขภาพ</string>
+    <string name="health_info_caption">ข้อมูลนี้ใช้สำหรับปรับคำแนะนำผลไม้ให้เหมาะกับคุณ</string>
+    <string name="profile_privacy_note">ข้อมูลสุขภาพของคุณจะถูกเก็บเป็นส่วนตัว</string>
+    <string name="save_profile">SAVE</string>
+    <string name="back_button_description">ย้อนกลับ</string>
+    <string name="profile_picture_description">รูปโปรไฟล์</string>
+    <string name="edit_profile_picture_description">แก้ไขรูปโปรไฟล์</string>
+    <string name="open_calendar_description">เปิดปฏิทิน</string>
+    <string name="basic_info_title">ข้อมูลพื้นฐาน</string>
+    <string name="basic_info_caption">ตรวจสอบข้อมูลให้ถูกต้องก่อนดำเนินการต่อ</string>
+    <string name="view_fruits">ดูรายการผลไม้</string>
+
+    <string name="error_missing_fields">กรอกข้อมูลให้ครบ</string>
+    <string name="error_invalid_name">กรุณากรอกชื่อด้วยตัวอักษร</string>
+    <string name="error_invalid_height">ส่วนสูงต้องอยู่ระหว่าง 30–300 ซม.</string>
+    <string name="error_invalid_weight">น้ำหนักต้องอยู่ระหว่าง 2–500 กก.</string>
+
+    <string name="fruits_title">Fruits</string>
+    <string name="safety_level">ระดับความเหมาะสม</string>
+    <string name="safety_all">ทั้งหมด</string>
+    <string name="safety_safe">ปลอดภัย</string>
+    <string name="safety_limit">ควรจำกัด</string>
+    <string name="safety_avoid">ควรหลีกเลี่ยง</string>
+    <string name="season_label">ผลไม้ตามฤดู</string>
+    <string name="season_all">All</string>
+    <string name="season_summer">Summer</string>
+    <string name="season_rainy">Rainy</string>
+    <string name="season_winter">Winter</string>
+    <string name="search_hint">Search</string>
+
+    <string name="fruit_image">รูปผลไม้</string>
+    <string name="fruit_image_description">รูปผลไม้ %1$s</string>
+    <string name="detail_name_placeholder">ชื่อผลไม้</string>
+    <string name="detail_sugar_label">ปริมาณน้ำตาลต่อหน่วยบริโภค</string>
+    <string name="detail_index_label">ดัชนีน้ำตาล (Glycemic Index - GI)</string>
+    <string name="detail_carbohydrate_label">ปริมาณคาร์โบไฮเดรต (Carbohydrate content)</string>
+    <string name="detail_fiber_label">ปริมาณเส้นใยอาหาร (Fiber)</string>
+    <string name="detail_impact_label">ผลกระทบต่อระดับน้ำตาลในเลือด</string>
+    <string name="detail_type1_label">เบาหวานชนิดที่ 1 (Type 1 Diabetes)</string>
+    <string name="detail_type2_label">เบาหวานชนิดที่ 2 (Type 2 Diabetes)</string>
+    <string name="detail_unavailable">ไม่มีข้อมูล</string>
+    <string name="detail_safety_label">ระดับความเหมาะสม</string>
+    <string name="detail_nutrition_title">ข้อมูลโภชนาการ</string>
+    <string name="detail_sugar_summary_title">ปริมาณน้ำตาล</string>
+    <string name="detail_gi_short_label">ดัชนีน้ำตาล (GI)</string>
+    <string name="detail_carbohydrate_short_label">คาร์โบไฮเดรต</string>
+    <string name="detail_fiber_short_label">ใยอาหาร</string>
+    <string name="detail_impact_short_label">ผลต่อระดับน้ำตาล</string>
+    <string name="detail_diabetes_advice_title">คำแนะนำตามประเภทเบาหวาน</string>
+    <string name="detail_type1_short_label">Type 1</string>
+    <string name="detail_type2_short_label">Type 2</string>
+    <string name="detail_general_advice_title">รับประทานอย่างไรให้เหมาะสม</string>
+    <string name="detail_recommended_amount_title">ปริมาณที่แนะนำ</string>
+    <string name="detail_gi_metric_label">GI</string>
+    <string name="detail_metric_value_with_note">%1$s\n%2$s</string>
+    <string name="detail_metric_grams">%1$s กรัม</string>
+    <string name="detail_metric_per_100_grams">ต่อ 100 กรัม</string>
+    <string name="detail_disclaimer">ข้อมูลนี้เป็นเพียงคำแนะนำเบื้องต้น หากคุณมีภาวะแทรกซ้อน หรือไม่แน่ใจ ควรปรึกษาแพทย์หรือนักกำหนดอาหาร</string>
+    <string name="detail_source">แนวทางการรับประทานอ้างอิงจากศูนย์เบาหวานศิริราช และ American Diabetes Association</string>
+    <string name="mango_detail_introduction">มะม่วงมีคาร์โบไฮเดรต จึงควรนับรวมในแผนมื้ออาหารและควบคุมปริมาณต่อมื้อ</string>
+    <string name="mango_detail_recommended_amount">ประมาณครึ่งผลต่อครั้ง</string>
+    <string name="mango_detail_recommended_equivalent">1 ส่วน ให้คาร์โบไฮเดรตประมาณ 15 กรัม</string>
+    <string name="fruit_serving_carbohydrate_equivalent">1 ส่วน ให้คาร์โบไฮเดรตประมาณ 15 กรัม</string>
+    <string name="banana_recommended_amount">กล้วยหอมประมาณครึ่งผล หรือกล้วยน้ำว้า 1 ผลต่อครั้ง</string>
+    <string name="watermelon_recommended_amount">ประมาณ 6–8 ชิ้นคำต่อครั้ง</string>
+    <string name="papaya_recommended_amount">มะละกอสุกประมาณ 6–8 ชิ้นคำต่อครั้ง</string>
+    <string name="lychee_recommended_amount">ประมาณ 5–6 ผลต่อครั้ง</string>
+    <string name="pineapple_recommended_amount">ประมาณ 6–8 ชิ้นคำต่อครั้ง</string>
+    <string name="guava_recommended_amount">ประมาณครึ่งผลกลางต่อครั้ง</string>
+    <string name="sweet_tamarind_recommended_amount">ประมาณ 2 ผล/ชิ้นต่อครั้ง</string>
+    <string name="jujube_recommended_amount">ประมาณ 4 ผลต่อครั้ง</string>
+    <string name="durian_recommended_amount">ประมาณ 1 เม็ดเล็กต่อครั้ง</string>
+    <string name="mangosteen_recommended_amount">ประมาณ 4 ผลต่อครั้ง</string>
+    <string name="rambutan_recommended_amount">ประมาณ 4 ผลต่อครั้ง</string>
+    <string name="longan_recommended_amount">ประมาณ 5–6 ผลต่อครั้ง</string>
+    <string name="longkong_recommended_amount">ประมาณ 5–6 ผลต่อครั้ง</string>
+    <string name="pomelo_recommended_amount">ประมาณ 2 ชิ้นต่อครั้ง</string>
+    <string name="apple_recommended_amount">ประมาณ 1 ผลเล็กต่อครั้ง</string>
+    <string name="banana_detail_evidence">ตารางอาหารแลกเปลี่ยนระบุกล้วยหอมครึ่งผลหรือกล้วยน้ำว้า 1 ผลเป็นผลไม้ 1 ส่วน</string>
+    <string name="banana_detail_note">ชื่อกล้วยครอบคลุมหลายพันธุ์ ควรเลือกปริมาณให้ตรงกับกล้วยหอมหรือกล้วยน้ำว้า</string>
+    <string name="watermelon_detail_evidence">ตารางอาหารแลกเปลี่ยนระบุแตงโม 6–8 ชิ้นคำเป็นผลไม้ 1 ส่วน</string>
+    <string name="papaya_detail_evidence">ตารางอาหารแลกเปลี่ยนระบุมะละกอสุก 6–8 ชิ้นคำเป็นผลไม้ 1 ส่วน</string>
+    <string name="papaya_detail_note">ปริมาณนี้ใช้กับมะละกอสุก ไม่ใช่มะละกอดิบ</string>
+    <string name="lychee_detail_evidence">ตารางอาหารแลกเปลี่ยนระบุลิ้นจี่ 5–6 ผลเป็นผลไม้ 1 ส่วน</string>
+    <string name="lychee_detail_note">ใช้กับลิ้นจี่สด ไม่ใช่ลิ้นจี่กระป๋องในน้ำเชื่อม</string>
+    <string name="pineapple_detail_evidence">ตารางอาหารแลกเปลี่ยนระบุสับปะรด 6–8 ชิ้นคำเป็นผลไม้ 1 ส่วน</string>
+    <string name="pineapple_detail_note">ใช้กับสับปะรดสด ไม่รวมน้ำสับปะรด</string>
+    <string name="guava_detail_evidence">ตารางอาหารแลกเปลี่ยนระบุฝรั่งผลกลางครึ่งผลเป็นผลไม้ 1 ส่วน</string>
+    <string name="sweet_tamarind_detail_evidence">ตารางอาหารแลกเปลี่ยนระบุมะขามหวาน 2 ผลหรือชิ้นเป็นผลไม้ 1 ส่วน</string>
+    <string name="sweet_tamarind_detail_note">ขนาดจริงอาจแตกต่างกันตามพันธุ์ของมะขามหวาน</string>
+    <string name="jujube_detail_evidence">ตารางอาหารแลกเปลี่ยนระบุพุทรา 4 ผลเป็นผลไม้ 1 ส่วน</string>
+    <string name="jujube_detail_note">ใช้กับพุทราสด ไม่ใช่พุทราจีนแห้ง</string>
+    <string name="durian_detail_evidence">ตารางอาหารแลกเปลี่ยนระบุทุเรียนเม็ดเล็ก 1 เม็ดเป็นผลไม้ 1 ส่วน</string>
+    <string name="durian_detail_note">คำว่าเม็ดหมายถึงเนื้อทุเรียนหนึ่งพูหรือเม็ดขนาดเล็ก</string>
+    <string name="mangosteen_detail_evidence">ตารางอาหารแลกเปลี่ยนระบุมังคุด 4 ผลเป็นผลไม้ 1 ส่วน</string>
+    <string name="rambutan_detail_evidence">ตารางอาหารแลกเปลี่ยนระบุเงาะ 4 ผลเป็นผลไม้ 1 ส่วน</string>
+    <string name="rambutan_detail_note">ใช้กับเงาะสด ไม่ใช่เงาะกระป๋อง</string>
+    <string name="longan_detail_evidence">ตารางอาหารแลกเปลี่ยนระบุลำไย 5–6 ผลเป็นผลไม้ 1 ส่วน</string>
+    <string name="longan_detail_note">ใช้กับลำไยสด ไม่ใช่ลำไยแห้ง</string>
+    <string name="longkong_detail_evidence">ตารางอาหารแลกเปลี่ยนระบุลองกอง 5–6 ผลเป็นผลไม้ 1 ส่วน</string>
+    <string name="pomelo_detail_evidence">ตารางอาหารแลกเปลี่ยนระบุส้มโอ 2 ชิ้นเป็นผลไม้ 1 ส่วน</string>
+    <string name="apple_detail_evidence">ตารางอาหารแลกเปลี่ยนระบุแอปเปิลผลเล็ก 1 ผลเป็นผลไม้ 1 ส่วน</string>
+    <string name="mango_detail_impact">มะม่วงมีคาร์โบไฮเดรตที่ส่งผลต่อระดับน้ำตาลในเลือด จึงควรรับประทานในปริมาณที่เหมาะสมและนับรวมกับคาร์โบไฮเดรตในมื้ออาหาร</string>
+    <string name="mango_detail_type_1">นับคาร์โบไฮเดรตจากมะม่วงรวมกับมื้ออาหาร และปรับอินซูลินตามแผนที่ได้รับจากทีมดูแล</string>
+    <string name="mango_detail_type_2">รับประทานเป็นส่วนหนึ่งของมื้ออาหาร และควบคุมปริมาณคาร์โบไฮเดรตรวมในมื้อนั้น</string>
+    <string name="mango_detail_tip_1">เลือกมะม่วงสดที่ไม่สุกงอมมาก และควบคุมปริมาณต่อมื้อ</string>
+    <string name="mango_detail_tip_2">จัดมะม่วงร่วมกับมื้อที่มีโปรตีนและผักไม่หวานตามหลักจานอาหาร</string>
+    <string name="mango_detail_tip_3">เลือกผลไม้ทั้งผลแทนน้ำผลไม้ และหลีกเลี่ยงผลไม้แปรรูปที่เติมน้ำตาล</string>
+
+    <string-array name="sex_options">
+        <item>ชาย</item>
+        <item>หญิง</item>
+    </string-array>
+    <string-array name="diabetes_options">
+        <item>@string/diabetes_type_1</item>
+        <item>@string/diabetes_type_2</item>
+        <item>@string/diabetes_gestational</item>
+    </string-array>
+    <string name="diabetes_type_1">เบาหวานชนิดที่ 1</string>
+    <string name="diabetes_type_2">เบาหวานชนิดที่ 2</string>
+    <string name="diabetes_gestational">เบาหวานขณะตั้งครรภ์</string>
+    <string-array name="safety_options">
+        <item>@string/safety_all</item>
+        <item>@string/safety_safe</item>
+        <item>@string/safety_limit</item>
+        <item>@string/safety_avoid</item>
     </string-array>
 </resources>

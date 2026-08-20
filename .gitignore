@@ -20,3 +20,8 @@
 .externalNativeBuild
 .cxx
 local.properties
+
+# Local AI agent configuration
+.agent/
+.agents/
+AGENTS.md
