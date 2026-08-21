@@ -4,36 +4,45 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.google.android.material.chip.Chip;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.chip.ChipGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.content.Context;
 import android.view.inputmethod.EditorInfo;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
 import java.util.ArrayList;
+import java.text.Collator;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 
 public class App_page3 extends AppCompatActivity {
 
+    private static final int SORT_SUITABILITY = 0;
+    private static final int SORT_NAME = 1;
+    private static final int SORT_DEFAULT = 2;
+
     // ประกาศตัวแปรที่ใช้ในคลาส
     private RecyclerView recyclerView;
     private FruitAdapter adapter;
+    private TextView resultCountText;
+    private TextView suitabilitySort;
+    private AutoCompleteTextView searchBox;
+    private ChipGroup seasonChipGroup;
+    private View emptyState;
     private List<Fruit> allFruits = new ArrayList<>();
     private List<Fruit> filteredFruits = new ArrayList<>();
 
     // ตัวแปรเก็บค่าที่เลือกสำหรับการกรอง
-    private String selectedSafetyLevel = "ทั้งหมด";
     private String selectedSeason = "All";
     private String searchKeyword = "";
     private String level = "0";
+    private int sortMode = SORT_SUITABILITY;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +54,10 @@ public class App_page3 extends AppCompatActivity {
 
         setupRecyclerView();
 
-        setupSafetyLevelDropdown();
         setupSeasonFilter();
         setupSearchFunction();
+        setupSuitabilitySort();
+        setupEmptyState();
 
         applyFilters();
     }
@@ -159,56 +169,90 @@ public class App_page3 extends AppCompatActivity {
 
     private void setupRecyclerView() {
         recyclerView = findViewById(R.id.recyclerView);
+        resultCountText = findViewById(R.id.resultCountText);
+        emptyState = findViewById(R.id.emptyState);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         level = getIntent().getStringExtra(AppContracts.EXTRA_LEVEL);
         adapter = new FruitAdapter(filteredFruits, level);
         recyclerView.setAdapter(adapter);
     }
 
-    private void setupSafetyLevelDropdown() {
-        AutoCompleteTextView safetyDropdown = findViewById(R.id.inputTureOrFalse);
-        final String[] safetyOptions = getResources().getStringArray(R.array.safety_options);
-        ArrayAdapter<String> dropdownAdapter = new ArrayAdapter<>(
-                this,
-                android.R.layout.simple_dropdown_item_1line,
-                safetyOptions
-        );
-        safetyDropdown.setAdapter(dropdownAdapter);
-        selectedSafetyLevel = getString(R.string.safety_all);
-        safetyDropdown.setText(selectedSafetyLevel, false);
-        safetyDropdown.setFocusable(false);
-
-        safetyDropdown.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                selectedSafetyLevel = safetyOptions[position];
-                applyFilters();
-                safetyDropdown.dismissDropDown();
+    private void setupSeasonFilter() {
+        seasonChipGroup = findViewById(R.id.chipGroup);
+        seasonChipGroup.setOnCheckedStateChangeListener((group, checkedIds) -> {
+            if (checkedIds.isEmpty()) {
+                return;
             }
+
+            int checkedId = checkedIds.get(0);
+            if (checkedId == R.id.chipSummer) {
+                selectedSeason = getString(R.string.season_summer);
+            } else if (checkedId == R.id.chipRainy) {
+                selectedSeason = getString(R.string.season_rainy);
+            } else if (checkedId == R.id.chipWinter) {
+                selectedSeason = getString(R.string.season_winter);
+            } else {
+                selectedSeason = getString(R.string.season_all);
+            }
+            applyFilters();
         });
     }
 
-    private void setupSeasonFilter() {
-        ChipGroup chipGroup = findViewById(R.id.chipGroup);
-        chipGroup.setOnCheckedStateChangeListener((group, checkedIds) -> {
-                int checkedId = checkedIds.isEmpty() ? View.NO_ID : checkedIds.get(0);
-                for (int i = 0; i < group.getChildCount(); i++) {
-                    Chip chip = (Chip) group.getChildAt(i);
+    private void setupSuitabilitySort() {
+        suitabilitySort = findViewById(R.id.suitabilitySort);
+        updateSortLabel();
+        suitabilitySort.setOnClickListener(view -> showSortBottomSheet());
+    }
 
-                    if (chip.getId() == checkedId) {
-                        chip.setChipBackgroundColor(ColorStateList.valueOf(Color.WHITE));
-                        chip.setTextColor(Color.BLACK);
-                        selectedSeason = chip.getText().toString();
-                    } else {
-                        chip.setChipBackgroundColor(ColorStateList.valueOf(Color.BLACK));
-                        chip.setTextColor(Color.WHITE);
-                    }
-                }
-                applyFilters();
+    private void showSortBottomSheet() {
+        BottomSheetDialog dialog = new BottomSheetDialog(this);
+        View contentView = getLayoutInflater().inflate(R.layout.bottom_sheet_fruit_sort, null);
+        RadioGroup sortOptions = contentView.findViewById(R.id.sortOptions);
+
+        if (sortMode == SORT_NAME) {
+            sortOptions.check(R.id.sortName);
+        } else if (sortMode == SORT_DEFAULT) {
+            sortOptions.check(R.id.sortDefault);
+        } else {
+            sortOptions.check(R.id.sortSuitability);
+        }
+
+        sortOptions.setOnCheckedChangeListener((group, checkedId) -> {
+            if (checkedId == R.id.sortName) {
+                sortMode = SORT_NAME;
+            } else if (checkedId == R.id.sortDefault) {
+                sortMode = SORT_DEFAULT;
+            } else {
+                sortMode = SORT_SUITABILITY;
+            }
+            updateSortLabel();
+            applyFilters();
+            dialog.dismiss();
         });
+
+        dialog.setContentView(contentView);
+        dialog.show();
+    }
+
+    private void updateSortLabel() {
+        int labelRes;
+        int descriptionRes;
+        if (sortMode == SORT_NAME) {
+            labelRes = R.string.sort_name;
+            descriptionRes = R.string.sort_name_description;
+        } else if (sortMode == SORT_DEFAULT) {
+            labelRes = R.string.sort_default;
+            descriptionRes = R.string.sort_default_description;
+        } else {
+            labelRes = R.string.sort_suitability;
+            descriptionRes = R.string.sort_suitability_description;
+        }
+        suitabilitySort.setText(labelRes);
+        suitabilitySort.setContentDescription(getString(descriptionRes));
     }
 
     private void setupSearchFunction() {
-        AutoCompleteTextView searchBox = findViewById(R.id.autoCompleteTextView);
+        searchBox = findViewById(R.id.autoCompleteTextView);
 
         searchBox.setImeOptions(EditorInfo.IME_ACTION_DONE); // แสดงปุ่ม Done
         searchBox.setSingleLine(true); // ไม่ให้ขึ้นบรรทัดใหม่
@@ -245,6 +289,13 @@ public class App_page3 extends AppCompatActivity {
         });
     }
 
+    private void setupEmptyState() {
+        findViewById(R.id.clearFruitFilters).setOnClickListener(view -> {
+            searchBox.setText("");
+            seasonChipGroup.check(R.id.chipAll);
+        });
+    }
+
 
     private void applyFilters() {
         filteredFruits.clear();
@@ -252,14 +303,38 @@ public class App_page3 extends AppCompatActivity {
             Fruit fruit = allFruits.get(i);
             if (fruit.getName().toLowerCase(Locale.ROOT).contains(searchKeyword)) {
                 if (selectedSeason.equals("All") || fruit.getSeason().equalsIgnoreCase(selectedSeason)) {
-                    if (FruitSafety.matchesFilter(
-                            fruit, level, selectedSafetyLevel, getString(R.string.safety_all))) {
-                        filteredFruits.add(fruit);
-                    }
+                    filteredFruits.add(fruit);
                 }
             }
         }
+        if (sortMode == SORT_SUITABILITY) {
+            filteredFruits.sort(Comparator.comparingInt(this::getSuitabilityRank));
+        } else if (sortMode == SORT_NAME) {
+            Collator thaiCollator = Collator.getInstance(new Locale("th", "TH"));
+            filteredFruits.sort((left, right) ->
+                    thaiCollator.compare(left.getName(), right.getName()));
+        }
+        int resultCount = filteredFruits.size();
+        resultCountText.setText(getResources().getQuantityString(
+                R.plurals.fruit_result_count, resultCount, resultCount));
+        boolean hasResults = resultCount > 0;
+        recyclerView.setVisibility(hasResults ? View.VISIBLE : View.GONE);
+        emptyState.setVisibility(hasResults ? View.GONE : View.VISIBLE);
         adapter.updateFruits(filteredFruits);
+    }
+
+    private int getSuitabilityRank(Fruit fruit) {
+        String suitability = FruitSafety.forDiabetesLevel(fruit, level);
+        if (suitability.contains(getString(R.string.safety_safe))) {
+            return 0;
+        }
+        if (suitability.contains(getString(R.string.safety_limit))) {
+            return 1;
+        }
+        if (suitability.contains(getString(R.string.safety_avoid))) {
+            return 2;
+        }
+        return 3;
     }
 
 }

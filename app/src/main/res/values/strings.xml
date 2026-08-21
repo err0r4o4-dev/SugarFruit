@@ -44,6 +44,24 @@
     <string name="season_rainy">Rainy</string>
     <string name="season_winter">Winter</string>
     <string name="search_hint">Search</string>
+    <plurals name="fruit_result_count">
+        <item quantity="one">ผลไม้ทั้งหมด %d รายการ</item>
+        <item quantity="other">ผลไม้ทั้งหมด %d รายการ</item>
+    </plurals>
+    <string name="sort_suitability">จัดเรียง: เหมาะกับคุณ ↕</string>
+    <string name="sort_name">จัดเรียง: ชื่อ ก–ฮ ↕</string>
+    <string name="sort_default">จัดเรียง: ค่าเริ่มต้น ↕</string>
+    <string name="sort_suitability_description">เปิดตัวเลือกการจัดเรียง ปัจจุบันเรียงตามความเหมาะสมกับคุณ</string>
+    <string name="sort_name_description">เปิดตัวเลือกการจัดเรียง ปัจจุบันเรียงตามชื่อ ก ถึง ฮ</string>
+    <string name="sort_default_description">เปิดตัวเลือกการจัดเรียง ปัจจุบันเรียงตามค่าเริ่มต้น</string>
+    <string name="sort_sheet_title">จัดเรียงผลไม้</string>
+    <string name="sort_sheet_description">ตัวเลือก “เหมาะกับคุณ” อ้างอิงจากประเภทเบาหวานที่คุณเลือก</string>
+    <string name="sort_option_suitability">เหมาะกับคุณ</string>
+    <string name="sort_option_name">ชื่อ ก–ฮ</string>
+    <string name="sort_option_default">ค่าเริ่มต้น</string>
+    <string name="fruit_empty_title">ไม่พบผลไม้</string>
+    <string name="fruit_empty_description">ลองเปลี่ยนคำค้นหาหรือเลือกฤดูกาลอื่น</string>
+    <string name="clear_fruit_filters">ล้างตัวกรอง</string>
 
     <string name="fruit_image">รูปผลไม้</string>
     <string name="fruit_image_description">รูปผลไม้ %1$s</string>
