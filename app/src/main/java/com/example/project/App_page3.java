@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.textfield.MaterialAutoCompleteTextView;
 import android.view.inputmethod.InputMethodManager;
 import android.content.Context;
 import android.content.res.Configuration;
@@ -38,7 +37,6 @@ public class App_page3 extends BaseActivity {
     private AutoCompleteTextView searchBox;
     private ChipGroup seasonChipGroup;
     private View emptyState;
-    private MaterialAutoCompleteTextView diabetesTypeSelector;
     private SavedFruitStore savedFruitStore;
     private List<Fruit> allFruits = new ArrayList<>();
     private List<Fruit> filteredFruits = new ArrayList<>();
@@ -58,8 +56,6 @@ public class App_page3 extends BaseActivity {
         allFruits = createFruitData(this);
 
         setupRecyclerView();
-        setupDiabetesTypeSelector();
-
         setupSeasonFilter();
         setupSearchFunction();
         setupSuitabilitySort();
@@ -203,24 +199,6 @@ public class App_page3 extends BaseActivity {
                                 fruit.getName()),
                         Toast.LENGTH_SHORT).show());
         recyclerView.setAdapter(adapter);
-    }
-
-    private void setupDiabetesTypeSelector() {
-        diabetesTypeSelector = findViewById(R.id.homeDiabetesType);
-        String[] diabetesOptions = getResources().getStringArray(R.array.diabetes_options);
-        diabetesTypeSelector.setSimpleItems(diabetesOptions);
-        int selectedPosition = DiabetesType.fromCode(level).getPosition();
-        if (selectedPosition >= 0 && selectedPosition < diabetesOptions.length) {
-            diabetesTypeSelector.setText(diabetesOptions[selectedPosition], false);
-        }
-        diabetesTypeSelector.setOnClickListener(view -> diabetesTypeSelector.showDropDown());
-        diabetesTypeSelector.setOnItemClickListener((parent, view, position, id) -> {
-            DiabetesType selectedType = DiabetesType.fromPosition(position);
-            level = selectedType.getCode();
-            AppSettings.setDiabetesType(this, selectedType);
-            adapter.setDiabetesLevel(level);
-            applyFilters();
-        });
     }
 
     private void setupSeasonFilter() {
@@ -384,10 +362,6 @@ public class App_page3 extends BaseActivity {
             if (storedType != DiabetesType.UNKNOWN && !storedType.getCode().equals(level)) {
                 level = storedType.getCode();
                 adapter.setDiabetesLevel(level);
-                String[] diabetesOptions = getResources().getStringArray(R.array.diabetes_options);
-                diabetesTypeSelector.setText(
-                        diabetesOptions[storedType.getPosition()],
-                        false);
                 applyFilters();
             }
             adapter.refreshSavedState();

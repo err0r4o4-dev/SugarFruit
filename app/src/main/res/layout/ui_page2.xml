@@ -47,8 +47,8 @@
         </FrameLayout>
 
         <FrameLayout
-            android:layout_width="104dp"
-            android:layout_height="104dp"
+            android:layout_width="112dp"
+            android:layout_height="112dp"
             android:layout_marginTop="20dp">
 
             <com.google.android.material.card.MaterialCardView
@@ -70,36 +70,28 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:layout_gravity="bottom|end"
-                android:layout_marginEnd="2dp"
-                android:layout_marginBottom="4dp"
                 app:cardBackgroundColor="@color/profile_accent"
-                app:cardCornerRadius="16dp"
+                app:cardCornerRadius="24dp"
                 app:cardElevation="0dp">
 
-                <ImageView
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:layout_gravity="center"
+                <ImageButton
+                    android:id="@+id/profilePhotoButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="?attr/selectableItemBackgroundBorderless"
                     android:contentDescription="@string/edit_profile_picture_description"
+                    android:padding="15dp"
                     android:src="@drawable/ic_profile_edit" />
             </com.google.android.material.card.MaterialCardView>
         </FrameLayout>
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:text="@string/profile_subtitle"
-            android:textColor="@color/profile_text_secondary"
-            android:textSize="14sp" />
-
-        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="24dp"
             android:fontFamily="sans-serif-medium"
             android:text="@string/personal_info_title"
             android:textColor="@color/profile_text_primary"

@@ -13,7 +13,6 @@
     <string name="diabetes_type_label">ประเภทโรคเบาหวาน</string>
     <string name="app_logo_description">โลโก้ SugarFruit</string>
     <string name="profile_title">โปรไฟล์</string>
-    <string name="profile_subtitle">แตะเพื่อเปลี่ยนรูปโปรไฟล์</string>
     <string name="personal_info_title">ข้อมูลส่วนตัว</string>
     <string name="health_info_title">ข้อมูลสุขภาพ</string>
     <string name="health_info_caption">ข้อมูลนี้ใช้สำหรับปรับคำแนะนำผลไม้ให้เหมาะกับคุณ</string>

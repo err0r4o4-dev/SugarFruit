@@ -14,7 +14,6 @@
     <string name="diabetes_type_label">Diabetes type</string>
     <string name="app_logo_description">SugarFruit logo</string>
     <string name="profile_title">Profile</string>
-    <string name="profile_subtitle">Tap to change profile picture</string>
     <string name="personal_info_title">Personal information</string>
     <string name="health_info_title">Health information</string>
     <string name="health_info_caption">This information is used to tailor fruit guidance for you</string>

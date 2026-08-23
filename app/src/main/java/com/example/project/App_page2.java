@@ -10,6 +10,7 @@ import com.google.android.material.datepicker.DateValidatorPointBackward;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import android.widget.TextView;
 import android.widget.EditText;
+import android.widget.Toast;
 import android.view.View;
 import java.util.Date;
 import java.text.DateFormat;
@@ -21,6 +22,10 @@ public class App_page2 extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ui_page2);
         findViewById(R.id.buttonBack).setOnClickListener(view -> finish());
+        findViewById(R.id.profilePhotoButton).setOnClickListener(view -> Toast.makeText(
+                this,
+                R.string.profile_photo_unavailable,
+                Toast.LENGTH_SHORT).show());
 
         EditText inputName = findViewById(R.id.inputName);
 
