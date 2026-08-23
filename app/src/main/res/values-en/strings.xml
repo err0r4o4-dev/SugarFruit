@@ -167,4 +167,50 @@
         <item>@string/safety_limit</item>
         <item>@string/safety_avoid</item>
     </string-array>
+    <string name="navigation_home">Home</string>
+    <string name="navigation_saved">Saved</string>
+    <string name="navigation_profile">Profile</string>
+
+    <string name="save_fruit">Save</string>
+    <string name="saved_fruit">Saved</string>
+    <string name="save_fruit_description">Save %1$s</string>
+    <string name="remove_fruit_from_saved_description">Remove %1$s from saved fruits</string>
+    <string name="fruit_saved_message">%1$s saved</string>
+    <string name="fruit_removed_message">%1$s removed from saved fruits</string>
+
+    <string name="saved_title">Saved</string>
+    <string name="no_saved_fruits_title">No saved fruits yet</string>
+    <string name="no_saved_fruits_description">You have not saved any fruits yet. Browse fruits and use the bookmark action to keep them here for later.</string>
+    <string name="browse_fruits">Browse fruits</string>
+    <plurals name="saved_fruit_count">
+        <item quantity="one">%d saved fruit</item>
+        <item quantity="other">%d saved fruits</item>
+    </plurals>
+
+    <string name="profile_settings_subtitle">Manage your health information and app settings</string>
+    <string name="profile_user_name_placeholder">SugarFruit user</string>
+    <string name="edit_personal_information">Edit personal information</string>
+    <string name="application_settings_title">Application settings</string>
+    <string name="dark_mode">Dark mode</string>
+    <string name="font_size">Font size</string>
+    <string name="font_size_small">Small</string>
+    <string name="font_size_standard">Standard</string>
+    <string name="font_size_large">Large</string>
+    <string-array name="font_size_options">
+        <item>@string/font_size_small</item>
+        <item>@string/font_size_standard</item>
+        <item>@string/font_size_large</item>
+    </string-array>
+    <string name="privacy_section_title">Privacy</string>
+    <string name="privacy_settings">Privacy settings</string>
+    <string name="privacy_settings_message">SugarFruit stores your profile and saved fruits only on this device. You can clear this information by logging out.</string>
+    <string name="additional_info_title">Additional information</string>
+    <string name="nutrition_data_sources">Nutrition data sources</string>
+    <string name="about_application">About the application</string>
+    <string name="about_application_message">SugarFruit helps you browse and save fruit information for meal planning. Information in this app is general guidance and does not replace advice from a healthcare professional.</string>
+    <string name="logout">Log out</string>
+    <string name="logout_confirmation_title">Log out?</string>
+    <string name="logout_confirmation_message">Your profile and saved fruits on this device will be cleared.</string>
+    <string name="cancel">Cancel</string>
+    <string name="profile_photo_unavailable">Changing the profile picture is not available yet</string>
 </resources>

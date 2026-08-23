@@ -2,8 +2,6 @@ package com.example.project;
 
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.android.material.textfield.MaterialAutoCompleteTextView;
 import com.google.android.material.textfield.TextInputLayout;
 import android.widget.Button;
@@ -17,7 +15,7 @@ import java.util.Date;
 import java.text.DateFormat;
 
 
-public class App_page2 extends AppCompatActivity {
+public class App_page2 extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +62,22 @@ public class App_page2 extends AppCompatActivity {
 
         spinner2.setOnClickListener(view -> spinner2.showDropDown());
 
+        boolean editMode = getIntent().getBooleanExtra(AppContracts.EXTRA_EDIT_PROFILE, false);
+        if (AppSettings.hasProfile(this)) {
+            inputName.setText(AppSettings.getUserName(this));
+            inputHeight.setText(AppSettings.getHeight(this));
+            inputWeight.setText(AppSettings.getWeight(this));
+            inputDay.setText(AppSettings.getBirthDate(this));
+            int sexPosition = AppSettings.getSexPosition(this);
+            if (sexPosition >= 0 && sexPosition < sex.length) {
+                spinner1.setText(sex[sexPosition], false);
+            }
+            int diabetesPosition = AppSettings.getDiabetesType(this).getPosition();
+            if (diabetesPosition >= 0 && diabetesPosition < diabetesLevels.length) {
+                spinner2.setText(diabetesLevels[diabetesPosition], false);
+            }
+        }
+
         TextView buttonErrorText = findViewById(R.id.buttonErrorText);
 
         Button button_Record = findViewById(R.id.button_Record);
@@ -73,6 +87,7 @@ public class App_page2 extends AppCompatActivity {
             String weight = inputWeight.getText().toString().trim();
             String date = inputDay.getText().toString().trim();
             String selectedSex = spinner1.getText().toString().trim();
+            int selectedSexPosition = positionOf(selectedSex, sex);
             String diabetesLabel = spinner2.getText().toString().trim();
             DiabetesType diabetesType = diabetesTypeForLabel(diabetesLabel, diabetesLevels);
             String diabetesTypeCode = diabetesType.getCode();
@@ -86,6 +101,19 @@ public class App_page2 extends AppCompatActivity {
             }
 
             buttonErrorText.setVisibility(View.GONE);
+            AppSettings.saveProfile(
+                    this,
+                    name,
+                    height,
+                    weight,
+                    date,
+                    selectedSexPosition,
+                    diabetesType);
+            if (editMode) {
+                setResult(RESULT_OK);
+                finish();
+                return;
+            }
             Intent intent = new Intent(App_page2.this, App_page3.class);
             intent.putExtra(AppContracts.EXTRA_USER_NAME, name);
             intent.putExtra(AppContracts.EXTRA_HEIGHT, height);
@@ -106,6 +134,15 @@ public class App_page2 extends AppCompatActivity {
             }
         }
         return DiabetesType.UNKNOWN;
+    }
+
+    private int positionOf(String selectedLabel, String[] labels) {
+        for (int index = 0; index < labels.length; index++) {
+            if (labels[index].equals(selectedLabel)) {
+                return index;
+            }
+        }
+        return -1;
     }
 
     private int errorMessageFor(ProfileValidator.Result result) {

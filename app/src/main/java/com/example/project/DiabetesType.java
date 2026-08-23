@@ -16,6 +16,20 @@ public enum DiabetesType {
         return code;
     }
 
+    public int getPosition() {
+        switch (this) {
+            case TYPE_1:
+                return 0;
+            case TYPE_2:
+                return 1;
+            case GESTATIONAL:
+                return 2;
+            case UNKNOWN:
+            default:
+                return -1;
+        }
+    }
+
     public static DiabetesType fromCode(String code) {
         for (DiabetesType type : values()) {
             if (type.code.equals(code)) {

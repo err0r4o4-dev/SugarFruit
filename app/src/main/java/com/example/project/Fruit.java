@@ -1,5 +1,8 @@
 package com.example.project;
 
+import android.content.Context;
+import android.content.res.Resources;
+
 public class Fruit {
     public String name;
     public String index;
@@ -104,6 +107,14 @@ public class Fruit {
     public String getSeason() { return Season; }
     public FruitSeason getSeasonValue() { return FruitSeason.fromCode(Season); }
     public int getImageResId() { return imageResId; }
+
+    public String getStableId(Context context) {
+        try {
+            return context.getResources().getResourceEntryName(imageResId);
+        } catch (Resources.NotFoundException exception) {
+            return "fruit_" + imageResId;
+        }
+    }
 
     public void attachEnglishText(String localizedName, String localizedSugar,
             String localizedSugarDetail, String localizedIndex, String localizedIndexDetail,

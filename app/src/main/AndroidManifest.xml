@@ -27,6 +27,12 @@
             android:windowSoftInputMode="adjustPan|stateHidden"
             android:exported="false" />
         <activity
+            android:name=".App_saved"
+            android:exported="false" />
+        <activity
+            android:name=".App_profile"
+            android:exported="false" />
+        <activity
             android:name=".App_page1"
             android:exported="true">
             <intent-filter>

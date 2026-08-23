@@ -26,6 +26,8 @@ public final class AppContracts {
     public static final String EXTRA_FRUIT_TIP_3 = "fruitTip3";
     public static final String EXTRA_FRUIT_DETAILS_TH = "fruitDetailsTh";
     public static final String EXTRA_FRUIT_DETAILS_EN = "fruitDetailsEn";
+    public static final String EXTRA_FRUIT_ID = "fruitId";
+    public static final String EXTRA_EDIT_PROFILE = "editProfile";
 
     private AppContracts() {
     }

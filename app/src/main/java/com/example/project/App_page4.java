@@ -6,12 +6,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import androidx.appcompat.app.AppCompatActivity;
+import android.widget.Toast;
+import com.google.android.material.button.MaterialButton;
 import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class App_page4 extends AppCompatActivity {
+public class App_page4 extends BaseActivity {
 
     private static final Pattern LEADING_METRIC_PATTERN = Pattern.compile(
             "^\\s*([0-9]+(?:[.]\\d+)?(?:\\s*[-–]\\s*[0-9]+(?:[.]\\d+)?)?)\\s*(\\([^)]*\\))?");
@@ -36,6 +37,10 @@ public class App_page4 extends AppCompatActivity {
     private View tip2Row;
     private View tip3Row;
     private ImageView fruitImageView;
+    private MaterialButton bookmarkButton;
+    private SavedFruitStore savedFruitStore;
+    private String fruitId;
+    private String fruitName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +70,7 @@ public class App_page4 extends AppCompatActivity {
 
         Intent intent = getIntent();
         String[] payload = payloadForCurrentLocale(intent);
-        String fruitName = detailOrUnavailable(
+        fruitName = detailOrUnavailable(
                 payload, FruitDetailPayload.NAME, intent, AppContracts.EXTRA_FRUIT_NAME);
         fruitNameTextView.setText(fruitName);
         glycemicIndexTextView.setText(formatGlycemicIndex(
@@ -134,7 +139,49 @@ public class App_page4 extends AppCompatActivity {
         fruitImageView.setImageResource(isDrawableResource(imageResource) ? imageResource : R.drawable.logo);
         fruitImageView.setContentDescription(getString(R.string.fruit_image_description, fruitName));
 
+        fruitId = intent.getStringExtra(AppContracts.EXTRA_FRUIT_ID);
+        if (!hasText(fruitId) && isDrawableResource(imageResource)) {
+            fruitId = getResources().getResourceEntryName(imageResource);
+        }
+        savedFruitStore = new SavedFruitStore(this);
+        bookmarkButton = findViewById(R.id.buttonBookmarkDetail);
+        bookmarkButton.setVisibility(hasText(fruitId) ? View.VISIBLE : View.GONE);
+        if (hasText(fruitId)) {
+            bindBookmarkButton();
+            bookmarkButton.setOnClickListener(view -> {
+                boolean isSaved = savedFruitStore.toggle(fruitId);
+                bindBookmarkButton();
+                Toast.makeText(
+                        this,
+                        getString(
+                                isSaved ? R.string.fruit_saved_message : R.string.fruit_removed_message,
+                                fruitName),
+                        Toast.LENGTH_SHORT).show();
+            });
+        }
+
         findViewById(R.id.button_Next).setOnClickListener(view -> finish());
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (bookmarkButton != null && hasText(fruitId)) {
+            bindBookmarkButton();
+        }
+    }
+
+    private void bindBookmarkButton() {
+        boolean isSaved = savedFruitStore.isSaved(fruitId);
+        bookmarkButton.setSelected(isSaved);
+        bookmarkButton.setIconResource(
+                isSaved ? R.drawable.ic_bookmark_filled : R.drawable.ic_bookmark_outline);
+        bookmarkButton.setText(isSaved ? R.string.saved_fruit : R.string.save_fruit);
+        bookmarkButton.setContentDescription(getString(
+                isSaved
+                        ? R.string.remove_fruit_from_saved_description
+                        : R.string.save_fruit_description,
+                fruitName));
     }
 
     private String[] payloadForCurrentLocale(Intent intent) {

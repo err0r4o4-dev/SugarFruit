@@ -163,4 +163,50 @@
         <item>@string/safety_limit</item>
         <item>@string/safety_avoid</item>
     </string-array>
+    <string name="navigation_home">หน้าหลัก</string>
+    <string name="navigation_saved">บันทึกแล้ว</string>
+    <string name="navigation_profile">โปรไฟล์</string>
+
+    <string name="save_fruit">บันทึก</string>
+    <string name="saved_fruit">บันทึกแล้ว</string>
+    <string name="save_fruit_description">บันทึก %1$s</string>
+    <string name="remove_fruit_from_saved_description">นำ %1$s ออกจากผลไม้ที่บันทึก</string>
+    <string name="fruit_saved_message">บันทึก %1$s แล้ว</string>
+    <string name="fruit_removed_message">นำ %1$s ออกจากรายการแล้ว</string>
+
+    <string name="saved_title">บันทึกแล้ว</string>
+    <string name="no_saved_fruits_title">ยังไม่มีผลไม้ที่บันทึกไว้</string>
+    <string name="no_saved_fruits_description">คุณยังไม่ได้บันทึกผลไม้ใดๆ ไว้ในรายการของคุณ ค้นหาผลไม้ที่คุณสนใจและกดบันทึกเพื่อเก็บไว้ดูภายหลัง</string>
+    <string name="browse_fruits">เลือกดูผลไม้</string>
+    <plurals name="saved_fruit_count">
+        <item quantity="one">บันทึกแล้ว %d รายการ</item>
+        <item quantity="other">บันทึกแล้ว %d รายการ</item>
+    </plurals>
+
+    <string name="profile_settings_subtitle">จัดการข้อมูลสุขภาพและการตั้งค่าแอป</string>
+    <string name="profile_user_name_placeholder">ผู้ใช้ SugarFruit</string>
+    <string name="edit_personal_information">แก้ไขข้อมูลส่วนตัว</string>
+    <string name="application_settings_title">การตั้งค่าแอปพลิเคชัน</string>
+    <string name="dark_mode">โหมดมืด</string>
+    <string name="font_size">ขนาดตัวอักษร</string>
+    <string name="font_size_small">เล็ก</string>
+    <string name="font_size_standard">มาตรฐาน</string>
+    <string name="font_size_large">ใหญ่</string>
+    <string-array name="font_size_options">
+        <item>@string/font_size_small</item>
+        <item>@string/font_size_standard</item>
+        <item>@string/font_size_large</item>
+    </string-array>
+    <string name="privacy_section_title">ความเป็นส่วนตัว</string>
+    <string name="privacy_settings">การตั้งค่าความเป็นส่วนตัว</string>
+    <string name="privacy_settings_message">SugarFruit เก็บข้อมูลโปรไฟล์และผลไม้ที่บันทึกไว้ภายในอุปกรณ์เครื่องนี้เท่านั้น คุณสามารถล้างข้อมูลดังกล่าวได้ด้วยการออกจากระบบ</string>
+    <string name="additional_info_title">ข้อมูลเพิ่มเติม</string>
+    <string name="nutrition_data_sources">แหล่งข้อมูลโภชนาการ</string>
+    <string name="about_application">เกี่ยวกับแอปพลิเคชัน</string>
+    <string name="about_application_message">SugarFruit ช่วยค้นหาและจัดเก็บข้อมูลผลไม้เพื่อประกอบการวางแผนการรับประทาน ข้อมูลภายในแอปเป็นคำแนะนำทั่วไปและไม่ทดแทนคำแนะนำจากบุคลากรทางการแพทย์</string>
+    <string name="logout">ออกจากระบบ</string>
+    <string name="logout_confirmation_title">ออกจากระบบหรือไม่</string>
+    <string name="logout_confirmation_message">ข้อมูลโปรไฟล์และผลไม้ที่บันทึกไว้บนอุปกรณ์นี้จะถูกล้าง</string>
+    <string name="cancel">ยกเลิก</string>
+    <string name="profile_photo_unavailable">การเปลี่ยนรูปโปรไฟล์ยังไม่พร้อมใช้งาน</string>
 </resources>

@@ -82,6 +82,24 @@
                         tools:text="🟡 ควรจำกัด" />
                 </LinearLayout>
 
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buttonBookmarkDetail"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="14dp"
+                    android:contentDescription="@string/save_fruit"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    android:text="@string/save_fruit"
+                    android:textAllCaps="false"
+                    android:textColor="@color/profile_text_primary"
+                    app:cornerRadius="24dp"
+                    app:icon="@drawable/ic_bookmark_outline"
+                    app:iconGravity="textStart"
+                    app:iconTint="@color/profile_text_primary"
+                    app:strokeColor="@color/profile_outline" />
+
                 <TextView
                     android:id="@+id/detail_introduction"
                     android:layout_width="match_parent"

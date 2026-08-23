@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.ImageView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.DiffUtil;
 import java.util.ArrayList;
@@ -19,15 +20,29 @@ public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.FruitViewHol
 
     List<Fruit> fruitList;
     String level;
+    private final SavedFruitStore savedFruitStore;
+    private final OnSavedStateChangedListener savedStateChangedListener;
+
+    public interface OnSavedStateChangedListener {
+        void onSavedStateChanged(Fruit fruit, boolean isSaved);
+    }
 
     public FruitAdapter(List<Fruit> fruits, String level) {
+        this(fruits, level, null, null);
+    }
+
+    public FruitAdapter(List<Fruit> fruits, String level, SavedFruitStore savedFruitStore,
+            OnSavedStateChangedListener savedStateChangedListener) {
         this.fruitList = new ArrayList<>(fruits);
         this.level = level;
+        this.savedFruitStore = savedFruitStore;
+        this.savedStateChangedListener = savedStateChangedListener;
     }
 
     public static class FruitViewHolder extends RecyclerView.ViewHolder {
         TextView fruitName, fruitIndex, fruiTrue, fruitSugar;
         ImageView imageView;
+        ImageButton bookmarkButton;
         Button buttonNext;
         public FruitViewHolder(View itemView) {
             super(itemView);
@@ -37,6 +52,7 @@ public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.FruitViewHol
             fruiTrue = itemView.findViewById(R.id.fruiTrue);
             imageView = itemView.findViewById(R.id.imageView4);
             buttonNext = itemView.findViewById(R.id.button_Next);
+            bookmarkButton = itemView.findViewById(R.id.buttonBookmark);
 
         }
     }
@@ -60,6 +76,20 @@ public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.FruitViewHol
         holder.imageView.setImageResource(f.getImageResId());
         holder.imageView.setContentDescription(
                 holder.itemView.getContext().getString(R.string.fruit_image_description, f.getName()));
+        String fruitId = f.getStableId(holder.itemView.getContext());
+        if (savedFruitStore == null) {
+            holder.bookmarkButton.setVisibility(View.GONE);
+        } else {
+            holder.bookmarkButton.setVisibility(View.VISIBLE);
+            bindBookmarkButton(holder, f, fruitId);
+            holder.bookmarkButton.setOnClickListener(view -> {
+                boolean isSaved = savedFruitStore.toggle(fruitId);
+                bindBookmarkButton(holder, f, fruitId);
+                if (savedStateChangedListener != null) {
+                    savedStateChangedListener.onSavedStateChanged(f, isSaved);
+                }
+            });
+        }
         holder.buttonNext.setOnClickListener(v -> {
             Intent intent = new Intent(v.getContext(), App_page4.class);
             Context thaiContext = localizedContext(v.getContext(), new Locale("th", "TH"));
@@ -75,6 +105,7 @@ public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.FruitViewHol
                             true,
                             FruitSafety.localizedLabel(englishContext, safetyLevel)));
             intent.putExtra(AppContracts.EXTRA_FRUIT_IMAGE, f.getImageResId());
+            intent.putExtra(AppContracts.EXTRA_FRUIT_ID, fruitId);
             intent.putExtra(AppContracts.EXTRA_LEVEL, level);
             v.getContext().startActivity(intent);
         });
@@ -83,6 +114,18 @@ public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.FruitViewHol
     @Override
     public int getItemCount() {
         return fruitList.size();
+    }
+
+    private void bindBookmarkButton(FruitViewHolder holder, Fruit fruit, String fruitId) {
+        boolean isSaved = savedFruitStore.isSaved(fruitId);
+        holder.bookmarkButton.setSelected(isSaved);
+        holder.bookmarkButton.setImageResource(
+                isSaved ? R.drawable.ic_bookmark_filled : R.drawable.ic_bookmark_outline);
+        holder.bookmarkButton.setContentDescription(holder.itemView.getContext().getString(
+                isSaved
+                        ? R.string.remove_fruit_from_saved_description
+                        : R.string.save_fruit_description,
+                fruit.getName()));
     }
 
     private Context localizedContext(Context context, Locale locale) {
@@ -118,6 +161,19 @@ public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.FruitViewHol
         fruitList.clear();
         fruitList.addAll(newFruits);
         result.dispatchUpdatesTo(this);
+    }
+
+    public void setDiabetesLevel(String newLevel) {
+        level = newLevel == null ? DiabetesType.UNKNOWN.getCode() : newLevel;
+        if (getItemCount() > 0) {
+            notifyItemRangeChanged(0, getItemCount());
+        }
+    }
+
+    public void refreshSavedState() {
+        if (getItemCount() > 0) {
+            notifyItemRangeChanged(0, getItemCount());
+        }
     }
 
 }

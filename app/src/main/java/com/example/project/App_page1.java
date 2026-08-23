@@ -4,9 +4,7 @@ import android.widget.Button;
 import android.content.Intent;
 import android.view.View;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-public class App_page1 extends AppCompatActivity {
+public class App_page1 extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -16,7 +14,15 @@ public class App_page1 extends AppCompatActivity {
         buttonGetStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(App_page1.this, App_page2.class);
+                Class<?> destination = AppSettings.hasProfile(App_page1.this)
+                        ? App_page3.class
+                        : App_page2.class;
+                Intent intent = new Intent(App_page1.this, destination);
+                if (destination == App_page3.class) {
+                    intent.putExtra(
+                            AppContracts.EXTRA_LEVEL,
+                            AppSettings.getDiabetesType(App_page1.this).getCode());
+                }
                 startActivity(intent);
             }
         });
