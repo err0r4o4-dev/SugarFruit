@@ -9,6 +9,7 @@ import java.util.Set;
 public final class SavedFruitStore {
     private static final String PREFERENCES_NAME = "sugarfruit:saved-fruits";
     private static final String KEY_SAVED_FRUIT_IDS = "sugarfruit:saved-fruit-ids";
+    private static final String KEY_SAVED_AT_PREFIX = "sugarfruit:saved-at:";
 
     private final SharedPreferences preferences;
 
@@ -32,32 +33,53 @@ public final class SavedFruitStore {
         return getSavedFruitIds().contains(fruitId);
     }
 
+    public long getSavedAt(String fruitId) {
+        if (fruitId == null || fruitId.trim().isEmpty()) {
+            return 0L;
+        }
+        return preferences.getLong(KEY_SAVED_AT_PREFIX + fruitId.trim(), 0L);
+    }
+
     public void save(String fruitId) {
         Set<String> ids = getSavedFruitIds();
         if (fruitId != null && !fruitId.trim().isEmpty() && ids.add(fruitId.trim())) {
-            persist(ids);
+            String normalizedId = fruitId.trim();
+            preferences.edit()
+                    .putStringSet(KEY_SAVED_FRUIT_IDS, ids)
+                    .putLong(KEY_SAVED_AT_PREFIX + normalizedId, System.currentTimeMillis())
+                    .apply();
         }
     }
 
     public void remove(String fruitId) {
         Set<String> ids = getSavedFruitIds();
         if (ids.remove(fruitId)) {
-            persist(ids);
+            preferences.edit()
+                    .putStringSet(KEY_SAVED_FRUIT_IDS, ids)
+                    .remove(KEY_SAVED_AT_PREFIX + fruitId)
+                    .apply();
         }
     }
 
     public boolean toggle(String fruitId) {
         Set<String> ids = getSavedFruitIds();
         boolean saved = SavedFruitIds.toggle(ids, fruitId);
-        persist(ids);
+        SharedPreferences.Editor editor = preferences.edit()
+                .putStringSet(KEY_SAVED_FRUIT_IDS, ids);
+        if (saved) {
+            editor.putLong(KEY_SAVED_AT_PREFIX + fruitId.trim(), System.currentTimeMillis());
+        } else if (fruitId != null) {
+            editor.remove(KEY_SAVED_AT_PREFIX + fruitId.trim());
+        }
+        editor.apply();
         return saved;
     }
 
     public void clear() {
-        preferences.edit().remove(KEY_SAVED_FRUIT_IDS).apply();
-    }
-
-    private void persist(Set<String> ids) {
-        preferences.edit().putStringSet(KEY_SAVED_FRUIT_IDS, ids).apply();
+        SharedPreferences.Editor editor = preferences.edit().remove(KEY_SAVED_FRUIT_IDS);
+        for (String fruitId : getSavedFruitIds()) {
+            editor.remove(KEY_SAVED_AT_PREFIX + fruitId);
+        }
+        editor.apply();
     }
 }

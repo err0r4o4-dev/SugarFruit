@@ -10,19 +10,25 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
 public class App_saved extends BaseActivity {
+    private static final int SORT_DEFAULT = 0;
+    private static final int SORT_NEWEST = 1;
+    private static final int SORT_OLDEST = 2;
+
     private SavedFruitStore savedFruitStore;
     private List<Fruit> allFruits;
     private FruitAdapter adapter;
     private RecyclerView recyclerView;
     private View emptyState;
     private TextView resultCountText;
-    private View sortLabel;
+    private TextView sortLabel;
+    private int sortMode = SORT_DEFAULT;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +41,7 @@ public class App_saved extends BaseActivity {
         emptyState = findViewById(R.id.savedEmptyState);
         resultCountText = findViewById(R.id.savedResultCount);
         sortLabel = findViewById(R.id.savedSortLabel);
+        sortLabel.setOnClickListener(view -> showSortDialog());
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new FruitAdapter(
@@ -82,6 +89,16 @@ public class App_saved extends BaseActivity {
             }
         }
 
+        if (sortMode != SORT_DEFAULT) {
+            savedFruits.sort((first, second) -> {
+                long firstSavedAt = savedFruitStore.getSavedAt(first.getStableId(this));
+                long secondSavedAt = savedFruitStore.getSavedAt(second.getStableId(this));
+                return sortMode == SORT_NEWEST
+                        ? Long.compare(secondSavedAt, firstSavedAt)
+                        : Long.compare(firstSavedAt, secondSavedAt);
+            });
+        }
+
         adapter.updateFruits(savedFruits);
         int count = savedFruits.size();
         boolean hasSavedFruits = count > 0;
@@ -93,6 +110,37 @@ public class App_saved extends BaseActivity {
                 R.plurals.saved_fruit_count,
                 count,
                 count));
+    }
+
+    private void showSortDialog() {
+        CharSequence[] options = {
+                getString(R.string.saved_sort_option_default),
+                getString(R.string.saved_sort_option_newest),
+                getString(R.string.saved_sort_option_oldest)
+        };
+        new MaterialAlertDialogBuilder(this)
+                .setTitle(R.string.saved_sort_title)
+                .setSingleChoiceItems(options, sortMode, (dialog, which) -> {
+                    sortMode = which;
+                    updateSortLabel();
+                    refreshSavedFruits();
+                    dialog.dismiss();
+                })
+                .setNegativeButton(android.R.string.cancel, null)
+                .show();
+    }
+
+    private void updateSortLabel() {
+        int labelResId;
+        if (sortMode == SORT_NEWEST) {
+            labelResId = R.string.saved_sort_newest;
+        } else if (sortMode == SORT_OLDEST) {
+            labelResId = R.string.saved_sort_oldest;
+        } else {
+            labelResId = R.string.saved_sort_default;
+        }
+        sortLabel.setText(labelResId);
+        sortLabel.setContentDescription(getString(labelResId));
     }
 
     private void openHome() {

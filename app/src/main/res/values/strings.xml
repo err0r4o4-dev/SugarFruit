@@ -177,7 +177,13 @@
 
     <string name="saved_title">บันทึกแล้ว</string>
     <string name="saved_subtitle">ผลไม้ที่คุณบันทึกไว้เพื่อเข้าถึงได้อย่างรวดเร็ว</string>
-    <string name="saved_sort_default">จัดเรียง: ค่าเริ่มต้น</string>
+    <string name="saved_sort_title">จัดเรียงผลไม้ที่บันทึก</string>
+    <string name="saved_sort_default">จัดเรียง: ปกติ ▼</string>
+    <string name="saved_sort_newest">จัดเรียง: ล่าสุด ▼</string>
+    <string name="saved_sort_oldest">จัดเรียง: ไม่ล่าสุด ▼</string>
+    <string name="saved_sort_option_default">ปกติ</string>
+    <string name="saved_sort_option_newest">ล่าสุด</string>
+    <string name="saved_sort_option_oldest">ไม่ล่าสุด</string>
     <string name="no_saved_fruits_title">ยังไม่มีผลไม้ที่บันทึกไว้</string>
     <string name="no_saved_fruits_description">บันทึกผลไม้เพื่อค้นหาได้อย่างรวดเร็วจากหน้านี้</string>
     <string name="browse_fruits">เลือกดูผลไม้</string>

@@ -181,7 +181,13 @@
 
     <string name="saved_title">Saved</string>
     <string name="saved_subtitle">Fruits you’ve saved for quick access</string>
-    <string name="saved_sort_default">Sort: Default</string>
+    <string name="saved_sort_title">Sort saved fruits</string>
+    <string name="saved_sort_default">Sort: Default ▼</string>
+    <string name="saved_sort_newest">Sort: Newest ▼</string>
+    <string name="saved_sort_oldest">Sort: Oldest ▼</string>
+    <string name="saved_sort_option_default">Default</string>
+    <string name="saved_sort_option_newest">Newest</string>
+    <string name="saved_sort_option_oldest">Oldest</string>
     <string name="no_saved_fruits_title">No saved fruits yet</string>
     <string name="no_saved_fruits_description">Save fruits to quickly find them here.</string>
     <string name="browse_fruits">Browse fruits</string>
