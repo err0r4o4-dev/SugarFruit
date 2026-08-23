@@ -28,6 +28,9 @@ public final class AppContracts {
     public static final String EXTRA_FRUIT_DETAILS_EN = "fruitDetailsEn";
     public static final String EXTRA_FRUIT_ID = "fruitId";
     public static final String EXTRA_EDIT_PROFILE = "editProfile";
+    public static final String EXTRA_PROFILE_EDIT_SECTION = "profileEditSection";
+    public static final String PROFILE_SECTION_PERSONAL = "personal";
+    public static final String PROFILE_SECTION_HEALTH = "health";
 
     private AppContracts() {
     }

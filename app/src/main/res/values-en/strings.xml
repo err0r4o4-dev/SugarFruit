@@ -207,9 +207,6 @@
     <string name="nutrition_data_sources">Nutrition data sources</string>
     <string name="about_application">About the application</string>
     <string name="about_application_message">SugarFruit helps you browse and save fruit information for meal planning. Information in this app is general guidance and does not replace advice from a healthcare professional.</string>
-    <string name="logout">Log out</string>
-    <string name="logout_confirmation_title">Log out?</string>
-    <string name="logout_confirmation_message">Your profile and saved fruits on this device will be cleared.</string>
     <string name="cancel">Cancel</string>
     <string name="profile_photo_unavailable">Changing the profile picture is not available yet</string>
 </resources>

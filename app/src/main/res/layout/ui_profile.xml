@@ -214,19 +214,6 @@
                     android:orientation="vertical" />
             </com.google.android.material.card.MaterialCardView>
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/logoutButton"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginTop="28dp"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                android:text="@string/logout"
-                android:textAllCaps="false"
-                android:textColor="@color/sugarfruit_error"
-                app:cornerRadius="24dp"
-                app:strokeColor="@color/sugarfruit_error" />
         </LinearLayout>
     </ScrollView>
 

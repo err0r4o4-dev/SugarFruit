@@ -35,7 +35,6 @@ public class App_profile extends BaseActivity {
         setupApplicationSettings();
         setupPrivacy();
         setupAdditionalInformation();
-        findViewById(R.id.logoutButton).setOnClickListener(view -> confirmLogout());
 
         BottomNavigationCoordinator.bind(
                 this,
@@ -61,13 +60,13 @@ public class App_profile extends BaseActivity {
                 R.drawable.ic_profile_person,
                 R.string.edit_personal_information,
                 null,
-                view -> openProfileEditor());
+                view -> openProfileEditor(AppContracts.PROFILE_SECTION_PERSONAL));
         addActionRow(
                 container,
                 R.drawable.ic_detail_check,
                 R.string.health_info_title,
                 null,
-                view -> openProfileEditor());
+                view -> openProfileEditor(AppContracts.PROFILE_SECTION_HEALTH));
         hideLastDivider(container);
     }
 
@@ -176,9 +175,10 @@ public class App_profile extends BaseActivity {
                 : name);
     }
 
-    private void openProfileEditor() {
+    private void openProfileEditor(String section) {
         Intent intent = new Intent(this, App_page2.class);
         intent.putExtra(AppContracts.EXTRA_EDIT_PROFILE, true);
+        intent.putExtra(AppContracts.EXTRA_PROFILE_EDIT_SECTION, section);
         startActivity(intent);
     }
 
@@ -225,20 +225,4 @@ public class App_profile extends BaseActivity {
                 .show();
     }
 
-    private void confirmLogout() {
-        new MaterialAlertDialogBuilder(this)
-                .setTitle(R.string.logout_confirmation_title)
-                .setMessage(R.string.logout_confirmation_message)
-                .setNegativeButton(R.string.cancel, null)
-                .setPositiveButton(R.string.logout, (dialog, which) -> logout())
-                .show();
-    }
-
-    private void logout() {
-        AppSettings.clearProfile(this);
-        new SavedFruitStore(this).clear();
-        Intent intent = new Intent(this, App_page1.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
-    }
 }

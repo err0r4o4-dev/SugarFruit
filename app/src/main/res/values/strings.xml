@@ -203,9 +203,6 @@
     <string name="nutrition_data_sources">แหล่งข้อมูลโภชนาการ</string>
     <string name="about_application">เกี่ยวกับแอปพลิเคชัน</string>
     <string name="about_application_message">SugarFruit ช่วยค้นหาและจัดเก็บข้อมูลผลไม้เพื่อประกอบการวางแผนการรับประทาน ข้อมูลภายในแอปเป็นคำแนะนำทั่วไปและไม่ทดแทนคำแนะนำจากบุคลากรทางการแพทย์</string>
-    <string name="logout">ออกจากระบบ</string>
-    <string name="logout_confirmation_title">ออกจากระบบหรือไม่</string>
-    <string name="logout_confirmation_message">ข้อมูลโปรไฟล์และผลไม้ที่บันทึกไว้บนอุปกรณ์นี้จะถูกล้าง</string>
     <string name="cancel">ยกเลิก</string>
     <string name="profile_photo_unavailable">การเปลี่ยนรูปโปรไฟล์ยังไม่พร้อมใช้งาน</string>
 </resources>

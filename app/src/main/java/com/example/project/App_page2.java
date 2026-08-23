@@ -68,6 +68,25 @@ public class App_page2 extends BaseActivity {
         spinner2.setOnClickListener(view -> spinner2.showDropDown());
 
         boolean editMode = getIntent().getBooleanExtra(AppContracts.EXTRA_EDIT_PROFILE, false);
+        String editSection = getIntent().getStringExtra(
+                AppContracts.EXTRA_PROFILE_EDIT_SECTION);
+        boolean personalEdit = editMode
+                && AppContracts.PROFILE_SECTION_PERSONAL.equals(editSection);
+        boolean healthEdit = editMode
+                && AppContracts.PROFILE_SECTION_HEALTH.equals(editSection);
+        View personalInformationSection = findViewById(R.id.personalInformationSection);
+        View healthInformationSection = findViewById(R.id.healthInformationSection);
+        View profilePrivacyCard = findViewById(R.id.profilePrivacyCard);
+        TextView formTitle = findViewById(R.id.formTitle);
+        if (personalEdit) {
+            healthInformationSection.setVisibility(View.GONE);
+            profilePrivacyCard.setVisibility(View.GONE);
+            formTitle.setText(R.string.edit_personal_information);
+        } else if (healthEdit) {
+            personalInformationSection.setVisibility(View.GONE);
+            formTitle.setText(R.string.health_info_title);
+        }
+
         if (AppSettings.hasProfile(this)) {
             inputName.setText(AppSettings.getUserName(this));
             inputHeight.setText(AppSettings.getHeight(this));
