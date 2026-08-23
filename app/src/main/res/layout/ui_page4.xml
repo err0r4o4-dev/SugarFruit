@@ -4,7 +4,7 @@
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:background="@color/detail_surface" android:fitsSystemWindows="true" tools:context=".App_page4">
 
-    <ImageView android:id="@+id/detail_image" android:layout_width="0dp" android:layout_height="200dp"
+    <ImageView android:id="@+id/detail_image" android:layout_width="0dp" android:layout_height="240dp"
         android:contentDescription="@string/fruit_image" android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" tools:src="@drawable/q5" />
@@ -21,7 +21,7 @@
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView android:layout_width="0dp" android:layout_height="0dp"
-        android:layout_marginTop="176dp" app:cardBackgroundColor="@color/detail_surface" app:cardElevation="0dp"
+        android:layout_marginTop="224dp" app:cardBackgroundColor="@color/detail_surface" app:cardElevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
         app:shapeAppearanceOverlay="@style/TopRoundedCard">

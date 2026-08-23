@@ -251,8 +251,11 @@ public class App_page4 extends BaseActivity {
             return value;
         }
         String level = matcher.group(2);
-        return hasText(level)
-                ? getString(R.string.detail_metric_value_with_note, matcher.group(1), level)
+        String plainLevel = hasText(level)
+                ? level.substring(1, level.length() - 1).trim()
+                : null;
+        return hasText(plainLevel)
+                ? getString(R.string.detail_metric_value_with_note, matcher.group(1), plainLevel)
                 : matcher.group(1);
     }
 
