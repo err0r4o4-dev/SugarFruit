@@ -11,6 +11,9 @@ import androidx.recyclerview.widget.DiffUtil;
 import java.util.ArrayList;
 import java.util.List;
 import android.content.Intent;
+import android.content.Context;
+import android.content.res.Configuration;
+import java.util.Locale;
 
 public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.FruitViewHolder> {
 
@@ -51,33 +54,27 @@ public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.FruitViewHol
         holder.fruitName.setText(f.getName());
         holder.fruitIndex.setText(f.getIndex());
         holder.fruitSugar.setText(f.getSugar());
-        String safety = FruitSafety.forDiabetesLevel(f, level);
-        holder.fruiTrue.setText(safety);
+        FruitSafety.Level safetyLevel = FruitSafety.forDiabetesLevel(f, level);
+        String safetyLabel = FruitSafety.localizedLabel(holder.itemView.getContext(), safetyLevel);
+        holder.fruiTrue.setText(safetyLabel);
         holder.imageView.setImageResource(f.getImageResId());
         holder.imageView.setContentDescription(
                 holder.itemView.getContext().getString(R.string.fruit_image_description, f.getName()));
         holder.buttonNext.setOnClickListener(v -> {
             Intent intent = new Intent(v.getContext(), App_page4.class);
-            intent.putExtra(AppContracts.EXTRA_FRUIT_NAME, f.getName());
-            intent.putExtra(AppContracts.EXTRA_FRUIT_INDEX, f.getIndex_());
-            intent.putExtra(AppContracts.EXTRA_FRUIT_SUGAR, f.getSugar_());
-            intent.putExtra(AppContracts.EXTRA_FRUIT_CARBOHYDRATE, f.getCarbohydrate_());
-            intent.putExtra(AppContracts.EXTRA_FRUIT_FIBER, f.getFiber_());
-            intent.putExtra(AppContracts.EXTRA_FRUIT_IMPACT, f.getImpact_());
-            intent.putExtra(AppContracts.EXTRA_FRUIT_TYPE_1, f.getType1_());
-            intent.putExtra(AppContracts.EXTRA_FRUIT_TYPE_2, f.getType2_());
-            intent.putExtra(AppContracts.EXTRA_FRUIT_END, f.getEnd_());
+            Context thaiContext = localizedContext(v.getContext(), new Locale("th", "TH"));
+            Context englishContext = localizedContext(v.getContext(), Locale.ENGLISH);
+            intent.putExtra(
+                    AppContracts.EXTRA_FRUIT_DETAILS_TH,
+                    f.createDetailPayload(
+                            false,
+                            FruitSafety.localizedLabel(thaiContext, safetyLevel)));
+            intent.putExtra(
+                    AppContracts.EXTRA_FRUIT_DETAILS_EN,
+                    f.createDetailPayload(
+                            true,
+                            FruitSafety.localizedLabel(englishContext, safetyLevel)));
             intent.putExtra(AppContracts.EXTRA_FRUIT_IMAGE, f.getImageResId());
-            intent.putExtra(AppContracts.EXTRA_FRUIT_SAFETY, safety);
-            putOptionalExtra(intent, AppContracts.EXTRA_FRUIT_INTRODUCTION,
-                    f.getDetailIntroduction());
-            putOptionalExtra(intent, AppContracts.EXTRA_FRUIT_RECOMMENDED_AMOUNT,
-                    f.getRecommendedAmount());
-            putOptionalExtra(intent, AppContracts.EXTRA_FRUIT_RECOMMENDED_EQUIVALENT,
-                    f.getRecommendedEquivalent());
-            putOptionalExtra(intent, AppContracts.EXTRA_FRUIT_TIP_1, f.getDetailTip1());
-            putOptionalExtra(intent, AppContracts.EXTRA_FRUIT_TIP_2, f.getDetailTip2());
-            putOptionalExtra(intent, AppContracts.EXTRA_FRUIT_TIP_3, f.getDetailTip3());
             intent.putExtra(AppContracts.EXTRA_LEVEL, level);
             v.getContext().startActivity(intent);
         });
@@ -88,10 +85,10 @@ public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.FruitViewHol
         return fruitList.size();
     }
 
-    private void putOptionalExtra(Intent intent, String key, String value) {
-        if (value != null && !value.trim().isEmpty()) {
-            intent.putExtra(key, value);
-        }
+    private Context localizedContext(Context context, Locale locale) {
+        Configuration configuration = new Configuration(context.getResources().getConfiguration());
+        configuration.setLocale(locale);
+        return context.createConfigurationContext(configuration);
     }
 
     public void updateFruits(List<Fruit> newFruits) {

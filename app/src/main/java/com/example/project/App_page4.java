@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -63,44 +64,69 @@ public class App_page4 extends AppCompatActivity {
         fruitImageView = findViewById(R.id.detail_image);
 
         Intent intent = getIntent();
-        String fruitName = extraOrUnavailable(intent, AppContracts.EXTRA_FRUIT_NAME);
+        String[] payload = payloadForCurrentLocale(intent);
+        String fruitName = detailOrUnavailable(
+                payload, FruitDetailPayload.NAME, intent, AppContracts.EXTRA_FRUIT_NAME);
         fruitNameTextView.setText(fruitName);
         glycemicIndexTextView.setText(formatGlycemicIndex(
-                extraOrUnavailable(intent, AppContracts.EXTRA_FRUIT_INDEX)));
+                detailOrUnavailable(
+                        payload, FruitDetailPayload.INDEX,
+                        intent, AppContracts.EXTRA_FRUIT_INDEX)));
         carbohydrateContentTextView.setText(formatNutrientMetric(
-                extraOrUnavailable(intent, AppContracts.EXTRA_FRUIT_CARBOHYDRATE)));
+                detailOrUnavailable(
+                        payload, FruitDetailPayload.CARBOHYDRATE,
+                        intent, AppContracts.EXTRA_FRUIT_CARBOHYDRATE)));
         fiberContentTextView.setText(formatNutrientMetric(
-                extraOrUnavailable(intent, AppContracts.EXTRA_FRUIT_FIBER)));
-        impactLevelTextView.setText(extraOrUnavailable(intent, AppContracts.EXTRA_FRUIT_IMPACT));
-        type1AdviceTextView.setText(extraOrUnavailable(intent, AppContracts.EXTRA_FRUIT_TYPE_1));
-        type2AdviceTextView.setText(extraOrUnavailable(intent, AppContracts.EXTRA_FRUIT_TYPE_2));
-        safetyTextView.setText(extraOrUnavailable(intent, AppContracts.EXTRA_FRUIT_SAFETY));
+                detailOrUnavailable(
+                        payload, FruitDetailPayload.FIBER,
+                        intent, AppContracts.EXTRA_FRUIT_FIBER)));
+        impactLevelTextView.setText(detailOrUnavailable(
+                payload, FruitDetailPayload.IMPACT, intent, AppContracts.EXTRA_FRUIT_IMPACT));
+        type1AdviceTextView.setText(detailOrUnavailable(
+                payload, FruitDetailPayload.TYPE_1, intent, AppContracts.EXTRA_FRUIT_TYPE_1));
+        type2AdviceTextView.setText(detailOrUnavailable(
+                payload, FruitDetailPayload.TYPE_2, intent, AppContracts.EXTRA_FRUIT_TYPE_2));
+        safetyTextView.setText(detailOrUnavailable(
+                payload, FruitDetailPayload.SAFETY, intent, AppContracts.EXTRA_FRUIT_SAFETY));
         bindOptionalText(
                 introductionTextView,
-                intent.getStringExtra(AppContracts.EXTRA_FRUIT_INTRODUCTION));
+                optionalDetail(
+                        payload, FruitDetailPayload.INTRODUCTION,
+                        intent, AppContracts.EXTRA_FRUIT_INTRODUCTION));
 
         boolean hasRecommendedAmount = bindOptionalText(
                 recommendedAmountTextView,
-                intent.getStringExtra(AppContracts.EXTRA_FRUIT_RECOMMENDED_AMOUNT));
+                optionalDetail(
+                        payload, FruitDetailPayload.RECOMMENDED_AMOUNT,
+                        intent, AppContracts.EXTRA_FRUIT_RECOMMENDED_AMOUNT));
         boolean hasRecommendedEquivalent = bindOptionalText(
                 recommendedEquivalentTextView,
-                intent.getStringExtra(AppContracts.EXTRA_FRUIT_RECOMMENDED_EQUIVALENT));
+                optionalDetail(
+                        payload, FruitDetailPayload.RECOMMENDED_EQUIVALENT,
+                        intent, AppContracts.EXTRA_FRUIT_RECOMMENDED_EQUIVALENT));
         recommendationGroup.setVisibility(
                 hasRecommendedAmount || hasRecommendedEquivalent ? View.VISIBLE : View.GONE);
 
-        String firstTip = intent.getStringExtra(AppContracts.EXTRA_FRUIT_TIP_1);
+        String firstTip = optionalDetail(
+                payload, FruitDetailPayload.TIP_1, intent, AppContracts.EXTRA_FRUIT_TIP_1);
         if (!hasText(firstTip)) {
-            firstTip = intent.getStringExtra(AppContracts.EXTRA_FRUIT_END);
+            firstTip = optionalDetail(
+                    payload, FruitDetailPayload.GENERAL_ADVICE,
+                    intent, AppContracts.EXTRA_FRUIT_END);
         }
         boolean hasTip1 = bindTip(generalAdviceTextView, tip1Row, firstTip);
         boolean hasTip2 = bindTip(
                 tip2TextView,
                 tip2Row,
-                intent.getStringExtra(AppContracts.EXTRA_FRUIT_TIP_2));
+                optionalDetail(
+                        payload, FruitDetailPayload.TIP_2,
+                        intent, AppContracts.EXTRA_FRUIT_TIP_2));
         boolean hasTip3 = bindTip(
                 tip3TextView,
                 tip3Row,
-                intent.getStringExtra(AppContracts.EXTRA_FRUIT_TIP_3));
+                optionalDetail(
+                        payload, FruitDetailPayload.TIP_3,
+                        intent, AppContracts.EXTRA_FRUIT_TIP_3));
         generalAdviceGroup.setVisibility(
                 hasTip1 || hasTip2 || hasTip3 ? View.VISIBLE : View.GONE);
 
@@ -109,6 +135,25 @@ public class App_page4 extends AppCompatActivity {
         fruitImageView.setContentDescription(getString(R.string.fruit_image_description, fruitName));
 
         findViewById(R.id.button_Next).setOnClickListener(view -> finish());
+    }
+
+    private String[] payloadForCurrentLocale(Intent intent) {
+        boolean isEnglish = Locale.ENGLISH.getLanguage().equals(
+                getResources().getConfiguration().getLocales().get(0).getLanguage());
+        String key = isEnglish
+                ? AppContracts.EXTRA_FRUIT_DETAILS_EN
+                : AppContracts.EXTRA_FRUIT_DETAILS_TH;
+        String[] payload = intent.getStringArrayExtra(key);
+        return payload != null && payload.length == FruitDetailPayload.SIZE ? payload : null;
+    }
+
+    private String detailOrUnavailable(String[] payload, int index, Intent intent, String oldKey) {
+        String value = optionalDetail(payload, index, intent, oldKey);
+        return hasText(value) ? value : getString(R.string.detail_unavailable);
+    }
+
+    private String optionalDetail(String[] payload, int index, Intent intent, String oldKey) {
+        return payload == null ? intent.getStringExtra(oldKey) : payload[index];
     }
 
     private String extraOrUnavailable(Intent intent, String key) {

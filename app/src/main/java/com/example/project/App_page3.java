@@ -14,6 +14,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.chip.ChipGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.content.Context;
+import android.content.res.Configuration;
 import android.view.inputmethod.EditorInfo;
 import java.util.ArrayList;
 import java.text.Collator;
@@ -39,9 +40,9 @@ public class App_page3 extends AppCompatActivity {
     private List<Fruit> filteredFruits = new ArrayList<>();
 
     // ตัวแปรเก็บค่าที่เลือกสำหรับการกรอง
-    private String selectedSeason = "All";
+    private FruitSeason selectedSeason;
     private String searchKeyword = "";
-    private String level = "0";
+    private String level = DiabetesType.UNKNOWN.getCode();
     private int sortMode = SORT_SUITABILITY;
 
     @Override
@@ -63,18 +64,19 @@ public class App_page3 extends AppCompatActivity {
     }
 
     private void initializeFruitData() {
+        Context thaiTextContext = localizedContext(new Locale("th", "TH"));
         allFruits.add(new Fruit(R.drawable.q1, "มะม่วง", "ปริมาณน้ำตาล: 14.0/100 กรัม","14.0/100 กรัม (สูง) มีผลให้น้ำตาลในเลือดขึ้นสูง","ดัชนีน้ำตาล (GI): 41",
                 "41 (ต่ำ)","\uD83D\uDFE1 ควรจำกัด", "Summer","15 กรัมต่อ 100 กรัม",
-                "1.6 กรัมต่อ 100 กรัม", getString(R.string.mango_detail_impact), getString(R.string.mango_detail_type_1),
-                getString(R.string.mango_detail_type_2),"ควรหลีกเลี่ยงสำหรับผู้ป่วยเบาหวานที่ควบคุมระดับน้ำตาลได้ไม่ดีหรือมีภาวะแทรกซ้อน เช่น เบาหวานขึ้นตา ไต ไขมันสูง",
+                "1.6 กรัมต่อ 100 กรัม", thaiTextContext.getString(R.string.mango_detail_impact), thaiTextContext.getString(R.string.mango_detail_type_1),
+                thaiTextContext.getString(R.string.mango_detail_type_2),"ควรหลีกเลี่ยงสำหรับผู้ป่วยเบาหวานที่ควบคุมระดับน้ำตาลได้ไม่ดีหรือมีภาวะแทรกซ้อน เช่น เบาหวานขึ้นตา ไต ไขมันสูง",
                 "\uD83D\uDFE1 ควรจำกัด","\uD83D\uDD34 ควรหลีกเลี่ยง","\uD83D\uDD34 ควรหลีกเลี่ยง")
                 .withDetailGuide(
-                        getString(R.string.mango_detail_introduction),
-                        getString(R.string.mango_detail_recommended_amount),
-                        getString(R.string.mango_detail_recommended_equivalent),
-                        getString(R.string.mango_detail_tip_1),
-                        getString(R.string.mango_detail_tip_2),
-                        getString(R.string.mango_detail_tip_3)));
+                        thaiTextContext.getString(R.string.mango_detail_introduction),
+                        thaiTextContext.getString(R.string.mango_detail_recommended_amount),
+                        thaiTextContext.getString(R.string.mango_detail_recommended_equivalent),
+                        thaiTextContext.getString(R.string.mango_detail_tip_1),
+                        thaiTextContext.getString(R.string.mango_detail_tip_2),
+                        thaiTextContext.getString(R.string.mango_detail_tip_3)));
 
         allFruits.add(new Fruit(R.drawable.q2, "กล้วย", "ปริมาณน้ำตาล: 12.2/100 กรัม","12.2/100 กรัม (สูง) มีผลให้น้ำตาลในเลือดขึ้นสูง","ดัชนีน้ำตาล (GI): 46","46 (ต่ำ) ดีต่อผู้ป่วยเบาหวาน","\uD83D\uDFE1 ควรจำกัด", "Summer","22.8 /100 กรัม(สูง) ระดับน้ำตาลในเลือดอาจเพิ่มสูงขึ้นอย่างรวดเร็ว","2.6/100 กรัม (ปานกลาง) พอช่วยชะลอการดูดซึมน้ำตาลได้","\uD83D\uDFE1 ปานกลาง","สามารถกินได้ถ้านับคาร์โบไฮเดรตแม่น และปรับอินซูลินให้เหมาะสม","สามารถกินได้ในปริมาณที่จำกัด","ควรหลีกเลี่ยงสำหรับผู้ป่วยเบาหวานที่ควบคุมระดับน้ำตาลได้ไม่ดี","\uD83D\uDFE1 ควรจำกัด","\uD83D\uDD34 ควรหลีกเลี่ยง","\uD83D\uDD34 ควรหลีกเลี่ยง"));
         allFruits.add(new Fruit(R.drawable.q3, "แตงโม", "ปริมาณน้ำตาล: 6.2/100 กรัม","6.2/100 กรัม (สูง) มีผลให้น้ำตาลในเลือดขึ้นสูง","ดัชนีน้ำตาล (GI): 72–80","72–80 (สูง) น้ำตาลในเลือดพุ่งเร็ว ไม่ดีต่อผู้ป่วยเบาหวาน","\uD83D\uDD34 ควรหลีกเลี่ยง", "Summer","7.6/100 กรัม (ต่ำ) อาจทำให้ร่างกายขาดพลังงาน","0.4/100 กรัม (ต่ำมาก) ไม่สามารถช่วยชะลอน้ำตาลได้","\uD83D\uDD34 สูง","สามารถกินได้ ถ้าคำนวณคาร์บแม่น","ที่ควบคุมระดับน้ำตาลได้ดี ควรจำกัดมาก","ควรหลีกเลี่ยงสำหรับผู้ป่วยเบาหวานที่ควบคุมระดับน้ำตาลได้ไม่ดีหรือมีภาวะแทรกซ้อน ","\uD83D\uDD34 ควรหลีกเลี่ยง","\uD83D\uDD34 ควรหลีกเลี่ยง","\uD83D\uDD34 ควรหลีกเลี่ยง"));
@@ -127,18 +129,19 @@ public class App_page3 extends AppCompatActivity {
         allFruits.add(new Fruit(R.drawable.q48, "ส้มเช้ง", "ปริมาณน้ำตาล: 8.0/100 กรัม","8.0/100 กรัม (ปานกลาง) มีผลให้น้ำตาลในเลือดขึ้นน้อย หากรับประทานมากหรือติดกันหลายมื้อ อาจทำให้ระดับน้ำตาลสะสมสูง","ดัชนีน้ำตาล (GI): 40-45","40-45 (ต่ำ) ดีต่อผู้ป่วยเบาหวาน","\uD83D\uDFE1 ควรจำกัด", "Winter","11.0/100 กรัม (ปานกลาง) ช่วยรักษาระดับน้ำตาลในเลือดไม่ให้สูงหรือต่ำเกินไป","1.5/100 กรัม (ต่ำ) ชะลอการดูดซึมน้ำตาลได้น้อย","\uD83D\uDFE1 ปานกลาง","สามารถกินได้ แต่ควรคำนวณคาร์โบไฮเดรตให้แม่นยำก่อนฉีดอินซูลิน","สามารถกินได้ในปริมาณ 1 ผลต่อวัน หลีกเลี่ยงทานเกินในหนึ่งมื้อ","สำหรับผู้ป่วยเบาหวานที่ควบคุมระดับน้ำตาลได้ไม่ดีหรือมีภาวะแทรกซ้อน ควรจำกัดปริมาณการทานและทานร่วมกับอาหารที่มีไฟเบอร์สูง","\uD83D\uDFE2 ปลอดภัย","\uD83D\uDFE2 ปลอดภัย","\uD83D\uDFE2 ปลอดภัย"));
         allFruits.add(new Fruit(R.drawable.q49, "สาลี่", "ปริมาณน้ำตาล: 9.8/100 กรัม","9.8/100 กรัม (ปานกลาง) มีผลให้น้ำตาลในเลือดขึ้นน้อย หากรับประทานมากหรือติดกันหลายมื้อ อาจทำให้ระดับน้ำตาลสะสมสูง","ดัชนีน้ำตาล (GI): 30","30 (ต่ำ) ดีต่อผู้ป่วยเบาหวาน","\uD83D\uDFE1 ควรจำกัด", "Winter","15.2/100 กรัม (สูง) ระดับน้ำตาลในเลือดอาจเพิ่มสูงขึ้นอย่างรวดเร็ว","3.1/100 กรัม (สูง) ช่วยชะลอการดูดซึมน้ำตาลได้ดี","\uD83D\uDFE1 ปานกลาง","สามารถกินได้ในปริมาณที่ควบคุมได้","สามารถกินได้ในปริมาณที่เหมาะสม แต่ต้องระวังไม่ทานมากเกินไป","สำหรับผู้ป่วยเบาหวานที่ควบคุมระดับน้ำตาลได้ไม่ดีหรือมีภาวะแทรกซ้อน สามารถกินได้ในปริมาณที่เหมาะสมและระมัดระวังในการควบคุมระดับน้ำตาล","\uD83D\uDFE2 ปลอดภัย","\uD83D\uDFE1 ควรจำกัด","\uD83D\uDD34 ควรหลีกเลี่ยง"));
 
-        applyAdditionalDetailGuides();
+        applyAdditionalDetailGuides(thaiTextContext);
+        EnglishFruitLocalizer.prepare(this, allFruits);
     }
 
-    private void applyAdditionalDetailGuides() {
+    private void applyAdditionalDetailGuides(Context textContext) {
         for (Fruit fruit : allFruits) {
             int[] resources = getDetailGuideResources(fruit.getName());
             if (resources != null) {
-                String note = resources[2] == 0 ? null : getString(resources[2]);
+                String note = resources[2] == 0 ? null : textContext.getString(resources[2]);
                 fruit.withDetailGuide(
-                        getString(resources[0]),
-                        getString(resources[1]),
-                        getString(R.string.fruit_serving_carbohydrate_equivalent),
+                        textContext.getString(resources[0]),
+                        textContext.getString(resources[1]),
+                        textContext.getString(R.string.fruit_serving_carbohydrate_equivalent),
                         note,
                         null,
                         null);
@@ -186,13 +189,13 @@ public class App_page3 extends AppCompatActivity {
 
             int checkedId = checkedIds.get(0);
             if (checkedId == R.id.chipSummer) {
-                selectedSeason = getString(R.string.season_summer);
+                selectedSeason = FruitSeason.SUMMER;
             } else if (checkedId == R.id.chipRainy) {
-                selectedSeason = getString(R.string.season_rainy);
+                selectedSeason = FruitSeason.RAINY;
             } else if (checkedId == R.id.chipWinter) {
-                selectedSeason = getString(R.string.season_winter);
+                selectedSeason = FruitSeason.WINTER;
             } else {
-                selectedSeason = getString(R.string.season_all);
+                selectedSeason = null;
             }
             applyFilters();
         });
@@ -263,7 +266,7 @@ public class App_page3 extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                searchKeyword = s.toString().trim().toLowerCase(Locale.ROOT);
+                searchKeyword = s.toString().trim().toLowerCase(currentLocale());
                 applyFilters();
             }
 
@@ -274,7 +277,7 @@ public class App_page3 extends AppCompatActivity {
         searchBox.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_ACTION_SEARCH) {
                 // ✅ ทำการค้นหา
-                searchKeyword = searchBox.getText().toString().trim().toLowerCase(Locale.ROOT);
+                searchKeyword = searchBox.getText().toString().trim().toLowerCase(currentLocale());
                 applyFilters();
 
                 // ✅ ปิดคีย์บอร์ด
@@ -301,8 +304,8 @@ public class App_page3 extends AppCompatActivity {
         filteredFruits.clear();
         for (int i = 0; i < allFruits.size(); i++) {
             Fruit fruit = allFruits.get(i);
-            if (fruit.getName().toLowerCase(Locale.ROOT).contains(searchKeyword)) {
-                if (selectedSeason.equals("All") || fruit.getSeason().equalsIgnoreCase(selectedSeason)) {
+            if (fruit.getName().toLowerCase(currentLocale()).contains(searchKeyword)) {
+                if (selectedSeason == null || fruit.getSeasonValue() == selectedSeason) {
                     filteredFruits.add(fruit);
                 }
             }
@@ -310,9 +313,9 @@ public class App_page3 extends AppCompatActivity {
         if (sortMode == SORT_SUITABILITY) {
             filteredFruits.sort(Comparator.comparingInt(this::getSuitabilityRank));
         } else if (sortMode == SORT_NAME) {
-            Collator thaiCollator = Collator.getInstance(new Locale("th", "TH"));
+            Collator localeCollator = Collator.getInstance(currentLocale());
             filteredFruits.sort((left, right) ->
-                    thaiCollator.compare(left.getName(), right.getName()));
+                    localeCollator.compare(left.getName(), right.getName()));
         }
         int resultCount = filteredFruits.size();
         resultCountText.setText(getResources().getQuantityString(
@@ -324,17 +327,17 @@ public class App_page3 extends AppCompatActivity {
     }
 
     private int getSuitabilityRank(Fruit fruit) {
-        String suitability = FruitSafety.forDiabetesLevel(fruit, level);
-        if (suitability.contains(getString(R.string.safety_safe))) {
-            return 0;
-        }
-        if (suitability.contains(getString(R.string.safety_limit))) {
-            return 1;
-        }
-        if (suitability.contains(getString(R.string.safety_avoid))) {
-            return 2;
-        }
-        return 3;
+        return FruitSafety.rank(FruitSafety.forDiabetesLevel(fruit, level));
+    }
+
+    private Locale currentLocale() {
+        return getResources().getConfiguration().getLocales().get(0);
+    }
+
+    private Context localizedContext(Locale locale) {
+        Configuration configuration = new Configuration(getResources().getConfiguration());
+        configuration.setLocale(locale);
+        return createConfigurationContext(configuration);
     }
 
 }

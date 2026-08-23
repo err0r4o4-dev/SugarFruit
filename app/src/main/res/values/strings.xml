@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">SugarFruit</string>
-    <string name="get_started">GET STARTED</string>
-    <string name="back">Back</string>
-    <string name="next">Next</string>
+    <string name="get_started">เริ่มต้นใช้งาน</string>
+    <string name="back">ย้อนกลับ</string>
+    <string name="next">ถัดไป</string>
 
     <string name="user_name_label">ชื่อผู้ใช้</string>
     <string name="height_label">ส่วนสูง</string>
@@ -18,7 +18,7 @@
     <string name="health_info_title">ข้อมูลสุขภาพ</string>
     <string name="health_info_caption">ข้อมูลนี้ใช้สำหรับปรับคำแนะนำผลไม้ให้เหมาะกับคุณ</string>
     <string name="profile_privacy_note">ข้อมูลสุขภาพของคุณจะถูกเก็บเป็นส่วนตัว</string>
-    <string name="save_profile">SAVE</string>
+    <string name="save_profile">บันทึก</string>
     <string name="back_button_description">ย้อนกลับ</string>
     <string name="profile_picture_description">รูปโปรไฟล์</string>
     <string name="edit_profile_picture_description">แก้ไขรูปโปรไฟล์</string>
@@ -32,18 +32,21 @@
     <string name="error_invalid_height">ส่วนสูงต้องอยู่ระหว่าง 30–300 ซม.</string>
     <string name="error_invalid_weight">น้ำหนักต้องอยู่ระหว่าง 2–500 กก.</string>
 
-    <string name="fruits_title">Fruits</string>
+    <string name="fruits_title">ผลไม้</string>
     <string name="safety_level">ระดับความเหมาะสม</string>
     <string name="safety_all">ทั้งหมด</string>
     <string name="safety_safe">ปลอดภัย</string>
     <string name="safety_limit">ควรจำกัด</string>
     <string name="safety_avoid">ควรหลีกเลี่ยง</string>
+    <string name="safety_value_safe">🟢 ปลอดภัย</string>
+    <string name="safety_value_limit">🟡 ควรจำกัด</string>
+    <string name="safety_value_avoid">🔴 ควรหลีกเลี่ยง</string>
     <string name="season_label">ผลไม้ตามฤดู</string>
-    <string name="season_all">All</string>
-    <string name="season_summer">Summer</string>
-    <string name="season_rainy">Rainy</string>
-    <string name="season_winter">Winter</string>
-    <string name="search_hint">Search</string>
+    <string name="season_all">ทั้งหมด</string>
+    <string name="season_summer">ฤดูร้อน</string>
+    <string name="season_rainy">ฤดูฝน</string>
+    <string name="season_winter">ฤดูหนาว</string>
+    <string name="search_hint">ค้นหา</string>
     <plurals name="fruit_result_count">
         <item quantity="one">ผลไม้ทั้งหมด %d รายการ</item>
         <item quantity="other">ผลไม้ทั้งหมด %d รายการ</item>

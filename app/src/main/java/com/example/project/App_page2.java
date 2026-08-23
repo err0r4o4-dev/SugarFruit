@@ -13,9 +13,8 @@ import com.google.android.material.datepicker.MaterialDatePicker;
 import android.widget.TextView;
 import android.widget.EditText;
 import android.view.View;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
+import java.text.DateFormat;
 
 
 public class App_page2 extends AppCompatActivity {
@@ -43,17 +42,10 @@ public class App_page2 extends AppCompatActivity {
             datePicker.show(getSupportFragmentManager(), "DATE_PICKER");
             datePicker.addOnPositiveButtonClickListener(selection -> {
                 Date date = new Date(selection);
-                Calendar calendar = Calendar.getInstance();
-                calendar.setTime(date);
-                int yearAD = calendar.get(Calendar.YEAR);
-                int yearBE = yearAD + 543;
-                String selectedDate = String.format(
-                        new Locale("th", "TH"),
-                        "%02d/%02d/%d",
-                        calendar.get(Calendar.DAY_OF_MONTH),
-                        calendar.get(Calendar.MONTH) + 1,
-                        yearBE);
-                inputDay.setText(selectedDate);
+                DateFormat dateFormat = DateFormat.getDateInstance(
+                        DateFormat.MEDIUM,
+                        getResources().getConfiguration().getLocales().get(0));
+                inputDay.setText(dateFormat.format(date));
             });
         };
         inputDay.setOnClickListener(datePickerClickListener);
@@ -81,10 +73,12 @@ public class App_page2 extends AppCompatActivity {
             String weight = inputWeight.getText().toString().trim();
             String date = inputDay.getText().toString().trim();
             String selectedSex = spinner1.getText().toString().trim();
-            String level = spinner2.getText().toString().trim();
+            String diabetesLabel = spinner2.getText().toString().trim();
+            DiabetesType diabetesType = diabetesTypeForLabel(diabetesLabel, diabetesLevels);
+            String diabetesTypeCode = diabetesType.getCode();
 
             ProfileValidator.Result validation = ProfileValidator.validate(
-                    name, height, weight, date, selectedSex, level);
+                    name, height, weight, date, selectedSex, diabetesTypeCode);
             if (validation != ProfileValidator.Result.VALID) {
                 buttonErrorText.setText(errorMessageFor(validation));
                 buttonErrorText.setVisibility(View.VISIBLE);
@@ -98,11 +92,20 @@ public class App_page2 extends AppCompatActivity {
             intent.putExtra(AppContracts.EXTRA_WEIGHT, weight);
             intent.putExtra(AppContracts.EXTRA_BIRTH_DATE, date);
             intent.putExtra(AppContracts.EXTRA_SEX, selectedSex);
-            intent.putExtra(AppContracts.EXTRA_LEVEL, level);
+            intent.putExtra(AppContracts.EXTRA_LEVEL, diabetesTypeCode);
             startActivity(intent);
         });
 
 
+    }
+
+    private DiabetesType diabetesTypeForLabel(String selectedLabel, String[] labels) {
+        for (int index = 0; index < labels.length; index++) {
+            if (labels[index].equals(selectedLabel)) {
+                return DiabetesType.fromPosition(index);
+            }
+        }
+        return DiabetesType.UNKNOWN;
     }
 
     private int errorMessageFor(ProfileValidator.Result result) {
