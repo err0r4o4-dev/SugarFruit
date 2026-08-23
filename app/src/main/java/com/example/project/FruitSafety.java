@@ -45,6 +45,14 @@ public final class FruitSafety {
         }
     }
 
+    public static String plainLocalizedLabel(Context context, Level level) {
+        return localizedLabel(context, level)
+                .replace("\uD83D\uDFE2", "")
+                .replace("\uD83D\uDFE1", "")
+                .replace("\uD83D\uDD34", "")
+                .trim();
+    }
+
     public static int rank(Level level) {
         switch (level) {
             case SAFE:

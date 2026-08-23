@@ -6,7 +6,7 @@
         android:title="@string/navigation_home" />
     <item
         android:id="@+id/navigation_saved"
-        android:icon="@drawable/ic_bookmark_outline"
+        android:icon="@drawable/ic_nav_saved"
         android:title="@string/navigation_saved" />
     <item
         android:id="@+id/navigation_profile"

@@ -1,135 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context=".App_saved">
-
-    <FrameLayout
-        android:id="@+id/savedHeader"
-        android:layout_width="0dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:layout_height="match_parent" android:background="@color/design_surface"
+    android:fitsSystemWindows="true" tools:context=".App_saved">
+    <LinearLayout android:id="@+id/savedHeader" android:layout_width="0dp" android:layout_height="wrap_content"
+        android:layout_marginStart="24dp" android:layout_marginTop="24dp" android:layout_marginEnd="24dp"
+        android:orientation="vertical" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:fontFamily="sans-serif-medium"
-            android:gravity="center"
-            android:text="@string/saved_title"
-            android:textColor="@color/profile_text_primary"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-    </FrameLayout>
-
-    <TextView
-        android:id="@+id/savedResultCount"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:gravity="center_vertical"
-        android:textColor="@color/fruit_filter_text_secondary"
-        android:textSize="14sp"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/savedHeader"
-        tools:text="บันทึกแล้ว 3 รายการ"
-        tools:visibility="visible" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/savedRecyclerView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="12dp"
-        android:clipToPadding="false"
-        android:paddingBottom="12dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/savedResultCount"
-        tools:listitem="@layout/item_fruit"
-        tools:visibility="visible" />
-
-    <LinearLayout
-        android:id="@+id/savedEmptyState"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:paddingStart="32dp"
-        android:paddingEnd="32dp"
-        app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/savedHeader">
-
-        <ImageView
-            android:layout_width="88dp"
-            android:layout_height="88dp"
-            android:contentDescription="@null"
-            android:importantForAccessibility="no"
-            android:padding="8dp"
-            android:src="@drawable/ic_bookmark_outline"
-            app:tint="@color/profile_text_primary" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:text="@string/no_saved_fruits_title"
-            android:textColor="@color/profile_text_primary"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:lineSpacingExtra="3dp"
-            android:text="@string/no_saved_fruits_description"
-            android:textColor="@color/profile_text_secondary"
-            android:textSize="14sp" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/browseFruitsButton"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:layout_marginTop="24dp"
-            android:backgroundTint="@color/profile_button_tint"
-            android:insetTop="0dp"
-            android:insetBottom="0dp"
-            android:minWidth="160dp"
-            android:text="@string/browse_fruits"
-            android:textAllCaps="false"
-            android:textColor="@color/profile_button_text"
-            app:cornerRadius="24dp" />
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:fontFamily="sans-serif-medium"
+            android:text="@string/saved_title" android:textColor="@color/design_text_primary" android:textSize="32sp" android:textStyle="bold" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="6dp"
+            android:text="@string/saved_subtitle" android:textColor="@color/design_text_secondary" android:textSize="15sp" />
     </LinearLayout>
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigation"
-        android:layout_width="0dp"
-        android:layout_height="64dp"
-        android:background="@color/profile_field_background"
-        android:elevation="8dp"
-        app:itemIconTint="@color/bottom_navigation_item_color"
-        app:itemRippleColor="@color/profile_privacy_background"
-        app:itemTextColor="@color/bottom_navigation_item_color"
-        app:labelVisibilityMode="labeled"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/menu_bottom_navigation" />
+    <LinearLayout android:id="@+id/savedUtilityRow" android:layout_width="0dp" android:layout_height="48dp"
+        android:layout_marginStart="24dp" android:layout_marginTop="18dp" android:layout_marginEnd="24dp"
+        android:gravity="center_vertical" android:orientation="horizontal" app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@id/savedHeader">
+        <TextView android:id="@+id/savedResultCount" android:layout_width="0dp" android:layout_height="match_parent"
+            android:layout_weight="1" android:gravity="center_vertical" android:textColor="@color/design_text_secondary"
+            android:textSize="14sp" android:visibility="gone" tools:text="2 saved fruits" tools:visibility="visible" />
+        <TextView android:id="@+id/savedSortLabel" android:layout_width="wrap_content" android:layout_height="44dp"
+            android:gravity="center" android:text="@string/saved_sort_default" android:textColor="@color/design_text_primary"
+            android:textSize="14sp" android:visibility="gone" tools:visibility="visible" />
+    </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView android:id="@+id/savedRecyclerView" android:layout_width="0dp"
+        android:layout_height="0dp" android:layout_marginStart="12dp" android:layout_marginEnd="12dp"
+        android:clipToPadding="false" android:paddingBottom="12dp" android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigation" app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@id/savedUtilityRow"
+        tools:listitem="@layout/item_fruit" tools:visibility="visible" />
+    <LinearLayout android:id="@+id/savedEmptyState" android:layout_width="0dp" android:layout_height="0dp"
+        android:gravity="center" android:orientation="vertical" android:paddingHorizontal="32dp"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigation" app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@id/savedUtilityRow">
+        <ImageView android:layout_width="72dp" android:layout_height="72dp" android:contentDescription="@null"
+            android:importantForAccessibility="no" android:padding="12dp" android:src="@drawable/ic_bookmark_outline"
+            app:tint="@color/design_text_primary" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="16dp"
+            android:gravity="center" android:text="@string/no_saved_fruits_title" android:textColor="@color/design_text_primary"
+            android:textSize="20sp" android:textStyle="bold" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp"
+            android:gravity="center" android:lineSpacingExtra="3dp" android:text="@string/no_saved_fruits_description"
+            android:textColor="@color/design_text_secondary" android:textSize="14sp" />
+        <com.google.android.material.button.MaterialButton android:id="@+id/browseFruitsButton"
+            android:layout_width="wrap_content" android:layout_height="48dp" android:layout_marginTop="24dp"
+            android:backgroundTint="@color/design_text_primary" android:insetTop="0dp" android:insetBottom="0dp"
+            android:minWidth="160dp" android:text="@string/browse_fruits" android:textAllCaps="false"
+            android:textColor="@color/design_surface" app:cornerRadius="14dp" />
+    </LinearLayout>
+    <com.google.android.material.bottomnavigation.BottomNavigationView android:id="@+id/bottomNavigation"
+        android:layout_width="0dp" android:layout_height="72dp" android:background="@drawable/bottom_navigation_background"
+        android:elevation="0dp" app:itemActiveIndicatorStyle="@style/Widget.SugarFruit.BottomNavigation.ActiveIndicator"
+        app:itemIconTint="@color/bottom_navigation_item_color" app:itemRippleColor="@color/design_surface_subtle"
+        app:itemTextColor="@color/bottom_navigation_item_color" app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" app:menu="@menu/menu_bottom_navigation" />
 </androidx.constraintlayout.widget.ConstraintLayout>

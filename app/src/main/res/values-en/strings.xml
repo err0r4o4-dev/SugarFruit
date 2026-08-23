@@ -26,6 +26,7 @@
     <string name="basic_info_title">Basic information</string>
     <string name="basic_info_caption">Check that the information is correct before continuing</string>
     <string name="view_fruits">View fruits</string>
+    <string name="view_details">View details</string>
 
     <string name="error_missing_fields">Complete all fields</string>
     <string name="error_invalid_name">Enter a name using letters</string>
@@ -51,9 +52,9 @@
         <item quantity="one">%d fruit</item>
         <item quantity="other">%d fruits</item>
     </plurals>
-    <string name="sort_suitability">Sort: Best for you ↕</string>
-    <string name="sort_name">Sort: Name A–Z ↕</string>
-    <string name="sort_default">Sort: Default ↕</string>
+    <string name="sort_suitability">Sort: Best for you ▾</string>
+    <string name="sort_name">Sort: Name A–Z ▾</string>
+    <string name="sort_default">Sort: Default ▾</string>
     <string name="sort_suitability_description">Open sorting options. Currently sorted by suitability for you</string>
     <string name="sort_name_description">Open sorting options. Currently sorted by name A to Z</string>
     <string name="sort_default_description">Open sorting options. Currently using the default order</string>
@@ -179,8 +180,10 @@
     <string name="fruit_removed_message">%1$s removed from saved fruits</string>
 
     <string name="saved_title">Saved</string>
+    <string name="saved_subtitle">Fruits you’ve saved for quick access</string>
+    <string name="saved_sort_default">Sort: Default</string>
     <string name="no_saved_fruits_title">No saved fruits yet</string>
-    <string name="no_saved_fruits_description">You have not saved any fruits yet. Browse fruits and use the bookmark action to keep them here for later.</string>
+    <string name="no_saved_fruits_description">Save fruits to quickly find them here.</string>
     <string name="browse_fruits">Browse fruits</string>
     <plurals name="saved_fruit_count">
         <item quantity="one">%d saved fruit</item>

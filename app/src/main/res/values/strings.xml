@@ -25,6 +25,7 @@
     <string name="basic_info_title">ข้อมูลพื้นฐาน</string>
     <string name="basic_info_caption">ตรวจสอบข้อมูลให้ถูกต้องก่อนดำเนินการต่อ</string>
     <string name="view_fruits">ดูรายการผลไม้</string>
+    <string name="view_details">ดูรายละเอียด</string>
 
     <string name="error_missing_fields">กรอกข้อมูลให้ครบ</string>
     <string name="error_invalid_name">กรุณากรอกชื่อด้วยตัวอักษร</string>
@@ -50,9 +51,9 @@
         <item quantity="one">ผลไม้ทั้งหมด %d รายการ</item>
         <item quantity="other">ผลไม้ทั้งหมด %d รายการ</item>
     </plurals>
-    <string name="sort_suitability">จัดเรียง: เหมาะกับคุณ ↕</string>
-    <string name="sort_name">จัดเรียง: ชื่อ ก–ฮ ↕</string>
-    <string name="sort_default">จัดเรียง: ค่าเริ่มต้น ↕</string>
+    <string name="sort_suitability">จัดเรียง: เหมาะกับคุณ ▾</string>
+    <string name="sort_name">จัดเรียง: ชื่อ ก–ฮ ▾</string>
+    <string name="sort_default">จัดเรียง: ค่าเริ่มต้น ▾</string>
     <string name="sort_suitability_description">เปิดตัวเลือกการจัดเรียง ปัจจุบันเรียงตามความเหมาะสมกับคุณ</string>
     <string name="sort_name_description">เปิดตัวเลือกการจัดเรียง ปัจจุบันเรียงตามชื่อ ก ถึง ฮ</string>
     <string name="sort_default_description">เปิดตัวเลือกการจัดเรียง ปัจจุบันเรียงตามค่าเริ่มต้น</string>
@@ -175,8 +176,10 @@
     <string name="fruit_removed_message">นำ %1$s ออกจากรายการแล้ว</string>
 
     <string name="saved_title">บันทึกแล้ว</string>
+    <string name="saved_subtitle">ผลไม้ที่คุณบันทึกไว้เพื่อเข้าถึงได้อย่างรวดเร็ว</string>
+    <string name="saved_sort_default">จัดเรียง: ค่าเริ่มต้น</string>
     <string name="no_saved_fruits_title">ยังไม่มีผลไม้ที่บันทึกไว้</string>
-    <string name="no_saved_fruits_description">คุณยังไม่ได้บันทึกผลไม้ใดๆ ไว้ในรายการของคุณ ค้นหาผลไม้ที่คุณสนใจและกดบันทึกเพื่อเก็บไว้ดูภายหลัง</string>
+    <string name="no_saved_fruits_description">บันทึกผลไม้เพื่อค้นหาได้อย่างรวดเร็วจากหน้านี้</string>
     <string name="browse_fruits">เลือกดูผลไม้</string>
     <plurals name="saved_fruit_count">
         <item quantity="one">บันทึกแล้ว %d รายการ</item>

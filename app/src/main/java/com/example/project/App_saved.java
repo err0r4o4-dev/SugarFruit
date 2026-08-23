@@ -22,6 +22,7 @@ public class App_saved extends BaseActivity {
     private RecyclerView recyclerView;
     private View emptyState;
     private TextView resultCountText;
+    private View sortLabel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +34,7 @@ public class App_saved extends BaseActivity {
         recyclerView = findViewById(R.id.savedRecyclerView);
         emptyState = findViewById(R.id.savedEmptyState);
         resultCountText = findViewById(R.id.savedResultCount);
+        sortLabel = findViewById(R.id.savedSortLabel);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new FruitAdapter(
@@ -85,6 +87,7 @@ public class App_saved extends BaseActivity {
         boolean hasSavedFruits = count > 0;
         recyclerView.setVisibility(hasSavedFruits ? View.VISIBLE : View.GONE);
         resultCountText.setVisibility(hasSavedFruits ? View.VISIBLE : View.GONE);
+        sortLabel.setVisibility(hasSavedFruits ? View.VISIBLE : View.GONE);
         emptyState.setVisibility(hasSavedFruits ? View.GONE : View.VISIBLE);
         resultCountText.setText(getResources().getQuantityString(
                 R.plurals.saved_fruit_count,

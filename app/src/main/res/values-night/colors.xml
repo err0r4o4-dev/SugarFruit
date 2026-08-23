@@ -25,12 +25,12 @@
     <color name="profile_privacy_outline">#FF3A3A3A</color>
     <color name="detail_divider">#FF666666</color>
     <color name="detail_card_background">#FF242424</color>
-    <color name="detail_surface">#FF121714</color>
-    <color name="detail_control_background">#FF1C231F</color>
-    <color name="detail_info_background">#FF1A211D</color>
-    <color name="detail_card_outline">#FF3A493F</color>
-    <color name="detail_text_primary">#FFF1F7F3</color>
-    <color name="detail_text_secondary">#FFB7C5BC</color>
+    <color name="detail_surface">#FF121212</color>
+    <color name="detail_control_background">#FF1C1C1C</color>
+    <color name="detail_info_background">#FF242424</color>
+    <color name="detail_card_outline">#FF3F3F46</color>
+    <color name="detail_text_primary">#FFF4F4F5</color>
+    <color name="detail_text_secondary">#FFA1A1AA</color>
     <color name="detail_overlay_button">#E6FFFFFF</color>
     <color name="detail_overlay_button_stroke">#80FFFFFF</color>
     <color name="detail_overlay_icon">#FF172019</color>
@@ -46,4 +46,10 @@
     <color name="fruit_filter_outline">#FF666666</color>
     <color name="fruit_filter_text_primary">#FFF5F5F5</color>
     <color name="fruit_filter_text_secondary">#FFB5B5B5</color>
+    <color name="design_surface">#FF121212</color>
+    <color name="design_surface_subtle">#FF242424</color>
+    <color name="design_border">#FF3F3F46</color>
+    <color name="design_text_primary">#FFF4F4F5</color>
+    <color name="design_text_secondary">#FFA1A1AA</color>
+    <color name="health_safe">#FFA3E635</color>
 </resources>

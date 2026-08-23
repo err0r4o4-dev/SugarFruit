@@ -14,6 +14,8 @@ import java.util.List;
 import android.content.Intent;
 import android.content.Context;
 import android.content.res.Configuration;
+import android.content.res.ColorStateList;
+import androidx.core.content.ContextCompat;
 import java.util.Locale;
 
 public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.FruitViewHolder> {
@@ -42,6 +44,7 @@ public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.FruitViewHol
     public static class FruitViewHolder extends RecyclerView.ViewHolder {
         TextView fruitName, fruitIndex, fruiTrue, fruitSugar;
         ImageView imageView;
+        View statusDot;
         ImageButton bookmarkButton;
         Button buttonNext;
         public FruitViewHolder(View itemView) {
@@ -51,6 +54,7 @@ public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.FruitViewHol
             fruitSugar = itemView.findViewById(R.id.fruitSugar);
             fruiTrue = itemView.findViewById(R.id.fruiTrue);
             imageView = itemView.findViewById(R.id.imageView4);
+            statusDot = itemView.findViewById(R.id.fruitStatusDot);
             buttonNext = itemView.findViewById(R.id.button_Next);
             bookmarkButton = itemView.findViewById(R.id.buttonBookmark);
 
@@ -71,8 +75,10 @@ public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.FruitViewHol
         holder.fruitIndex.setText(f.getIndex());
         holder.fruitSugar.setText(f.getSugar());
         FruitSafety.Level safetyLevel = FruitSafety.forDiabetesLevel(f, level);
-        String safetyLabel = FruitSafety.localizedLabel(holder.itemView.getContext(), safetyLevel);
+        String safetyLabel = FruitSafety.plainLocalizedLabel(holder.itemView.getContext(), safetyLevel);
         holder.fruiTrue.setText(safetyLabel);
+        holder.statusDot.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(
+                holder.itemView.getContext(), statusColor(safetyLevel))));
         holder.imageView.setImageResource(f.getImageResId());
         holder.imageView.setContentDescription(
                 holder.itemView.getContext().getString(R.string.fruit_image_description, f.getName()));
@@ -126,6 +132,20 @@ public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.FruitViewHol
                         ? R.string.remove_fruit_from_saved_description
                         : R.string.save_fruit_description,
                 fruit.getName()));
+    }
+
+    private int statusColor(FruitSafety.Level safetyLevel) {
+        switch (safetyLevel) {
+            case SAFE:
+                return R.color.health_safe;
+            case LIMIT:
+                return R.color.detail_status_limit_foreground;
+            case AVOID:
+                return R.color.detail_status_avoid_foreground;
+            case UNKNOWN:
+            default:
+                return R.color.detail_status_unknown_foreground;
+        }
     }
 
     private Context localizedContext(Context context, Locale locale) {
