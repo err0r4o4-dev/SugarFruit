@@ -25,7 +25,6 @@ public class App_profile extends BaseActivity {
         setContentView(R.layout.ui_profile);
 
         userNameTextView = findViewById(R.id.profileUserName);
-        findViewById(R.id.profileBackButton).setOnClickListener(view -> finish());
         findViewById(R.id.profilePhotoButton).setOnClickListener(view -> Toast.makeText(
                 this,
                 R.string.profile_photo_unavailable,

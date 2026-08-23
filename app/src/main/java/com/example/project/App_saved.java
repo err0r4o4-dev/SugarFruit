@@ -52,7 +52,6 @@ public class App_saved extends BaseActivity {
                 });
         recyclerView.setAdapter(adapter);
 
-        findViewById(R.id.savedBackButton).setOnClickListener(view -> finish());
         findViewById(R.id.browseFruitsButton).setOnClickListener(view -> openHome());
         BottomNavigationCoordinator.bind(
                 this,

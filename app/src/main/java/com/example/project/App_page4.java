@@ -4,10 +4,10 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.google.android.material.button.MaterialButton;
 import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -37,7 +37,7 @@ public class App_page4 extends BaseActivity {
     private View tip2Row;
     private View tip3Row;
     private ImageView fruitImageView;
-    private MaterialButton bookmarkButton;
+    private ImageButton bookmarkButton;
     private SavedFruitStore savedFruitStore;
     private String fruitId;
     private String fruitName;
@@ -145,7 +145,8 @@ public class App_page4 extends BaseActivity {
         }
         savedFruitStore = new SavedFruitStore(this);
         bookmarkButton = findViewById(R.id.buttonBookmarkDetail);
-        bookmarkButton.setVisibility(hasText(fruitId) ? View.VISIBLE : View.GONE);
+        View bookmarkButtonContainer = findViewById(R.id.detailBookmarkContainer);
+        bookmarkButtonContainer.setVisibility(hasText(fruitId) ? View.VISIBLE : View.GONE);
         if (hasText(fruitId)) {
             bindBookmarkButton();
             bookmarkButton.setOnClickListener(view -> {
@@ -160,7 +161,7 @@ public class App_page4 extends BaseActivity {
             });
         }
 
-        findViewById(R.id.button_Next).setOnClickListener(view -> finish());
+        findViewById(R.id.detailBackButton).setOnClickListener(view -> finish());
     }
 
     @Override
@@ -174,9 +175,8 @@ public class App_page4 extends BaseActivity {
     private void bindBookmarkButton() {
         boolean isSaved = savedFruitStore.isSaved(fruitId);
         bookmarkButton.setSelected(isSaved);
-        bookmarkButton.setIconResource(
+        bookmarkButton.setImageResource(
                 isSaved ? R.drawable.ic_bookmark_filled : R.drawable.ic_bookmark_outline);
-        bookmarkButton.setText(isSaved ? R.string.saved_fruit : R.string.save_fruit);
         bookmarkButton.setContentDescription(getString(
                 isSaved
                         ? R.string.remove_fruit_from_saved_description

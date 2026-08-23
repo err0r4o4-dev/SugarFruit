@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     tools:context=".App_page4">
 
     <ImageView
         android:id="@+id/detail_image"
         android:layout_width="0dp"
-        android:layout_height="270dp"
+        android:layout_height="240dp"
         android:contentDescription="@string/fruit_image"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
@@ -18,9 +19,53 @@
         tools:src="@drawable/q1" />
 
     <com.google.android.material.card.MaterialCardView
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:cardBackgroundColor="@color/profile_field_background"
+        app:cardCornerRadius="24dp"
+        app:cardElevation="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/detailBackButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/back_button_description"
+            android:padding="12dp"
+            android:src="@drawable/ic_profile_back" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/detailBookmarkContainer"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:cardBackgroundColor="@color/profile_field_background"
+        app:cardCornerRadius="24dp"
+        app:cardElevation="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/buttonBookmarkDetail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/save_fruit"
+            android:padding="12dp"
+            android:src="@drawable/ic_bookmark_outline"
+            app:tint="@color/profile_text_primary" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="216dp"
         app:cardBackgroundColor="@color/profile_field_background"
         app:cardElevation="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -82,29 +127,11 @@
                         tools:text="🟡 ควรจำกัด" />
                 </LinearLayout>
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/buttonBookmarkDetail"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:layout_marginTop="14dp"
-                    android:contentDescription="@string/save_fruit"
-                    android:insetTop="0dp"
-                    android:insetBottom="0dp"
-                    android:text="@string/save_fruit"
-                    android:textAllCaps="false"
-                    android:textColor="@color/profile_text_primary"
-                    app:cornerRadius="24dp"
-                    app:icon="@drawable/ic_bookmark_outline"
-                    app:iconGravity="textStart"
-                    app:iconTint="@color/profile_text_primary"
-                    app:strokeColor="@color/profile_outline" />
-
                 <TextView
                     android:id="@+id/detail_introduction"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="14dp"
+                    android:layout_marginTop="16dp"
                     android:lineSpacingExtra="3dp"
                     android:textColor="@color/profile_text_secondary"
                     android:textSize="14sp"
@@ -535,14 +562,6 @@
                     android:textColor="@color/profile_text_secondary"
                     android:textSize="11sp" />
 
-                <Button
-                    android:id="@+id/button_Next"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:layout_marginTop="24dp"
-                    android:text="@string/back"
-                    android:textColor="@color/profile_button_text"
-                    android:textSize="14sp" />
             </LinearLayout>
         </ScrollView>
     </com.google.android.material.card.MaterialCardView>

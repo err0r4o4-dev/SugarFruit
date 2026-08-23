@@ -17,17 +17,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageButton
-            android:id="@+id/savedBackButton"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_gravity="center_vertical|start"
-            android:layout_marginStart="-12dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="@string/back_button_description"
-            android:padding="12dp"
-            android:src="@drawable/ic_profile_back" />
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
