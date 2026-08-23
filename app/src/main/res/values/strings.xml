@@ -68,6 +68,7 @@
     <string name="fruit_image">รูปผลไม้</string>
     <string name="fruit_image_description">รูปผลไม้ %1$s</string>
     <string name="detail_name_placeholder">ชื่อผลไม้</string>
+    <string name="starfruit_category">ผลไม้เขตร้อน</string>
     <string name="detail_sugar_label">ปริมาณน้ำตาลต่อหน่วยบริโภค</string>
     <string name="detail_index_label">ดัชนีน้ำตาล (Glycemic Index - GI)</string>
     <string name="detail_carbohydrate_label">ปริมาณคาร์โบไฮเดรต (Carbohydrate content)</string>

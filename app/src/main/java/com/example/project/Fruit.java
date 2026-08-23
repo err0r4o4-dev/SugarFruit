@@ -26,6 +26,8 @@ public class Fruit {
     private String detailTip1;
     private String detailTip2;
     private String detailTip3;
+    private String thaiCategory;
+    private String englishCategory;
     private final String thaiName;
     private final String thaiIndexDetail;
     private final String thaiSugarDetail;
@@ -183,6 +185,12 @@ public class Fruit {
         return this;
     }
 
+    public Fruit withCategory(String localizedThaiCategory, String localizedEnglishCategory) {
+        thaiCategory = localizedThaiCategory;
+        englishCategory = localizedEnglishCategory;
+        return this;
+    }
+
     public String[] createDetailPayload(boolean english, String localizedSafetyLabel) {
         return new String[]{
                 english ? englishName : thaiName,
@@ -200,7 +208,8 @@ public class Fruit {
                 english ? englishRecommendedEquivalent : thaiRecommendedEquivalent,
                 english ? englishDetailTip1 : thaiDetailTip1,
                 english ? englishDetailTip2 : thaiDetailTip2,
-                english ? englishDetailTip3 : thaiDetailTip3
+                english ? englishDetailTip3 : thaiDetailTip3,
+                english ? englishCategory : thaiCategory
         };
     }
 

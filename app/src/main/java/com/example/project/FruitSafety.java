@@ -16,15 +16,15 @@ public final class FruitSafety {
     public static Level forDiabetesLevel(Fruit fruit, String diabetesTypeCode) {
         DiabetesType diabetesType = DiabetesType.fromCode(diabetesTypeCode);
         if (diabetesType == DiabetesType.TYPE_1) {
-            return fromStoredLabel(fruit.getLevel1());
+            return fromLabel(fruit.getLevel1());
         }
         if (diabetesType == DiabetesType.TYPE_2) {
-            return fromStoredLabel(fruit.getLevel2());
+            return fromLabel(fruit.getLevel2());
         }
         if (diabetesType == DiabetesType.GESTATIONAL) {
-            return fromStoredLabel(fruit.getLevel3());
+            return fromLabel(fruit.getLevel3());
         }
-        return fromStoredLabel(fruit.getTrue());
+        return fromLabel(fruit.getTrue());
     }
 
     public static boolean matchesFilter(Fruit fruit, String diabetesTypeCode, Level selectedLevel) {
@@ -59,7 +59,7 @@ public final class FruitSafety {
         }
     }
 
-    private static Level fromStoredLabel(String label) {
+    public static Level fromLabel(String label) {
         if (label == null) {
             return Level.UNKNOWN;
         }

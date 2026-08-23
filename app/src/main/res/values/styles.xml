@@ -1,8 +1,8 @@
 <resources>
     <style name="TopRoundedCard" parent="ShapeAppearance.MaterialComponents.MediumComponent">
         <item name="cornerFamily">rounded</item>
-        <item name="cornerSizeTopLeft">50dp</item>
-        <item name="cornerSizeTopRight">50dp</item>
+        <item name="cornerSizeTopLeft">26dp</item>
+        <item name="cornerSizeTopRight">26dp</item>
         <item name="cornerSizeBottomLeft">0dp</item>
         <item name="cornerSizeBottomRight">0dp</item>
     </style>
@@ -80,5 +80,84 @@
         <item name="android:textColor">@color/profile_text_primary</item>
         <item name="android:textSize">16sp</item>
         <item name="android:textStyle">bold</item>
+    </style>
+    <style name="TextAppearance.SugarFruit.DetailSection" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">@color/detail_text_primary</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="TextAppearance.SugarFruit.DetailRowLabel" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">@color/detail_text_primary</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="TextAppearance.SugarFruit.DetailMetricLabel" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/detail_text_secondary</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+    <style name="TextAppearance.SugarFruit.DetailMetricValue" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="fontFamily">sans-serif-medium</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/detail_text_primary</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="TextAppearance.SugarFruit.DetailAdvice" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">end</item>
+        <item name="android:lineSpacingExtra">2dp</item>
+        <item name="android:textAlignment">viewEnd</item>
+        <item name="android:textColor">@color/detail_text_secondary</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+    <style name="TextAppearance.SugarFruit.DetailTip" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">12dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:lineSpacingExtra">3dp</item>
+        <item name="android:textColor">@color/detail_text_secondary</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+    <style name="Widget.SugarFruit.DetailMetricColumn" parent="">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:paddingStart">4dp</item>
+        <item name="android:paddingEnd">4dp</item>
+    </style>
+    <style name="Widget.SugarFruit.DetailMetricDivider" parent="">
+        <item name="android:layout_width">1dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:background">@color/detail_divider</item>
+    </style>
+    <style name="Widget.SugarFruit.DetailAdviceRow" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:minHeight">56dp</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+    </style>
+    <style name="Widget.SugarFruit.DetailTipRow" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">top</item>
+        <item name="android:orientation">horizontal</item>
     </style>
 </resources>

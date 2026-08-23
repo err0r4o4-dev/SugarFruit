@@ -69,6 +69,7 @@
     <string name="fruit_image">Fruit image</string>
     <string name="fruit_image_description">Image of %1$s</string>
     <string name="detail_name_placeholder">Fruit name</string>
+    <string name="starfruit_category">Tropical fruit</string>
     <string name="detail_sugar_label">Sugar per serving</string>
     <string name="detail_index_label">Glycemic index (GI)</string>
     <string name="detail_carbohydrate_label">Carbohydrate content</string>

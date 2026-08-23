@@ -17,7 +17,8 @@ public final class FruitDetailPayload {
     public static final int TIP_1 = 13;
     public static final int TIP_2 = 14;
     public static final int TIP_3 = 15;
-    public static final int SIZE = 16;
+    public static final int CATEGORY = 16;
+    public static final int SIZE = 17;
 
     private FruitDetailPayload() {
     }
