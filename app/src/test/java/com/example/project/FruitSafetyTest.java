@@ -14,18 +14,26 @@ public class FruitSafetyTest {
 
     @Test
     public void safetyLabel_usesSelectedDiabetesLevel() {
-        assertEquals("🟡 ควรจำกัด", FruitSafety.forDiabetesLevel(fruit, FruitSafety.TYPE_1));
-        assertEquals("🔴 ควรหลีกเลี่ยง", FruitSafety.forDiabetesLevel(fruit, FruitSafety.TYPE_2));
-        assertEquals("🟢 ปลอดภัย", FruitSafety.forDiabetesLevel(fruit, FruitSafety.GESTATIONAL));
+        assertEquals(FruitSafety.Level.LIMIT,
+                FruitSafety.forDiabetesLevel(fruit, DiabetesType.TYPE_1.getCode()));
+        assertEquals(FruitSafety.Level.AVOID,
+                FruitSafety.forDiabetesLevel(fruit, DiabetesType.TYPE_2.getCode()));
+        assertEquals(FruitSafety.Level.SAFE,
+                FruitSafety.forDiabetesLevel(fruit, DiabetesType.GESTATIONAL.getCode()));
     }
 
     @Test
-    public void filter_usesSameLabelAsListRow() {
+    public void filter_usesStableSafetyLevel() {
         assertTrue(FruitSafety.matchesFilter(
-                fruit, FruitSafety.TYPE_2, "ควรหลีกเลี่ยง", "ทั้งหมด"));
+                fruit, DiabetesType.TYPE_2.getCode(), FruitSafety.Level.AVOID));
         assertFalse(FruitSafety.matchesFilter(
-                fruit, FruitSafety.TYPE_2, "ปลอดภัย", "ทั้งหมด"));
+                fruit, DiabetesType.TYPE_2.getCode(), FruitSafety.Level.SAFE));
         assertTrue(FruitSafety.matchesFilter(
-                fruit, FruitSafety.TYPE_2, "ทั้งหมด", "ทั้งหมด"));
+                fruit, DiabetesType.TYPE_2.getCode(), null));
+    }
+
+    @Test
+    public void season_usesStableCodeInsteadOfDisplayedText() {
+        assertEquals(FruitSeason.SUMMER, fruit.getSeasonValue());
     }
 }

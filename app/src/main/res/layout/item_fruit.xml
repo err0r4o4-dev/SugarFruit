@@ -1,92 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    android:elevation="4dp"
-    android:padding="12dp"
-    app:cardCornerRadius="16dp">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical">
-
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/imageView4"
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginStart="10dp"
-            android:layout_weight="1"
-            android:contentDescription="@string/fruit_image"
-            android:scaleType="centerCrop"
-            android:src="@drawable/q1"
-            app:shapeAppearanceOverlay="@style/RoundedFruitImage" />
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/fruitName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="สตรอว์เบอร์รี่"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:layout_marginTop="5dp"
-                android:textStyle="bold"
-                android:maxLines="1"
-                android:ellipsize="end" />
-
-            <TextView
-                android:id="@+id/fruitIndex"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="ดัชนีน้ำตาล (GI): 40 (ต่ำ)"
-                android:textSize="14sp"
-                android:layout_marginTop="10dp" />
-
-            <TextView
-                android:id="@+id/fruitSugar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-                tools:text="ปริมาณน้ำตาล: 4.9/100 กรัม"
-                android:textSize="14sp"
-                android:layout_marginTop="2dp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical">
-
-                <TextView
-                    android:id="@+id/fruiTrue"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    tools:text="สามารถกินได้"
-                    android:textSize="14sp" />
-
-                <Button
-                    android:id="@+id/button_Next"
-                    android:layout_width="wrap_content"
-                    android:layout_height="48dp"
-                    android:text="@string/next"
-                    android:textColor="@android:color/white"
-                    android:textSize="12sp"
-                    android:minWidth="60dp"
-                    android:layout_marginStart="8dp" />
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:layout_marginStart="8dp" android:layout_marginTop="6dp" android:layout_marginEnd="8dp" android:layout_marginBottom="6dp"
+    app:cardBackgroundColor="@color/design_surface" app:cardCornerRadius="17dp" app:cardElevation="1dp"
+    app:strokeColor="@color/design_border" app:strokeWidth="1dp">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:gravity="center_vertical" android:minHeight="140dp" android:orientation="horizontal" android:padding="12dp">
+        <com.google.android.material.imageview.ShapeableImageView android:id="@+id/imageView4"
+            android:layout_width="112dp" android:layout_height="112dp" android:contentDescription="@string/fruit_image"
+            android:scaleType="centerCrop" app:shapeAppearanceOverlay="@style/RoundedFruitImage" tools:src="@drawable/q5" />
+        <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_marginStart="14dp"
+            android:layout_weight="1" android:orientation="vertical">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center_vertical" android:orientation="horizontal">
+                <TextView android:id="@+id/fruitName" android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:ellipsize="end" android:fontFamily="sans-serif-medium" android:maxLines="2"
+                    android:textColor="@color/design_text_primary" android:textSize="18sp" android:textStyle="bold" tools:text="Starfruit" />
+                <androidx.appcompat.widget.AppCompatImageButton android:id="@+id/buttonBookmark"
+                    android:layout_width="44dp" android:layout_height="44dp" android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/save_fruit" android:padding="10dp" android:src="@drawable/ic_bookmark_outline"
+                    app:tint="@color/design_text_primary" />
+            </LinearLayout>
+            <TextView android:id="@+id/fruitIndex" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="2dp" android:ellipsize="end" android:maxLines="1"
+                android:textColor="@color/design_text_secondary" android:textSize="14sp" tools:text="Glycemic index (GI): 45" />
+            <TextView android:id="@+id/fruitSugar" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="3dp" android:ellipsize="end" android:maxLines="1"
+                android:textColor="@color/design_text_secondary" android:textSize="14sp" tools:text="Sugar: 3.9 g/100 g" />
+            <LinearLayout android:layout_width="match_parent" android:layout_height="48dp" android:gravity="center_vertical" android:orientation="horizontal">
+                <View android:id="@+id/fruitStatusDot" android:layout_width="10dp" android:layout_height="10dp" android:background="@drawable/detail_status_dot"
+                    android:backgroundTint="@color/health_safe" />
+                <TextView android:id="@+id/fruiTrue" android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp" android:layout_weight="1" android:maxLines="1"
+                    android:textColor="@color/design_text_primary" android:textSize="14sp" tools:text="Safe" />
+                <com.google.android.material.button.MaterialButton android:id="@+id/button_Next"
+                    style="@style/Widget.SugarFruit.FruitDetailsButton" android:layout_width="wrap_content"
+                    android:layout_height="48dp" android:insetTop="0dp" android:insetBottom="0dp" android:minWidth="0dp"
+                    android:paddingStart="8dp" android:paddingEnd="4dp" android:text="@string/view_details"
+                    android:textAllCaps="false" android:textColor="@color/design_text_primary" android:textSize="14sp"
+                    android:textStyle="bold" app:cornerRadius="12dp"
+                    app:icon="@drawable/ic_chevron_right" app:iconGravity="textEnd" app:iconPadding="4dp"
+                    app:iconSize="18dp" app:iconTint="@color/design_text_primary" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

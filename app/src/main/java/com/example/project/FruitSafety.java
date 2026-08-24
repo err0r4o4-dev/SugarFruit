@@ -1,29 +1,85 @@
 package com.example.project;
 
+import android.content.Context;
+
 public final class FruitSafety {
-    public static final String TYPE_1 = "เบาหวานชนิดที่ 1";
-    public static final String TYPE_2 = "เบาหวานชนิดที่ 2";
-    public static final String GESTATIONAL = "เบาหวานขณะตั้งครรภ์";
+    public enum Level {
+        SAFE,
+        LIMIT,
+        AVOID,
+        UNKNOWN
+    }
 
     private FruitSafety() {
     }
 
-    public static String forDiabetesLevel(Fruit fruit, String diabetesLevel) {
-        if (TYPE_1.equals(diabetesLevel)) {
-            return fruit.getLevel1();
+    public static Level forDiabetesLevel(Fruit fruit, String diabetesTypeCode) {
+        DiabetesType diabetesType = DiabetesType.fromCode(diabetesTypeCode);
+        if (diabetesType == DiabetesType.TYPE_1) {
+            return fromLabel(fruit.getLevel1());
         }
-        if (TYPE_2.equals(diabetesLevel)) {
-            return fruit.getLevel2();
+        if (diabetesType == DiabetesType.TYPE_2) {
+            return fromLabel(fruit.getLevel2());
         }
-        if (GESTATIONAL.equals(diabetesLevel)) {
-            return fruit.getLevel3();
+        if (diabetesType == DiabetesType.GESTATIONAL) {
+            return fromLabel(fruit.getLevel3());
         }
-        return fruit.getTrue();
+        return fromLabel(fruit.getTrue());
     }
 
-    public static boolean matchesFilter(Fruit fruit, String diabetesLevel,
-                                        String selectedSafetyLevel, String allSafetyLevels) {
-        return allSafetyLevels.equals(selectedSafetyLevel)
-                || forDiabetesLevel(fruit, diabetesLevel).contains(selectedSafetyLevel);
+    public static boolean matchesFilter(Fruit fruit, String diabetesTypeCode, Level selectedLevel) {
+        return selectedLevel == null || forDiabetesLevel(fruit, diabetesTypeCode) == selectedLevel;
+    }
+
+    public static String localizedLabel(Context context, Level level) {
+        switch (level) {
+            case SAFE:
+                return context.getString(R.string.safety_value_safe);
+            case LIMIT:
+                return context.getString(R.string.safety_value_limit);
+            case AVOID:
+                return context.getString(R.string.safety_value_avoid);
+            case UNKNOWN:
+            default:
+                return context.getString(R.string.detail_unavailable);
+        }
+    }
+
+    public static String plainLocalizedLabel(Context context, Level level) {
+        return localizedLabel(context, level)
+                .replace("\uD83D\uDFE2", "")
+                .replace("\uD83D\uDFE1", "")
+                .replace("\uD83D\uDD34", "")
+                .trim();
+    }
+
+    public static int rank(Level level) {
+        switch (level) {
+            case SAFE:
+                return 0;
+            case LIMIT:
+                return 1;
+            case AVOID:
+                return 2;
+            case UNKNOWN:
+            default:
+                return 3;
+        }
+    }
+
+    public static Level fromLabel(String label) {
+        if (label == null) {
+            return Level.UNKNOWN;
+        }
+        if (label.contains("\uD83D\uDFE2")) {
+            return Level.SAFE;
+        }
+        if (label.contains("\uD83D\uDFE1")) {
+            return Level.LIMIT;
+        }
+        if (label.contains("\uD83D\uDD34")) {
+            return Level.AVOID;
+        }
+        return Level.UNKNOWN;
     }
 }

@@ -6,25 +6,47 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.ImageView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.DiffUtil;
 import java.util.ArrayList;
 import java.util.List;
 import android.content.Intent;
+import android.content.Context;
+import android.app.Activity;
+import android.content.res.Configuration;
+import android.content.res.ColorStateList;
+import androidx.core.content.ContextCompat;
+import java.util.Locale;
 
 public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.FruitViewHolder> {
 
     List<Fruit> fruitList;
     String level;
+    private final SavedFruitStore savedFruitStore;
+    private final OnSavedStateChangedListener savedStateChangedListener;
+
+    public interface OnSavedStateChangedListener {
+        void onSavedStateChanged(Fruit fruit, boolean isSaved);
+    }
 
     public FruitAdapter(List<Fruit> fruits, String level) {
+        this(fruits, level, null, null);
+    }
+
+    public FruitAdapter(List<Fruit> fruits, String level, SavedFruitStore savedFruitStore,
+            OnSavedStateChangedListener savedStateChangedListener) {
         this.fruitList = new ArrayList<>(fruits);
         this.level = level;
+        this.savedFruitStore = savedFruitStore;
+        this.savedStateChangedListener = savedStateChangedListener;
     }
 
     public static class FruitViewHolder extends RecyclerView.ViewHolder {
         TextView fruitName, fruitIndex, fruiTrue, fruitSugar;
         ImageView imageView;
+        View statusDot;
+        ImageButton bookmarkButton;
         Button buttonNext;
         public FruitViewHolder(View itemView) {
             super(itemView);
@@ -33,7 +55,9 @@ public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.FruitViewHol
             fruitSugar = itemView.findViewById(R.id.fruitSugar);
             fruiTrue = itemView.findViewById(R.id.fruiTrue);
             imageView = itemView.findViewById(R.id.imageView4);
+            statusDot = itemView.findViewById(R.id.fruitStatusDot);
             buttonNext = itemView.findViewById(R.id.button_Next);
+            bookmarkButton = itemView.findViewById(R.id.buttonBookmark);
 
         }
     }
@@ -51,35 +75,51 @@ public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.FruitViewHol
         holder.fruitName.setText(f.getName());
         holder.fruitIndex.setText(f.getIndex());
         holder.fruitSugar.setText(f.getSugar());
-        String safety = FruitSafety.forDiabetesLevel(f, level);
-        holder.fruiTrue.setText(safety);
+        FruitSafety.Level safetyLevel = FruitSafety.forDiabetesLevel(f, level);
+        String safetyLabel = FruitSafety.plainLocalizedLabel(holder.itemView.getContext(), safetyLevel);
+        holder.fruiTrue.setText(safetyLabel);
+        holder.statusDot.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(
+                holder.itemView.getContext(), statusColor(safetyLevel))));
         holder.imageView.setImageResource(f.getImageResId());
         holder.imageView.setContentDescription(
                 holder.itemView.getContext().getString(R.string.fruit_image_description, f.getName()));
+        String fruitId = f.getStableId(holder.itemView.getContext());
+        if (savedFruitStore == null) {
+            holder.bookmarkButton.setVisibility(View.GONE);
+        } else {
+            holder.bookmarkButton.setVisibility(View.VISIBLE);
+            bindBookmarkButton(holder, f, fruitId);
+            holder.bookmarkButton.setOnClickListener(view -> {
+                boolean isSaved = savedFruitStore.toggle(fruitId);
+                bindBookmarkButton(holder, f, fruitId);
+                if (savedStateChangedListener != null) {
+                    savedStateChangedListener.onSavedStateChanged(f, isSaved);
+                }
+            });
+        }
         holder.buttonNext.setOnClickListener(v -> {
             Intent intent = new Intent(v.getContext(), App_page4.class);
-            intent.putExtra(AppContracts.EXTRA_FRUIT_NAME, f.getName());
-            intent.putExtra(AppContracts.EXTRA_FRUIT_INDEX, f.getIndex_());
-            intent.putExtra(AppContracts.EXTRA_FRUIT_SUGAR, f.getSugar_());
-            intent.putExtra(AppContracts.EXTRA_FRUIT_CARBOHYDRATE, f.getCarbohydrate_());
-            intent.putExtra(AppContracts.EXTRA_FRUIT_FIBER, f.getFiber_());
-            intent.putExtra(AppContracts.EXTRA_FRUIT_IMPACT, f.getImpact_());
-            intent.putExtra(AppContracts.EXTRA_FRUIT_TYPE_1, f.getType1_());
-            intent.putExtra(AppContracts.EXTRA_FRUIT_TYPE_2, f.getType2_());
-            intent.putExtra(AppContracts.EXTRA_FRUIT_END, f.getEnd_());
+            Context thaiContext = localizedContext(v.getContext(), new Locale("th", "TH"));
+            Context englishContext = localizedContext(v.getContext(), Locale.ENGLISH);
+            intent.putExtra(
+                    AppContracts.EXTRA_FRUIT_DETAILS_TH,
+                    f.createDetailPayload(
+                            false,
+                            FruitSafety.localizedLabel(thaiContext, safetyLevel)));
+            intent.putExtra(
+                    AppContracts.EXTRA_FRUIT_DETAILS_EN,
+                    f.createDetailPayload(
+                            true,
+                            FruitSafety.localizedLabel(englishContext, safetyLevel)));
             intent.putExtra(AppContracts.EXTRA_FRUIT_IMAGE, f.getImageResId());
-            intent.putExtra(AppContracts.EXTRA_FRUIT_SAFETY, safety);
-            putOptionalExtra(intent, AppContracts.EXTRA_FRUIT_INTRODUCTION,
-                    f.getDetailIntroduction());
-            putOptionalExtra(intent, AppContracts.EXTRA_FRUIT_RECOMMENDED_AMOUNT,
-                    f.getRecommendedAmount());
-            putOptionalExtra(intent, AppContracts.EXTRA_FRUIT_RECOMMENDED_EQUIVALENT,
-                    f.getRecommendedEquivalent());
-            putOptionalExtra(intent, AppContracts.EXTRA_FRUIT_TIP_1, f.getDetailTip1());
-            putOptionalExtra(intent, AppContracts.EXTRA_FRUIT_TIP_2, f.getDetailTip2());
-            putOptionalExtra(intent, AppContracts.EXTRA_FRUIT_TIP_3, f.getDetailTip3());
+            intent.putExtra(AppContracts.EXTRA_FRUIT_ID, fruitId);
             intent.putExtra(AppContracts.EXTRA_LEVEL, level);
-            v.getContext().startActivity(intent);
+            Context context = v.getContext();
+            if (context instanceof Activity) {
+                ScreenTransitions.startForward((Activity) context, intent);
+            } else {
+                context.startActivity(intent);
+            }
         });
     }
 
@@ -88,10 +128,36 @@ public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.FruitViewHol
         return fruitList.size();
     }
 
-    private void putOptionalExtra(Intent intent, String key, String value) {
-        if (value != null && !value.trim().isEmpty()) {
-            intent.putExtra(key, value);
+    private void bindBookmarkButton(FruitViewHolder holder, Fruit fruit, String fruitId) {
+        boolean isSaved = savedFruitStore.isSaved(fruitId);
+        holder.bookmarkButton.setSelected(isSaved);
+        holder.bookmarkButton.setImageResource(
+                isSaved ? R.drawable.ic_bookmark_filled : R.drawable.ic_bookmark_outline);
+        holder.bookmarkButton.setContentDescription(holder.itemView.getContext().getString(
+                isSaved
+                        ? R.string.remove_fruit_from_saved_description
+                        : R.string.save_fruit_description,
+                fruit.getName()));
+    }
+
+    private int statusColor(FruitSafety.Level safetyLevel) {
+        switch (safetyLevel) {
+            case SAFE:
+                return R.color.health_safe;
+            case LIMIT:
+                return R.color.detail_status_limit_foreground;
+            case AVOID:
+                return R.color.detail_status_avoid_foreground;
+            case UNKNOWN:
+            default:
+                return R.color.detail_status_unknown_foreground;
         }
+    }
+
+    private Context localizedContext(Context context, Locale locale) {
+        Configuration configuration = new Configuration(context.getResources().getConfiguration());
+        configuration.setLocale(locale);
+        return context.createConfigurationContext(configuration);
     }
 
     public void updateFruits(List<Fruit> newFruits) {
@@ -121,6 +187,19 @@ public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.FruitViewHol
         fruitList.clear();
         fruitList.addAll(newFruits);
         result.dispatchUpdatesTo(this);
+    }
+
+    public void setDiabetesLevel(String newLevel) {
+        level = newLevel == null ? DiabetesType.UNKNOWN.getCode() : newLevel;
+        if (getItemCount() > 0) {
+            notifyItemRangeChanged(0, getItemCount());
+        }
+    }
+
+    public void refreshSavedState() {
+        if (getItemCount() > 0) {
+            notifyItemRangeChanged(0, getItemCount());
+        }
     }
 
 }

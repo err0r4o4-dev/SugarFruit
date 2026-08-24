@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SugarFruit</string>
+    <string name="get_started">GET STARTED</string>
+    <string name="back">Back</string>
+    <string name="next">Next</string>
+
+    <string name="user_name_label">Name</string>
+    <string name="height_label">Height</string>
+    <string name="weight_label">Weight</string>
+    <string name="sex_label">Sex</string>
+    <string name="birth_date_label">Date of birth</string>
+    <string name="select_birth_date">Select date of birth</string>
+    <string name="diabetes_type_label">Diabetes type</string>
+    <string name="app_logo_description">SugarFruit logo</string>
+    <string name="profile_title">Profile</string>
+    <string name="personal_info_title">Personal information</string>
+    <string name="health_info_title">Health information</string>
+    <string name="health_info_caption">This information is used to tailor fruit guidance for you</string>
+    <string name="profile_privacy_note">Your health information will be kept private</string>
+    <string name="save_profile">SAVE</string>
+    <string name="back_button_description">Go back</string>
+    <string name="profile_picture_description">Profile picture</string>
+    <string name="edit_profile_picture_description">Edit profile picture</string>
+    <string name="open_calendar_description">Open calendar</string>
+    <string name="basic_info_title">Basic information</string>
+    <string name="basic_info_caption">Check that the information is correct before continuing</string>
+    <string name="view_fruits">View fruits</string>
+    <string name="view_details">View details</string>
+
+    <string name="error_missing_fields">Complete all fields</string>
+    <string name="error_invalid_name">Enter a name using letters</string>
+    <string name="error_invalid_height">Height must be between 30 and 300 cm</string>
+    <string name="error_invalid_weight">Weight must be between 2 and 500 kg</string>
+
+    <string name="fruits_title">Fruits</string>
+    <string name="safety_level">Suitability level</string>
+    <string name="safety_all">All</string>
+    <string name="safety_safe">Safe</string>
+    <string name="safety_limit">Limit</string>
+    <string name="safety_avoid">Avoid</string>
+    <string name="safety_value_safe">🟢 Safe</string>
+    <string name="safety_value_limit">🟡 Limit</string>
+    <string name="safety_value_avoid">🔴 Avoid</string>
+    <string name="season_label">Seasonal fruits</string>
+    <string name="season_all">All</string>
+    <string name="season_summer">Summer</string>
+    <string name="season_rainy">Rainy</string>
+    <string name="season_winter">Winter</string>
+    <string name="search_hint">Search</string>
+    <plurals name="fruit_result_count">
+        <item quantity="one">%d fruit</item>
+        <item quantity="other">%d fruits</item>
+    </plurals>
+    <string name="sort_suitability">Sort: Best for you ▾</string>
+    <string name="sort_name">Sort: Name A–Z ▾</string>
+    <string name="sort_default">Sort: Default ▾</string>
+    <string name="sort_suitability_description">Open sorting options. Currently sorted by suitability for you</string>
+    <string name="sort_name_description">Open sorting options. Currently sorted by name A to Z</string>
+    <string name="sort_default_description">Open sorting options. Currently using the default order</string>
+    <string name="sort_sheet_title">Sort fruits</string>
+    <string name="sort_sheet_description">The Best for you option uses the diabetes type you selected</string>
+    <string name="sort_option_suitability">Best for you</string>
+    <string name="sort_option_name">Name A–Z</string>
+    <string name="sort_option_default">Default</string>
+    <string name="fruit_empty_title">No fruits found</string>
+    <string name="fruit_empty_description">Try another search or select a different season</string>
+    <string name="clear_fruit_filters">Clear filters</string>
+
+    <string name="fruit_image">Fruit image</string>
+    <string name="fruit_image_description">Image of %1$s</string>
+    <string name="detail_name_placeholder">Fruit name</string>
+    <string name="starfruit_category">Tropical fruit</string>
+    <string name="detail_sugar_label">Sugar per serving</string>
+    <string name="detail_index_label">Glycemic index (GI)</string>
+    <string name="detail_carbohydrate_label">Carbohydrate content</string>
+    <string name="detail_fiber_label">Fiber</string>
+    <string name="detail_impact_label">Effect on blood glucose</string>
+    <string name="detail_type1_label">Type 1 diabetes</string>
+    <string name="detail_type2_label">Type 2 diabetes</string>
+    <string name="detail_unavailable">Not available</string>
+    <string name="detail_safety_label">Suitability level</string>
+    <string name="detail_nutrition_title">Nutrition information</string>
+    <string name="detail_sugar_summary_title">Sugar</string>
+    <string name="detail_gi_short_label">Glycemic index (GI)</string>
+    <string name="detail_carbohydrate_short_label">Carbohydrate</string>
+    <string name="detail_fiber_short_label">Fiber</string>
+    <string name="detail_impact_short_label">Effect on blood glucose</string>
+    <string name="detail_diabetes_advice_title">Guidance by diabetes type</string>
+    <string name="detail_type1_short_label">Type 1</string>
+    <string name="detail_type2_short_label">Type 2</string>
+    <string name="detail_general_advice_title">How to eat an appropriate portion</string>
+    <string name="detail_recommended_amount_title">Recommended amount</string>
+    <string name="detail_gi_metric_label">GI</string>
+    <string name="detail_metric_value_with_note">%1$s\n%2$s</string>
+    <string name="detail_metric_grams">%1$s g</string>
+    <string name="detail_metric_per_100_grams">per 100 g</string>
+    <string name="detail_disclaimer">This information is general guidance only. If you have complications or are unsure, consult a doctor or registered dietitian.</string>
+    <string name="detail_source">Eating guidance is based on information from the Siriraj Diabetes Center and the American Diabetes Association</string>
+
+    <string name="mango_detail_introduction">Mango contains carbohydrate. Count it in the meal plan and control the portion at each meal.</string>
+    <string name="mango_detail_recommended_amount">About one-half fruit at a time</string>
+    <string name="mango_detail_recommended_equivalent">One serving provides about 15 g of carbohydrate</string>
+    <string name="fruit_serving_carbohydrate_equivalent">One serving provides about 15 g of carbohydrate</string>
+    <string name="banana_recommended_amount">About one-half Hom banana or one Namwa banana at a time</string>
+    <string name="watermelon_recommended_amount">About 6–8 bite-size pieces at a time</string>
+    <string name="papaya_recommended_amount">About 6–8 bite-size pieces of ripe papaya at a time</string>
+    <string name="lychee_recommended_amount">About 5–6 fruits at a time</string>
+    <string name="pineapple_recommended_amount">About 6–8 bite-size pieces at a time</string>
+    <string name="guava_recommended_amount">About one-half medium fruit at a time</string>
+    <string name="sweet_tamarind_recommended_amount">About 2 fruits or pieces at a time</string>
+    <string name="jujube_recommended_amount">About 4 fruits at a time</string>
+    <string name="durian_recommended_amount">About 1 small segment at a time</string>
+    <string name="mangosteen_recommended_amount">About 4 fruits at a time</string>
+    <string name="rambutan_recommended_amount">About 4 fruits at a time</string>
+    <string name="longan_recommended_amount">About 5–6 fruits at a time</string>
+    <string name="longkong_recommended_amount">About 5–6 fruits at a time</string>
+    <string name="pomelo_recommended_amount">About 2 segments at a time</string>
+    <string name="apple_recommended_amount">About 1 small fruit at a time</string>
+
+    <string name="banana_detail_evidence">The food-exchange list identifies one-half Hom banana or one Namwa banana as one fruit serving.</string>
+    <string name="banana_detail_note">Banana includes several varieties. Match the portion to Hom or Namwa banana.</string>
+    <string name="watermelon_detail_evidence">The food-exchange list identifies 6–8 bite-size watermelon pieces as one fruit serving.</string>
+    <string name="papaya_detail_evidence">The food-exchange list identifies 6–8 bite-size ripe papaya pieces as one fruit serving.</string>
+    <string name="papaya_detail_note">This portion applies to ripe papaya, not green papaya.</string>
+    <string name="lychee_detail_evidence">The food-exchange list identifies 5–6 lychees as one fruit serving.</string>
+    <string name="lychee_detail_note">This applies to fresh lychee, not canned lychee in syrup.</string>
+    <string name="pineapple_detail_evidence">The food-exchange list identifies 6–8 bite-size pineapple pieces as one fruit serving.</string>
+    <string name="pineapple_detail_note">This applies to fresh pineapple and does not include pineapple juice.</string>
+    <string name="guava_detail_evidence">The food-exchange list identifies one-half medium guava as one fruit serving.</string>
+    <string name="sweet_tamarind_detail_evidence">The food-exchange list identifies 2 sweet-tamarind fruits or pieces as one fruit serving.</string>
+    <string name="sweet_tamarind_detail_note">Actual size may vary by sweet-tamarind variety.</string>
+    <string name="jujube_detail_evidence">The food-exchange list identifies 4 jujubes as one fruit serving.</string>
+    <string name="jujube_detail_note">This applies to fresh jujube, not dried Chinese jujube.</string>
+    <string name="durian_detail_evidence">The food-exchange list identifies 1 small durian segment as one fruit serving.</string>
+    <string name="durian_detail_note">A segment means one small section of durian flesh.</string>
+    <string name="mangosteen_detail_evidence">The food-exchange list identifies 4 mangosteens as one fruit serving.</string>
+    <string name="rambutan_detail_evidence">The food-exchange list identifies 4 rambutans as one fruit serving.</string>
+    <string name="rambutan_detail_note">This applies to fresh rambutan, not canned rambutan.</string>
+    <string name="longan_detail_evidence">The food-exchange list identifies 5–6 longans as one fruit serving.</string>
+    <string name="longan_detail_note">This applies to fresh longan, not dried longan.</string>
+    <string name="longkong_detail_evidence">The food-exchange list identifies 5–6 longkongs as one fruit serving.</string>
+    <string name="pomelo_detail_evidence">The food-exchange list identifies 2 pomelo segments as one fruit serving.</string>
+    <string name="apple_detail_evidence">The food-exchange list identifies 1 small apple as one fruit serving.</string>
+
+    <string name="mango_detail_impact">Mango contains carbohydrate that affects blood glucose. Eat an appropriate portion and include it in the total carbohydrate for the meal.</string>
+    <string name="mango_detail_type_1">Count mango carbohydrates with the meal and adjust insulin according to the care plan provided by your care team.</string>
+    <string name="mango_detail_type_2">Eat it as part of a meal and control the total carbohydrate amount in that meal.</string>
+    <string name="mango_detail_tip_1">Choose fresh mango that is not overly ripe and control the portion at each meal.</string>
+    <string name="mango_detail_tip_2">Include mango in a meal with protein and non-starchy vegetables, following the plate method.</string>
+    <string name="mango_detail_tip_3">Choose whole fruit instead of fruit juice and avoid processed fruit with added sugar.</string>
+
+    <string-array name="sex_options">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+    <string-array name="diabetes_options">
+        <item>@string/diabetes_type_1</item>
+        <item>@string/diabetes_type_2</item>
+        <item>@string/diabetes_gestational</item>
+    </string-array>
+    <string name="diabetes_type_1">Type 1 diabetes</string>
+    <string name="diabetes_type_2">Type 2 diabetes</string>
+    <string name="diabetes_gestational">Gestational diabetes</string>
+    <string-array name="safety_options">
+        <item>@string/safety_all</item>
+        <item>@string/safety_safe</item>
+        <item>@string/safety_limit</item>
+        <item>@string/safety_avoid</item>
+    </string-array>
+    <string name="navigation_home">Home</string>
+    <string name="navigation_saved">Saved</string>
+    <string name="navigation_profile">Profile</string>
+
+    <string name="save_fruit">Save</string>
+    <string name="saved_fruit">Saved</string>
+    <string name="save_fruit_description">Save %1$s</string>
+    <string name="remove_fruit_from_saved_description">Remove %1$s from saved fruits</string>
+    <string name="fruit_saved_message">%1$s saved</string>
+    <string name="fruit_removed_message">%1$s removed from saved fruits</string>
+
+    <string name="saved_title">Saved</string>
+    <string name="saved_subtitle">Fruits you’ve saved for quick access</string>
+    <string name="saved_sort_title">Sort saved fruits</string>
+    <string name="saved_sort_description">Sort by when each fruit was saved on this device</string>
+    <string name="saved_sort_default">Sort: Default ▼</string>
+    <string name="saved_sort_newest">Sort: Newest ▼</string>
+    <string name="saved_sort_oldest">Sort: Oldest ▼</string>
+    <string name="saved_sort_option_default">Default</string>
+    <string name="saved_sort_option_newest">Newest</string>
+    <string name="saved_sort_option_oldest">Oldest</string>
+    <string name="no_saved_fruits_title">No saved fruits yet</string>
+    <string name="no_saved_fruits_description">Save fruits to quickly find them here.</string>
+    <string name="browse_fruits">Browse fruits</string>
+    <plurals name="saved_fruit_count">
+        <item quantity="one">%d saved fruit</item>
+        <item quantity="other">%d saved fruits</item>
+    </plurals>
+
+    <string name="profile_settings_subtitle">Manage your health information and app settings</string>
+    <string name="profile_user_name_placeholder">SugarFruit user</string>
+    <string name="edit_personal_information">Edit personal information</string>
+    <string name="application_settings_title">Application settings</string>
+    <string name="dark_mode">Dark mode</string>
+    <string name="font_size">Font size</string>
+    <string name="font_size_small">Small</string>
+    <string name="font_size_standard">Standard</string>
+    <string name="font_size_large">Large</string>
+    <string-array name="font_size_options">
+        <item>@string/font_size_small</item>
+        <item>@string/font_size_standard</item>
+        <item>@string/font_size_large</item>
+    </string-array>
+    <string name="privacy_section_title">Privacy</string>
+    <string name="privacy_settings">Privacy settings</string>
+    <string name="privacy_settings_message">SugarFruit stores your profile and saved fruits only on this device. You can clear this information by logging out.</string>
+    <string name="additional_info_title">Additional information</string>
+    <string name="nutrition_data_sources">Nutrition data sources</string>
+    <string name="about_application">About the application</string>
+    <string name="about_application_message">SugarFruit helps you browse and save fruit information for meal planning. Information in this app is general guidance and does not replace advice from a healthcare professional.</string>
+    <string name="cancel">Cancel</string>
+    <string name="profile_photo_unavailable">Changing the profile picture is not available yet</string>
+</resources>

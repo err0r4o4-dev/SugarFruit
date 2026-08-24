@@ -4,36 +4,48 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import androidx.appcompat.app.AppCompatActivity;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.google.android.material.chip.Chip;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.chip.ChipGroup;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import android.view.inputmethod.InputMethodManager;
 import android.content.Context;
+import android.content.res.Configuration;
 import android.view.inputmethod.EditorInfo;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
+import android.widget.Toast;
 import java.util.ArrayList;
+import java.text.Collator;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 
-public class App_page3 extends AppCompatActivity {
+public class App_page3 extends BaseActivity {
+
+    private static final int SORT_SUITABILITY = 0;
+    private static final int SORT_NAME = 1;
+    private static final int SORT_DEFAULT = 2;
 
     // ประกาศตัวแปรที่ใช้ในคลาส
     private RecyclerView recyclerView;
     private FruitAdapter adapter;
+    private TextView resultCountText;
+    private TextView suitabilitySort;
+    private AutoCompleteTextView searchBox;
+    private ChipGroup seasonChipGroup;
+    private View emptyState;
+    private SavedFruitStore savedFruitStore;
     private List<Fruit> allFruits = new ArrayList<>();
     private List<Fruit> filteredFruits = new ArrayList<>();
 
     // ตัวแปรเก็บค่าที่เลือกสำหรับการกรอง
-    private String selectedSafetyLevel = "ทั้งหมด";
-    private String selectedSeason = "All";
+    private FruitSeason selectedSeason;
     private String searchKeyword = "";
-    private String level = "0";
+    private String level = DiabetesType.UNKNOWN.getCode();
+    private int sortMode = SORT_SUITABILITY;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,35 +53,45 @@ public class App_page3 extends AppCompatActivity {
         setContentView(R.layout.ui_page3);
 
 
-        initializeFruitData();
+        allFruits = createFruitData(this);
 
         setupRecyclerView();
-
-        setupSafetyLevelDropdown();
         setupSeasonFilter();
         setupSearchFunction();
+        setupSuitabilitySort();
+        setupEmptyState();
+        BottomNavigationCoordinator.bind(
+                this,
+                (BottomNavigationView) findViewById(R.id.bottomNavigation),
+                BottomNavigationCoordinator.Destination.HOME);
 
         applyFilters();
     }
 
-    private void initializeFruitData() {
+    static List<Fruit> createFruitData(Context context) {
+        List<Fruit> allFruits = new ArrayList<>();
+        Context thaiTextContext = localizedContext(context, new Locale("th", "TH"));
+        Context englishTextContext = localizedContext(context, Locale.ENGLISH);
         allFruits.add(new Fruit(R.drawable.q1, "มะม่วง", "ปริมาณน้ำตาล: 14.0/100 กรัม","14.0/100 กรัม (สูง) มีผลให้น้ำตาลในเลือดขึ้นสูง","ดัชนีน้ำตาล (GI): 41",
                 "41 (ต่ำ)","\uD83D\uDFE1 ควรจำกัด", "Summer","15 กรัมต่อ 100 กรัม",
-                "1.6 กรัมต่อ 100 กรัม", getString(R.string.mango_detail_impact), getString(R.string.mango_detail_type_1),
-                getString(R.string.mango_detail_type_2),"ควรหลีกเลี่ยงสำหรับผู้ป่วยเบาหวานที่ควบคุมระดับน้ำตาลได้ไม่ดีหรือมีภาวะแทรกซ้อน เช่น เบาหวานขึ้นตา ไต ไขมันสูง",
+                "1.6 กรัมต่อ 100 กรัม", thaiTextContext.getString(R.string.mango_detail_impact), thaiTextContext.getString(R.string.mango_detail_type_1),
+                thaiTextContext.getString(R.string.mango_detail_type_2),"ควรหลีกเลี่ยงสำหรับผู้ป่วยเบาหวานที่ควบคุมระดับน้ำตาลได้ไม่ดีหรือมีภาวะแทรกซ้อน เช่น เบาหวานขึ้นตา ไต ไขมันสูง",
                 "\uD83D\uDFE1 ควรจำกัด","\uD83D\uDD34 ควรหลีกเลี่ยง","\uD83D\uDD34 ควรหลีกเลี่ยง")
                 .withDetailGuide(
-                        getString(R.string.mango_detail_introduction),
-                        getString(R.string.mango_detail_recommended_amount),
-                        getString(R.string.mango_detail_recommended_equivalent),
-                        getString(R.string.mango_detail_tip_1),
-                        getString(R.string.mango_detail_tip_2),
-                        getString(R.string.mango_detail_tip_3)));
+                        thaiTextContext.getString(R.string.mango_detail_introduction),
+                        thaiTextContext.getString(R.string.mango_detail_recommended_amount),
+                        thaiTextContext.getString(R.string.mango_detail_recommended_equivalent),
+                        thaiTextContext.getString(R.string.mango_detail_tip_1),
+                        thaiTextContext.getString(R.string.mango_detail_tip_2),
+                        thaiTextContext.getString(R.string.mango_detail_tip_3)));
 
         allFruits.add(new Fruit(R.drawable.q2, "กล้วย", "ปริมาณน้ำตาล: 12.2/100 กรัม","12.2/100 กรัม (สูง) มีผลให้น้ำตาลในเลือดขึ้นสูง","ดัชนีน้ำตาล (GI): 46","46 (ต่ำ) ดีต่อผู้ป่วยเบาหวาน","\uD83D\uDFE1 ควรจำกัด", "Summer","22.8 /100 กรัม(สูง) ระดับน้ำตาลในเลือดอาจเพิ่มสูงขึ้นอย่างรวดเร็ว","2.6/100 กรัม (ปานกลาง) พอช่วยชะลอการดูดซึมน้ำตาลได้","\uD83D\uDFE1 ปานกลาง","สามารถกินได้ถ้านับคาร์โบไฮเดรตแม่น และปรับอินซูลินให้เหมาะสม","สามารถกินได้ในปริมาณที่จำกัด","ควรหลีกเลี่ยงสำหรับผู้ป่วยเบาหวานที่ควบคุมระดับน้ำตาลได้ไม่ดี","\uD83D\uDFE1 ควรจำกัด","\uD83D\uDD34 ควรหลีกเลี่ยง","\uD83D\uDD34 ควรหลีกเลี่ยง"));
         allFruits.add(new Fruit(R.drawable.q3, "แตงโม", "ปริมาณน้ำตาล: 6.2/100 กรัม","6.2/100 กรัม (สูง) มีผลให้น้ำตาลในเลือดขึ้นสูง","ดัชนีน้ำตาล (GI): 72–80","72–80 (สูง) น้ำตาลในเลือดพุ่งเร็ว ไม่ดีต่อผู้ป่วยเบาหวาน","\uD83D\uDD34 ควรหลีกเลี่ยง", "Summer","7.6/100 กรัม (ต่ำ) อาจทำให้ร่างกายขาดพลังงาน","0.4/100 กรัม (ต่ำมาก) ไม่สามารถช่วยชะลอน้ำตาลได้","\uD83D\uDD34 สูง","สามารถกินได้ ถ้าคำนวณคาร์บแม่น","ที่ควบคุมระดับน้ำตาลได้ดี ควรจำกัดมาก","ควรหลีกเลี่ยงสำหรับผู้ป่วยเบาหวานที่ควบคุมระดับน้ำตาลได้ไม่ดีหรือมีภาวะแทรกซ้อน ","\uD83D\uDD34 ควรหลีกเลี่ยง","\uD83D\uDD34 ควรหลีกเลี่ยง","\uD83D\uDD34 ควรหลีกเลี่ยง"));
         allFruits.add(new Fruit(R.drawable.q4, "มะละกอ", "ปริมาณน้ำตาล: 7.8/100 กรัม","7.8/100 กรัม (สูง) มีผลให้น้ำตาลในเลือดขึ้นสูง","ดัชนีน้ำตาล (GI): 60-65","60-65 (ปานกลาง) มีโอกาสทำให้น้ำตาลพุ่งได้ถ้ากินมาก","\uD83D\uDFE1 ควรจำกัด", "Summer","10.8/100 กรัม (ปานกลาง) ช่วยรักษาระดับน้ำตาลในเลือดไม่ให้สูงหรือต่ำเกินไป","1.7/100 กรัม (ต่ำ) ชะลอการดูดซึมน้ำตาลได้น้อย","\uD83D\uDFE1 ปานกลาง","สามารถกินได้ ถ้าคำนวณคาร์บแม่น แต่ต้องปรับอินซูลินให้พอดี","ที่ควบคุมระดับน้ำตาลได้ดี สามารถกินได้ ในปริมาณจำกัด","ควรหลีกเลี่ยงสำหรับผู้ป่วยเบาหวานที่ควบคุมระดับน้ำตาลได้ไม่ดีหรือมีภาวะแทรกซ้อน","\uD83D\uDFE1 ควรจำกัด","\uD83D\uDD34 ควรหลีกเลี่ยง","\uD83D\uDD34 ควรหลีกเลี่ยง"));
-        allFruits.add(new Fruit(R.drawable.q5, "มะเฟือง", "ปริมาณน้ำตาล: 3.9/100 กรัม","3.9/100 กรัม (ต่ำ) มีผลให้น้ำตาลในเลือดขึ้นน้อย","ดัชนีน้ำตาล (GI): 45","45 (ต่ำ) ดีต่อผู้ป่วยเบาหวาน","\uD83D\uDFE2 ปลอดภัย", "Summer","6.7/100 กรัม (ต่ำ) อาจทำให้ร่างกายขาดพลังงาน","2.8/100 กรัม (ปานกลาง) พอช่วยชะลอการดูดซึมน้ำตาลได้","\uD83D\uDFE2 ต่ำ","สามารถกินได้","สามารถกินได้","สำหรับผู้ป่วยเบาหวานที่ควบคุมระดับน้ำตาลได้ไม่ดีหรือมีภาวะแทรกซ้อน ระวังในกรณีมีปัญหาไต มะเฟืองมี ออกซาเลตสูง อาจเป็นพิษต่อผู้ป่วยไต ควรเลี่ยงถ้ามีโรคไตร่วม","\uD83D\uDFE2 ปลอดภัย","\uD83D\uDFE2 ปลอดภัย","\uD83D\uDFE2 ปลอดภัย"));
+        allFruits.add(new Fruit(R.drawable.q5, "มะเฟือง", "ปริมาณน้ำตาล: 3.9/100 กรัม","3.9/100 กรัม (ต่ำ) มีผลให้น้ำตาลในเลือดขึ้นน้อย","ดัชนีน้ำตาล (GI): 45","45 (ต่ำ) ดีต่อผู้ป่วยเบาหวาน","\uD83D\uDFE2 ปลอดภัย", "Summer","6.7/100 กรัม (ต่ำ) อาจทำให้ร่างกายขาดพลังงาน","2.8/100 กรัม (ปานกลาง) พอช่วยชะลอการดูดซึมน้ำตาลได้","\uD83D\uDFE2 ต่ำ","สามารถกินได้","สามารถกินได้","สำหรับผู้ป่วยเบาหวานที่ควบคุมระดับน้ำตาลได้ไม่ดีหรือมีภาวะแทรกซ้อน ระวังในกรณีมีปัญหาไต มะเฟืองมี ออกซาเลตสูง อาจเป็นพิษต่อผู้ป่วยไต ควรเลี่ยงถ้ามีโรคไตร่วม","\uD83D\uDFE2 ปลอดภัย","\uD83D\uDFE2 ปลอดภัย","\uD83D\uDFE2 ปลอดภัย")
+                .withCategory(
+                        thaiTextContext.getString(R.string.starfruit_category),
+                        englishTextContext.getString(R.string.starfruit_category)));
         allFruits.add(new Fruit(R.drawable.q6, "ลิ้นจี่", "ปริมาณน้ำตาล: 13.2/100 กรัม","13.2/100 กรัม (สูง) มีผลให้น้ำตาลในเลือดขึ้นสูง","ดัชนีน้ำตาล (GI): 50","50 (ต่ำ) ดีต่อผู้ป่วยเบาหวาน","\uD83D\uDD34 ควรหลีกเลี่ยง", "Summer","13.2/100 กรัม (ปานกลาง) ช่วยรักษาระดับน้ำตาลในเลือดไม่ให้สูงหรือต่ำเกินไป","1.3/100 กรัม (ต่ำ) ชะลอการดูดซึมน้ำตาลได้น้อย","\uD83D\uDFE1 ปานกลาง","กินได้แต่ต้องคำนวณคาร์บให้แม่นยำ และปรับอินซูลินให้พอดี","กินได้แต่ต้องระวังปริมาณ เพราะมีน้ำตาลสูง","ควรหลีกเลี่ยงสำหรับผู้ป่วยเบาหวานที่ควบคุมระดับน้ำตาลได้ไม่ดีหรือมีภาวะแทรกซ้อน เพราะ น้ำตาลสูงและไฟเบอร์ต่ำ ทำให้ควบคุมได้ยาก","\uD83D\uDD34 ควรหลีกเลี่ยง","\uD83D\uDD34 ควรหลีกเลี่ยง","\uD83D\uDD34 ควรหลีกเลี่ยง"));
         allFruits.add(new Fruit(R.drawable.q7, "สับปะรด", "ปริมาณน้ำตาล: 10.0/100 กรัม","10.0/100 กรัม (ปานกลาง) มีผลให้น้ำตาลในเลือดขึ้นน้อย หากรับประทานมากหรือติดกันหลายมื้อ อาจทำให้ระดับน้ำตาลสะสมสูง","ดัชนีน้ำตาล (GI): 45–51","45–51 (ต่ำ) ดีต่อผู้ป่วยเบาหวาน","\uD83D\uDFE1 ควรจำกัด","Summer", "13.1/100 กรัม (ปานกลาง) ช่วยรักษาระดับน้ำตาลในเลือดไม่ให้สูงหรือต่ำเกินไป","1.4/100 กรัม (ต่ำ) ชะลอการดูดซึมน้ำตาลได้น้อย","\uD83D\uDFE1 ปานกลาง","สามารถกินได้แต่ต้องคำนวณคาร์บให้แม่นยำและปรับอินซูลินให้พอดี","สามารถกินได้แต่ต้องระมัดระวังปริมาณน้ำตาลที่บริโภค","ควรหลีกเลี่ยงสำหรับผู้ป่วยเบาหวานที่ควบคุมระดับน้ำตาลได้ไม่ดีหรือมีภาวะแทรกซ้อน","\uD83D\uDFE2 ปลอดภัย","\uD83D\uDFE1 ควรจำกัด","\uD83D\uDFE1 ควรจำกัด"));
         allFruits.add(new Fruit(R.drawable.q8, "มะกอกฝรั่ง", "ปริมาณน้ำตาล: 0/100 กรัม","0/100 กรัม (ไม่มีน้ำตาล) เหมาะสำหรับผู้ป่วยเบาหวาน","ดัชนีน้ำตาล (GI): 15","15 (ต่ำ) ดีต่อผู้ป่วยเบาหวาน","\uD83D\uDFE2 ปลอดภัย", "Summer","6.0/100 กรัม (ต่ำ) อาจทำให้ร่างกายขาดพลังงาน","3.2/100 กรัม (สูง) ช่วยชะลอการดูดซึมน้ำตาลได้ดี","\uD83D\uDFE2 ต่ำ","สามารถกินได้ง่ายแต่ต้องคำนวณอินซูลินให้แม่นยำ","สามารถกินได้","สำหรับผู้ป่วยเบาหวานที่ควบคุมระดับน้ำตาลได้ไม่ดีหรือมีภาวะแทรกซ้อน สามารถกินได้ เพราะ ไม่มีน้ำตาลและมีไฟเบอร์สูง ช่วยควบคุมระดับน้ำตาลได้ดี","\uD83D\uDFE2 ปลอดภัย","\uD83D\uDFE2 ปลอดภัย","\uD83D\uDFE2 ปลอดภัย"));
@@ -117,18 +139,21 @@ public class App_page3 extends AppCompatActivity {
         allFruits.add(new Fruit(R.drawable.q48, "ส้มเช้ง", "ปริมาณน้ำตาล: 8.0/100 กรัม","8.0/100 กรัม (ปานกลาง) มีผลให้น้ำตาลในเลือดขึ้นน้อย หากรับประทานมากหรือติดกันหลายมื้อ อาจทำให้ระดับน้ำตาลสะสมสูง","ดัชนีน้ำตาล (GI): 40-45","40-45 (ต่ำ) ดีต่อผู้ป่วยเบาหวาน","\uD83D\uDFE1 ควรจำกัด", "Winter","11.0/100 กรัม (ปานกลาง) ช่วยรักษาระดับน้ำตาลในเลือดไม่ให้สูงหรือต่ำเกินไป","1.5/100 กรัม (ต่ำ) ชะลอการดูดซึมน้ำตาลได้น้อย","\uD83D\uDFE1 ปานกลาง","สามารถกินได้ แต่ควรคำนวณคาร์โบไฮเดรตให้แม่นยำก่อนฉีดอินซูลิน","สามารถกินได้ในปริมาณ 1 ผลต่อวัน หลีกเลี่ยงทานเกินในหนึ่งมื้อ","สำหรับผู้ป่วยเบาหวานที่ควบคุมระดับน้ำตาลได้ไม่ดีหรือมีภาวะแทรกซ้อน ควรจำกัดปริมาณการทานและทานร่วมกับอาหารที่มีไฟเบอร์สูง","\uD83D\uDFE2 ปลอดภัย","\uD83D\uDFE2 ปลอดภัย","\uD83D\uDFE2 ปลอดภัย"));
         allFruits.add(new Fruit(R.drawable.q49, "สาลี่", "ปริมาณน้ำตาล: 9.8/100 กรัม","9.8/100 กรัม (ปานกลาง) มีผลให้น้ำตาลในเลือดขึ้นน้อย หากรับประทานมากหรือติดกันหลายมื้อ อาจทำให้ระดับน้ำตาลสะสมสูง","ดัชนีน้ำตาล (GI): 30","30 (ต่ำ) ดีต่อผู้ป่วยเบาหวาน","\uD83D\uDFE1 ควรจำกัด", "Winter","15.2/100 กรัม (สูง) ระดับน้ำตาลในเลือดอาจเพิ่มสูงขึ้นอย่างรวดเร็ว","3.1/100 กรัม (สูง) ช่วยชะลอการดูดซึมน้ำตาลได้ดี","\uD83D\uDFE1 ปานกลาง","สามารถกินได้ในปริมาณที่ควบคุมได้","สามารถกินได้ในปริมาณที่เหมาะสม แต่ต้องระวังไม่ทานมากเกินไป","สำหรับผู้ป่วยเบาหวานที่ควบคุมระดับน้ำตาลได้ไม่ดีหรือมีภาวะแทรกซ้อน สามารถกินได้ในปริมาณที่เหมาะสมและระมัดระวังในการควบคุมระดับน้ำตาล","\uD83D\uDFE2 ปลอดภัย","\uD83D\uDFE1 ควรจำกัด","\uD83D\uDD34 ควรหลีกเลี่ยง"));
 
-        applyAdditionalDetailGuides();
+        applyAdditionalDetailGuides(thaiTextContext, allFruits);
+        EnglishFruitLocalizer.prepare(context, allFruits);
+        return allFruits;
     }
 
-    private void applyAdditionalDetailGuides() {
+    private static void applyAdditionalDetailGuides(
+            Context textContext, List<Fruit> allFruits) {
         for (Fruit fruit : allFruits) {
             int[] resources = getDetailGuideResources(fruit.getName());
             if (resources != null) {
-                String note = resources[2] == 0 ? null : getString(resources[2]);
+                String note = resources[2] == 0 ? null : textContext.getString(resources[2]);
                 fruit.withDetailGuide(
-                        getString(resources[0]),
-                        getString(resources[1]),
-                        getString(R.string.fruit_serving_carbohydrate_equivalent),
+                        textContext.getString(resources[0]),
+                        textContext.getString(resources[1]),
+                        textContext.getString(R.string.fruit_serving_carbohydrate_equivalent),
                         note,
                         null,
                         null);
@@ -136,7 +161,7 @@ public class App_page3 extends AppCompatActivity {
         }
     }
 
-    private int[] getDetailGuideResources(String fruitName) {
+    private static int[] getDetailGuideResources(String fruitName) {
         switch (fruitName) {
             case "กล้วย": return new int[]{R.string.banana_detail_evidence, R.string.banana_recommended_amount, R.string.banana_detail_note};
             case "แตงโม": return new int[]{R.string.watermelon_detail_evidence, R.string.watermelon_recommended_amount, 0};
@@ -159,56 +184,115 @@ public class App_page3 extends AppCompatActivity {
 
     private void setupRecyclerView() {
         recyclerView = findViewById(R.id.recyclerView);
+        resultCountText = findViewById(R.id.resultCountText);
+        emptyState = findViewById(R.id.emptyState);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        level = getIntent().getStringExtra(AppContracts.EXTRA_LEVEL);
-        adapter = new FruitAdapter(filteredFruits, level);
+        String requestedLevel = getIntent().getStringExtra(AppContracts.EXTRA_LEVEL);
+        level = requestedLevel == null
+                ? AppSettings.getDiabetesType(this).getCode()
+                : requestedLevel;
+        savedFruitStore = new SavedFruitStore(this);
+        adapter = new FruitAdapter(
+                filteredFruits,
+                level,
+                savedFruitStore,
+                (fruit, isSaved) -> Toast.makeText(
+                        this,
+                        getString(
+                                isSaved ? R.string.fruit_saved_message : R.string.fruit_removed_message,
+                                fruit.getName()),
+                        Toast.LENGTH_SHORT).show());
         recyclerView.setAdapter(adapter);
     }
 
-    private void setupSafetyLevelDropdown() {
-        AutoCompleteTextView safetyDropdown = findViewById(R.id.inputTureOrFalse);
-        final String[] safetyOptions = getResources().getStringArray(R.array.safety_options);
-        ArrayAdapter<String> dropdownAdapter = new ArrayAdapter<>(
-                this,
-                android.R.layout.simple_dropdown_item_1line,
-                safetyOptions
-        );
-        safetyDropdown.setAdapter(dropdownAdapter);
-        selectedSafetyLevel = getString(R.string.safety_all);
-        safetyDropdown.setText(selectedSafetyLevel, false);
-        safetyDropdown.setFocusable(false);
-
-        safetyDropdown.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                selectedSafetyLevel = safetyOptions[position];
-                applyFilters();
-                safetyDropdown.dismissDropDown();
+    private void setupSeasonFilter() {
+        seasonChipGroup = findViewById(R.id.chipGroup);
+        seasonChipGroup.setOnCheckedStateChangeListener((group, checkedIds) -> {
+            if (checkedIds.isEmpty()) {
+                return;
             }
+
+            int checkedId = checkedIds.get(0);
+            if (checkedId == R.id.chipSummer) {
+                selectedSeason = FruitSeason.SUMMER;
+            } else if (checkedId == R.id.chipRainy) {
+                selectedSeason = FruitSeason.RAINY;
+            } else if (checkedId == R.id.chipWinter) {
+                selectedSeason = FruitSeason.WINTER;
+            } else {
+                selectedSeason = null;
+            }
+            applyFilters();
         });
     }
 
-    private void setupSeasonFilter() {
-        ChipGroup chipGroup = findViewById(R.id.chipGroup);
-        chipGroup.setOnCheckedStateChangeListener((group, checkedIds) -> {
-                int checkedId = checkedIds.isEmpty() ? View.NO_ID : checkedIds.get(0);
-                for (int i = 0; i < group.getChildCount(); i++) {
-                    Chip chip = (Chip) group.getChildAt(i);
+    private void setupSuitabilitySort() {
+        suitabilitySort = findViewById(R.id.suitabilitySort);
+        updateSortLabel();
+        suitabilitySort.setOnClickListener(view -> showSortBottomSheet());
+    }
 
-                    if (chip.getId() == checkedId) {
-                        chip.setChipBackgroundColor(ColorStateList.valueOf(Color.WHITE));
-                        chip.setTextColor(Color.BLACK);
-                        selectedSeason = chip.getText().toString();
-                    } else {
-                        chip.setChipBackgroundColor(ColorStateList.valueOf(Color.BLACK));
-                        chip.setTextColor(Color.WHITE);
-                    }
-                }
-                applyFilters();
+    private void showSortBottomSheet() {
+        BottomSheetDialog dialog = new BottomSheetDialog(this);
+        View contentView = getLayoutInflater().inflate(R.layout.bottom_sheet_fruit_sort, null);
+        RadioGroup sortOptions = contentView.findViewById(R.id.sortOptions);
+
+        ((TextView) contentView.findViewById(R.id.sortSheetTitle))
+                .setText(R.string.sort_sheet_title);
+        ((TextView) contentView.findViewById(R.id.sortSheetDescription))
+                .setText(R.string.sort_sheet_description);
+        ((TextView) contentView.findViewById(R.id.sortOptionPrimary))
+                .setText(R.string.sort_option_suitability);
+        ((TextView) contentView.findViewById(R.id.sortOptionSecondary))
+                .setText(R.string.sort_option_name);
+        ((TextView) contentView.findViewById(R.id.sortOptionTertiary))
+                .setText(R.string.sort_option_default);
+
+        if (sortMode == SORT_NAME) {
+            sortOptions.check(R.id.sortOptionSecondary);
+        } else if (sortMode == SORT_DEFAULT) {
+            sortOptions.check(R.id.sortOptionTertiary);
+        } else {
+            sortOptions.check(R.id.sortOptionPrimary);
+        }
+
+        sortOptions.setOnCheckedChangeListener((group, checkedId) -> {
+            if (checkedId == R.id.sortOptionSecondary) {
+                sortMode = SORT_NAME;
+            } else if (checkedId == R.id.sortOptionTertiary) {
+                sortMode = SORT_DEFAULT;
+            } else {
+                sortMode = SORT_SUITABILITY;
+            }
+            updateSortLabel();
+            applyFilters();
+            dialog.dismiss();
         });
+
+        dialog.setContentView(contentView);
+        dialog.setDismissWithAnimation(true);
+        dialog.show();
+    }
+
+    private void updateSortLabel() {
+        int labelRes;
+        int descriptionRes;
+        if (sortMode == SORT_NAME) {
+            labelRes = R.string.sort_name;
+            descriptionRes = R.string.sort_name_description;
+        } else if (sortMode == SORT_DEFAULT) {
+            labelRes = R.string.sort_default;
+            descriptionRes = R.string.sort_default_description;
+        } else {
+            labelRes = R.string.sort_suitability;
+            descriptionRes = R.string.sort_suitability_description;
+        }
+        suitabilitySort.setText(labelRes);
+        suitabilitySort.setContentDescription(getString(descriptionRes));
     }
 
     private void setupSearchFunction() {
-        AutoCompleteTextView searchBox = findViewById(R.id.autoCompleteTextView);
+        searchBox = findViewById(R.id.autoCompleteTextView);
 
         searchBox.setImeOptions(EditorInfo.IME_ACTION_DONE); // แสดงปุ่ม Done
         searchBox.setSingleLine(true); // ไม่ให้ขึ้นบรรทัดใหม่
@@ -219,7 +303,7 @@ public class App_page3 extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                searchKeyword = s.toString().trim().toLowerCase(Locale.ROOT);
+                searchKeyword = s.toString().trim().toLowerCase(currentLocale());
                 applyFilters();
             }
 
@@ -230,7 +314,7 @@ public class App_page3 extends AppCompatActivity {
         searchBox.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_ACTION_SEARCH) {
                 // ✅ ทำการค้นหา
-                searchKeyword = searchBox.getText().toString().trim().toLowerCase(Locale.ROOT);
+                searchKeyword = searchBox.getText().toString().trim().toLowerCase(currentLocale());
                 applyFilters();
 
                 // ✅ ปิดคีย์บอร์ด
@@ -245,21 +329,70 @@ public class App_page3 extends AppCompatActivity {
         });
     }
 
+    private void setupEmptyState() {
+        findViewById(R.id.clearFruitFilters).setOnClickListener(view -> {
+            searchBox.setText("");
+            seasonChipGroup.check(R.id.chipAll);
+        });
+    }
+
 
     private void applyFilters() {
         filteredFruits.clear();
         for (int i = 0; i < allFruits.size(); i++) {
             Fruit fruit = allFruits.get(i);
-            if (fruit.getName().toLowerCase(Locale.ROOT).contains(searchKeyword)) {
-                if (selectedSeason.equals("All") || fruit.getSeason().equalsIgnoreCase(selectedSeason)) {
-                    if (FruitSafety.matchesFilter(
-                            fruit, level, selectedSafetyLevel, getString(R.string.safety_all))) {
-                        filteredFruits.add(fruit);
-                    }
+            if (fruit.getName().toLowerCase(currentLocale()).contains(searchKeyword)) {
+                if (selectedSeason == null || fruit.getSeasonValue() == selectedSeason) {
+                    filteredFruits.add(fruit);
                 }
             }
         }
+        if (sortMode == SORT_SUITABILITY) {
+            filteredFruits.sort(Comparator.comparingInt(this::getSuitabilityRank));
+        } else if (sortMode == SORT_NAME) {
+            Collator localeCollator = Collator.getInstance(currentLocale());
+            filteredFruits.sort((left, right) ->
+                    localeCollator.compare(left.getName(), right.getName()));
+        }
+        int resultCount = filteredFruits.size();
+        resultCountText.setText(getResources().getQuantityString(
+                R.plurals.fruit_result_count, resultCount, resultCount));
+        boolean hasResults = resultCount > 0;
+        recyclerView.setVisibility(hasResults ? View.VISIBLE : View.GONE);
+        emptyState.setVisibility(hasResults ? View.GONE : View.VISIBLE);
         adapter.updateFruits(filteredFruits);
+    }
+
+    private int getSuitabilityRank(Fruit fruit) {
+        return FruitSafety.rank(FruitSafety.forDiabetesLevel(fruit, level));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        BottomNavigationCoordinator.selectCurrent(
+                (BottomNavigationView) findViewById(R.id.bottomNavigation),
+                BottomNavigationCoordinator.Destination.HOME);
+        if (adapter != null) {
+            DiabetesType storedType = AppSettings.getDiabetesType(this);
+            if (storedType != DiabetesType.UNKNOWN && !storedType.getCode().equals(level)) {
+                level = storedType.getCode();
+                adapter.setDiabetesLevel(level);
+                applyFilters();
+            }
+            adapter.refreshSavedState();
+        }
+    }
+
+    private Locale currentLocale() {
+        return getResources().getConfiguration().getLocales().get(0);
+    }
+
+    private static Context localizedContext(Context context, Locale locale) {
+        Configuration configuration = new Configuration(
+                context.getResources().getConfiguration());
+        configuration.setLocale(locale);
+        return context.createConfigurationContext(configuration);
     }
 
 }

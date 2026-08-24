@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">SugarFruit</string>
-    <string name="get_started">GET STARTED</string>
-    <string name="back">Back</string>
-    <string name="next">Next</string>
+    <string name="get_started">เริ่มต้นใช้งาน</string>
+    <string name="back">ย้อนกลับ</string>
+    <string name="next">ถัดไป</string>
 
     <string name="user_name_label">ชื่อผู้ใช้</string>
     <string name="height_label">ส่วนสูง</string>
@@ -13,12 +13,11 @@
     <string name="diabetes_type_label">ประเภทโรคเบาหวาน</string>
     <string name="app_logo_description">โลโก้ SugarFruit</string>
     <string name="profile_title">โปรไฟล์</string>
-    <string name="profile_subtitle">แตะเพื่อเปลี่ยนรูปโปรไฟล์</string>
     <string name="personal_info_title">ข้อมูลส่วนตัว</string>
     <string name="health_info_title">ข้อมูลสุขภาพ</string>
     <string name="health_info_caption">ข้อมูลนี้ใช้สำหรับปรับคำแนะนำผลไม้ให้เหมาะกับคุณ</string>
     <string name="profile_privacy_note">ข้อมูลสุขภาพของคุณจะถูกเก็บเป็นส่วนตัว</string>
-    <string name="save_profile">SAVE</string>
+    <string name="save_profile">บันทึก</string>
     <string name="back_button_description">ย้อนกลับ</string>
     <string name="profile_picture_description">รูปโปรไฟล์</string>
     <string name="edit_profile_picture_description">แก้ไขรูปโปรไฟล์</string>
@@ -26,28 +25,51 @@
     <string name="basic_info_title">ข้อมูลพื้นฐาน</string>
     <string name="basic_info_caption">ตรวจสอบข้อมูลให้ถูกต้องก่อนดำเนินการต่อ</string>
     <string name="view_fruits">ดูรายการผลไม้</string>
+    <string name="view_details">ดูรายละเอียด</string>
 
     <string name="error_missing_fields">กรอกข้อมูลให้ครบ</string>
     <string name="error_invalid_name">กรุณากรอกชื่อด้วยตัวอักษร</string>
     <string name="error_invalid_height">ส่วนสูงต้องอยู่ระหว่าง 30–300 ซม.</string>
     <string name="error_invalid_weight">น้ำหนักต้องอยู่ระหว่าง 2–500 กก.</string>
 
-    <string name="fruits_title">Fruits</string>
+    <string name="fruits_title">ผลไม้</string>
     <string name="safety_level">ระดับความเหมาะสม</string>
     <string name="safety_all">ทั้งหมด</string>
     <string name="safety_safe">ปลอดภัย</string>
     <string name="safety_limit">ควรจำกัด</string>
     <string name="safety_avoid">ควรหลีกเลี่ยง</string>
+    <string name="safety_value_safe">🟢 ปลอดภัย</string>
+    <string name="safety_value_limit">🟡 ควรจำกัด</string>
+    <string name="safety_value_avoid">🔴 ควรหลีกเลี่ยง</string>
     <string name="season_label">ผลไม้ตามฤดู</string>
-    <string name="season_all">All</string>
-    <string name="season_summer">Summer</string>
-    <string name="season_rainy">Rainy</string>
-    <string name="season_winter">Winter</string>
-    <string name="search_hint">Search</string>
+    <string name="season_all">ทั้งหมด</string>
+    <string name="season_summer">ฤดูร้อน</string>
+    <string name="season_rainy">ฤดูฝน</string>
+    <string name="season_winter">ฤดูหนาว</string>
+    <string name="search_hint">ค้นหา</string>
+    <plurals name="fruit_result_count">
+        <item quantity="one">ผลไม้ทั้งหมด %d รายการ</item>
+        <item quantity="other">ผลไม้ทั้งหมด %d รายการ</item>
+    </plurals>
+    <string name="sort_suitability">จัดเรียง: เหมาะกับคุณ ▾</string>
+    <string name="sort_name">จัดเรียง: ชื่อ ก–ฮ ▾</string>
+    <string name="sort_default">จัดเรียง: ค่าเริ่มต้น ▾</string>
+    <string name="sort_suitability_description">เปิดตัวเลือกการจัดเรียง ปัจจุบันเรียงตามความเหมาะสมกับคุณ</string>
+    <string name="sort_name_description">เปิดตัวเลือกการจัดเรียง ปัจจุบันเรียงตามชื่อ ก ถึง ฮ</string>
+    <string name="sort_default_description">เปิดตัวเลือกการจัดเรียง ปัจจุบันเรียงตามค่าเริ่มต้น</string>
+    <string name="sort_sheet_title">จัดเรียงผลไม้</string>
+    <string name="sort_sheet_description">ตัวเลือก “เหมาะกับคุณ” อ้างอิงจากประเภทเบาหวานที่คุณเลือก</string>
+    <string name="sort_option_suitability">เหมาะกับคุณ</string>
+    <string name="sort_option_name">ชื่อ ก–ฮ</string>
+    <string name="sort_option_default">ค่าเริ่มต้น</string>
+    <string name="fruit_empty_title">ไม่พบผลไม้</string>
+    <string name="fruit_empty_description">ลองเปลี่ยนคำค้นหาหรือเลือกฤดูกาลอื่น</string>
+    <string name="clear_fruit_filters">ล้างตัวกรอง</string>
 
     <string name="fruit_image">รูปผลไม้</string>
     <string name="fruit_image_description">รูปผลไม้ %1$s</string>
     <string name="detail_name_placeholder">ชื่อผลไม้</string>
+    <string name="starfruit_category">ผลไม้เขตร้อน</string>
     <string name="detail_sugar_label">ปริมาณน้ำตาลต่อหน่วยบริโภค</string>
     <string name="detail_index_label">ดัชนีน้ำตาล (Glycemic Index - GI)</string>
     <string name="detail_carbohydrate_label">ปริมาณคาร์โบไฮเดรต (Carbohydrate content)</string>
@@ -142,4 +164,56 @@
         <item>@string/safety_limit</item>
         <item>@string/safety_avoid</item>
     </string-array>
+    <string name="navigation_home">หน้าหลัก</string>
+    <string name="navigation_saved">บันทึกแล้ว</string>
+    <string name="navigation_profile">โปรไฟล์</string>
+
+    <string name="save_fruit">บันทึก</string>
+    <string name="saved_fruit">บันทึกแล้ว</string>
+    <string name="save_fruit_description">บันทึก %1$s</string>
+    <string name="remove_fruit_from_saved_description">นำ %1$s ออกจากผลไม้ที่บันทึก</string>
+    <string name="fruit_saved_message">บันทึก %1$s แล้ว</string>
+    <string name="fruit_removed_message">นำ %1$s ออกจากรายการแล้ว</string>
+
+    <string name="saved_title">บันทึกแล้ว</string>
+    <string name="saved_subtitle">ผลไม้ที่คุณบันทึกไว้เพื่อเข้าถึงได้อย่างรวดเร็ว</string>
+    <string name="saved_sort_title">จัดเรียงผลไม้ที่บันทึก</string>
+    <string name="saved_sort_description">เรียงตามลำดับที่บันทึกผลไม้ไว้ในอุปกรณ์นี้</string>
+    <string name="saved_sort_default">จัดเรียง: ปกติ ▼</string>
+    <string name="saved_sort_newest">จัดเรียง: ล่าสุด ▼</string>
+    <string name="saved_sort_oldest">จัดเรียง: ไม่ล่าสุด ▼</string>
+    <string name="saved_sort_option_default">ปกติ</string>
+    <string name="saved_sort_option_newest">ล่าสุด</string>
+    <string name="saved_sort_option_oldest">ไม่ล่าสุด</string>
+    <string name="no_saved_fruits_title">ยังไม่มีผลไม้ที่บันทึกไว้</string>
+    <string name="no_saved_fruits_description">บันทึกผลไม้เพื่อค้นหาได้อย่างรวดเร็วจากหน้านี้</string>
+    <string name="browse_fruits">เลือกดูผลไม้</string>
+    <plurals name="saved_fruit_count">
+        <item quantity="one">บันทึกแล้ว %d รายการ</item>
+        <item quantity="other">บันทึกแล้ว %d รายการ</item>
+    </plurals>
+
+    <string name="profile_settings_subtitle">จัดการข้อมูลสุขภาพและการตั้งค่าแอป</string>
+    <string name="profile_user_name_placeholder">ผู้ใช้ SugarFruit</string>
+    <string name="edit_personal_information">แก้ไขข้อมูลส่วนตัว</string>
+    <string name="application_settings_title">การตั้งค่าแอปพลิเคชัน</string>
+    <string name="dark_mode">โหมดมืด</string>
+    <string name="font_size">ขนาดตัวอักษร</string>
+    <string name="font_size_small">เล็ก</string>
+    <string name="font_size_standard">มาตรฐาน</string>
+    <string name="font_size_large">ใหญ่</string>
+    <string-array name="font_size_options">
+        <item>@string/font_size_small</item>
+        <item>@string/font_size_standard</item>
+        <item>@string/font_size_large</item>
+    </string-array>
+    <string name="privacy_section_title">ความเป็นส่วนตัว</string>
+    <string name="privacy_settings">การตั้งค่าความเป็นส่วนตัว</string>
+    <string name="privacy_settings_message">SugarFruit เก็บข้อมูลโปรไฟล์และผลไม้ที่บันทึกไว้ภายในอุปกรณ์เครื่องนี้เท่านั้น คุณสามารถล้างข้อมูลดังกล่าวได้ด้วยการออกจากระบบ</string>
+    <string name="additional_info_title">ข้อมูลเพิ่มเติม</string>
+    <string name="nutrition_data_sources">แหล่งข้อมูลโภชนาการ</string>
+    <string name="about_application">เกี่ยวกับแอปพลิเคชัน</string>
+    <string name="about_application_message">SugarFruit ช่วยค้นหาและจัดเก็บข้อมูลผลไม้เพื่อประกอบการวางแผนการรับประทาน ข้อมูลภายในแอปเป็นคำแนะนำทั่วไปและไม่ทดแทนคำแนะนำจากบุคลากรทางการแพทย์</string>
+    <string name="cancel">ยกเลิก</string>
+    <string name="profile_photo_unavailable">การเปลี่ยนรูปโปรไฟล์ยังไม่พร้อมใช้งาน</string>
 </resources>

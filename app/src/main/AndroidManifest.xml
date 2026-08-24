@@ -8,10 +8,11 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:localeConfig="@xml/locales_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Project"
-        tools:targetApi="31">
+        tools:targetApi="33">
         <activity
             android:name=".App_page2"
             android:windowSoftInputMode="adjustResize|stateHidden"
@@ -24,6 +25,12 @@
         <activity
             android:name=".App_page4"
             android:windowSoftInputMode="adjustPan|stateHidden"
+            android:exported="false" />
+        <activity
+            android:name=".App_saved"
+            android:exported="false" />
+        <activity
+            android:name=".App_profile"
             android:exported="false" />
         <activity
             android:name=".App_page1"

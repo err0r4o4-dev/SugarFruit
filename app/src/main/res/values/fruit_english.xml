@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="fruit_sugar_summary_en" translatable="false">Sugar: %1$s g/100 g</string>
+    <string name="fruit_gi_summary_en" translatable="false">Glycemic index (GI): %1$s</string>
+    <string name="fruit_sugar_detail_none_en" translatable="false">%1$s g/100 g (no sugar). Suitable for people with diabetes.</string>
+    <string name="fruit_sugar_detail_low_en" translatable="false">%1$s g/100 g (low). Has a limited effect on blood glucose.</string>
+    <string name="fruit_sugar_detail_moderate_en" translatable="false">%1$s g/100 g (moderate). Large or repeated portions may raise blood glucose.</string>
+    <string name="fruit_sugar_detail_high_en" translatable="false">%1$s g/100 g (high). May raise blood glucose.</string>
+    <string name="fruit_sugar_detail_very_high_en" translatable="false">%1$s g/100 g (very high). May raise blood glucose substantially.</string>
+    <string name="fruit_gi_detail_low_en" translatable="false">%1$s (low). Generally has a lower effect on blood glucose.</string>
+    <string name="fruit_gi_detail_moderate_en" translatable="false">%1$s (moderate). Large portions may cause a blood-glucose spike.</string>
+    <string name="fruit_gi_detail_high_en" translatable="false">%1$s (high). May raise blood glucose quickly.</string>
+    <string name="fruit_metric_grams_en" translatable="false">g</string>
+    <string name="fruit_metric_per_100_grams_en" translatable="false">g per 100 g</string>
+    <string name="fruit_metric_plain_en" translatable="false">%1$s %2$s</string>
+    <string name="fruit_carbohydrate_low_en" translatable="false">%1$s %2$s (low). Provides a relatively small amount of carbohydrate.</string>
+    <string name="fruit_carbohydrate_moderate_en" translatable="false">%1$s %2$s (moderate). Count this toward the meal carbohydrate total.</string>
+    <string name="fruit_carbohydrate_high_en" translatable="false">%1$s %2$s (high). May raise blood glucose quickly.</string>
+    <string name="fruit_carbohydrate_very_high_en" translatable="false">%1$s %2$s (very high). May raise blood glucose quickly.</string>
+    <string name="fruit_fiber_low_en" translatable="false">%1$s %2$s (low). Provides little help in slowing sugar absorption.</string>
+    <string name="fruit_fiber_moderate_en" translatable="false">%1$s %2$s (moderate). May help slow sugar absorption.</string>
+    <string name="fruit_fiber_high_en" translatable="false">%1$s %2$s (high). Helps slow sugar absorption.</string>
+    <string name="fruit_impact_low_en" translatable="false">🟢 Low</string>
+    <string name="fruit_impact_moderate_en" translatable="false">🟡 Moderate</string>
+    <string name="fruit_impact_high_en" translatable="false">🔴 High</string>
+
+    <string-array name="fruit_names_en" translatable="false">
+        <item>Mango</item>
+        <item>Banana</item>
+        <item>Watermelon</item>
+        <item>Papaya</item>
+        <item>Starfruit</item>
+        <item>Lychee</item>
+        <item>Pineapple</item>
+        <item>Ambarella</item>
+        <item>Guava</item>
+        <item>Coconut</item>
+        <item>Sweet tamarind</item>
+        <item>Star gooseberry</item>
+        <item>Santol</item>
+        <item>Rose apple</item>
+        <item>Jujube</item>
+        <item>Cantaloupe</item>
+        <item>Durian</item>
+        <item>Mangosteen</item>
+        <item>Rambutan</item>
+        <item>Longan</item>
+        <item>Longkong</item>
+        <item>Salak</item>
+        <item>Passion fruit</item>
+        <item>Date</item>
+        <item>Kiwano</item>
+        <item>Mulberry</item>
+        <item>Persimmon</item>
+        <item>Pomelo</item>
+        <item>Plum</item>
+        <item>Avocado</item>
+        <item>Strawberry</item>
+        <item>Blueberry</item>
+        <item>Raspberry</item>
+        <item>Blackberry</item>
+        <item>Cherry</item>
+        <item>Apple</item>
+        <item>Pear</item>
+        <item>Peach</item>
+        <item>Nectarine</item>
+        <item>Kiwi</item>
+        <item>Fig</item>
+        <item>Cranberry</item>
+        <item>Pomegranate</item>
+        <item>Grapefruit</item>
+        <item>Grape</item>
+        <item>Lemon</item>
+        <item>Mandarin orange</item>
+        <item>Sweet orange</item>
+        <item>Asian pear</item>
+    </string-array>
+
+    <string-array name="fruit_type1_advice_en" translatable="false">
+        <item>Count mango carbohydrates with the meal and adjust insulin according to the care plan provided by your care team.</item>
+        <item>It can be eaten when carbohydrates are counted accurately and insulin is adjusted appropriately.</item>
+        <item>It can be eaten when carbohydrates are counted accurately.</item>
+        <item>It can be eaten when carbohydrates are counted accurately, with an appropriate insulin adjustment.</item>
+        <item>It can be eaten.</item>
+        <item>It can be eaten, but carbohydrates must be counted accurately and insulin adjusted appropriately.</item>
+        <item>It can be eaten when carbohydrates are counted accurately and insulin is adjusted appropriately.</item>
+        <item>It can be eaten, but insulin should still be calculated accurately.</item>
+        <item>It can be eaten when carbohydrates are counted accurately and insulin is adjusted appropriately.</item>
+        <item>It can be eaten when carbohydrates are counted accurately. Its higher fat content should also be considered when planning insulin.</item>
+        <item>It can be eaten only when carbohydrates and insulin are calculated accurately.</item>
+        <item>It can be eaten with minimal calculation because it is low in carbohydrate and has little effect on blood glucose.</item>
+        <item>It can be eaten when carbohydrates are counted accurately, with the meal and an appropriate insulin dose.</item>
+        <item>It can be eaten when carbohydrates are counted and insulin is dosed appropriately.</item>
+        <item>It can be eaten when carbohydrates are counted and insulin is dosed appropriately.</item>
+        <item>It can be eaten when carbohydrates are counted and insulin is dosed appropriately.</item>
+        <item>Not recommended because it is very high in sugar. If it must be eaten, insulin must be calculated accurately.</item>
+        <item>Not recommended. If it is eaten, the insulin dose must be calculated accurately.</item>
+        <item>Not recommended. If it is eaten, the insulin dose must be calculated accurately.</item>
+        <item>It may be eaten in some cases when blood glucose is controlled, but carbohydrates and insulin must be calculated accurately.</item>
+        <item>It can be eaten when insulin is calculated and blood glucose is managed at the same time.</item>
+        <item>It can be eaten, but the carbohydrate amount must be counted and insulin adjusted.</item>
+        <item>It can be eaten, but the carbohydrate amount must be counted and insulin adjusted.</item>
+        <item>Avoid because it is high in carbohydrate and sugar.</item>
+        <item>It can be eaten when carbohydrates are counted and insulin is dosed appropriately.</item>
+        <item>It can be eaten, but carbohydrates must be counted and insulin adjusted appropriately.</item>
+        <item>Limit it. If eaten, count carbohydrates and adjust insulin appropriately.</item>
+        <item>It can be eaten, but carbohydrates must be counted and insulin dosed appropriately.</item>
+        <item>It can be eaten, but carbohydrates must be counted and insulin dosed appropriately.</item>
+        <item>It can be eaten without adding much burden to insulin calculation.</item>
+        <item>It can be eaten. Its carbohydrate content is easy to count when adjusting insulin and managing blood glucose.</item>
+        <item>It can be eaten and is suitable for carbohydrate counting and insulin adjustment.</item>
+        <item>It can be eaten when carbohydrates are counted to determine an appropriate insulin dose.</item>
+        <item>It can be eaten when carbohydrates are counted for medication or insulin use.</item>
+        <item>It can be eaten, but carbohydrates must be counted for insulin dosing.</item>
+        <item>It can be eaten, but carbohydrates must be counted to set the insulin dose accurately.</item>
+        <item>It can be eaten, but carbohydrates must be counted accurately alongside insulin management.</item>
+        <item>It can be eaten, but carbohydrates must be counted and insulin adjusted accordingly.</item>
+        <item>Use caution and count carbohydrates accurately before injecting insulin.</item>
+        <item>It can be eaten, but carbohydrates should be counted before injecting insulin.</item>
+        <item>It can be eaten, but carbohydrates must be counted accurately before injecting insulin.</item>
+        <item>It can be eaten, but insulin must be calculated from the amount of carbohydrate consumed.</item>
+        <item>It can be eaten, but carbohydrates should be counted accurately before injecting insulin.</item>
+        <item>It can be eaten and is easy to include in carbohydrate calculations, so little insulin adjustment may be needed.</item>
+        <item>Not recommended. Avoid it unless insulin can be calculated accurately.</item>
+        <item>It can be eaten or used to add sourness without adding sugar.</item>
+        <item>It can be eaten, but carbohydrates should be counted accurately before injecting insulin.</item>
+        <item>It can be eaten, but carbohydrates should be counted accurately before injecting insulin.</item>
+        <item>It can be eaten in a controlled portion.</item>
+    </string-array>
+
+    <string-array name="fruit_type2_advice_en" translatable="false">
+        <item>Eat it as part of a meal and control the total carbohydrate amount in that meal.</item>
+        <item>It can be eaten in a limited portion.</item>
+        <item>If blood glucose is well controlled, keep the portion very small.</item>
+        <item>If blood glucose is well controlled, it can be eaten in a limited portion.</item>
+        <item>It can be eaten.</item>
+        <item>It can be eaten, but the portion must be watched because it is high in sugar.</item>
+        <item>It can be eaten, but the amount of sugar consumed must be monitored.</item>
+        <item>It can be eaten.</item>
+        <item>It can be eaten regularly, but the portion should be controlled.</item>
+        <item>It can be eaten in an appropriate portion.</item>
+        <item>Not recommended. Avoid it because it may cause a blood-glucose spike.</item>
+        <item>It can be eaten as a snack or added to food.</item>
+        <item>Limit it, especially as part of a main meal.</item>
+        <item>Limit it, especially as part of a main meal.</item>
+        <item>Limit it, especially as part of a main meal.</item>
+        <item>Limit it, especially as part of a main meal.</item>
+        <item>Avoid it, especially while blood glucose is not well controlled.</item>
+        <item>Avoid it because sugar and carbohydrate are very high and make glucose control difficult.</item>
+        <item>Avoid it because sugar and carbohydrate are very high and make glucose control difficult.</item>
+        <item>Not recommended. If eaten, the portion must be controlled very strictly because sugar and carbohydrate are high.</item>
+        <item>It can be eaten in moderation. Avoid eating it often or in large amounts.</item>
+        <item>Limit it strictly and eat it with high-fiber food.</item>
+        <item>It can be eaten, but control the portion carefully and eat it with high-fiber food.</item>
+        <item>Avoid it because it may cause a substantial blood-glucose spike.</item>
+        <item>It can be eaten in a controlled portion, especially as part of a main meal.</item>
+        <item>It can be eaten normally in an appropriate portion.</item>
+        <item>Limit it, especially as part of a main meal.</item>
+        <item>It can be eaten in a controlled portion, but not too frequently.</item>
+        <item>It can be eaten in a limited portion.</item>
+        <item>It can be eaten regularly and may help with blood-glucose and blood-lipid management.</item>
+        <item>It can be eaten regularly in an appropriate portion.</item>
+        <item>It can be eaten, but keep the amount below 100 grams per day to help maintain stable blood glucose.</item>
+        <item>It can be eaten and may support blood-glucose and weight management.</item>
+        <item>It can be eaten and is suitable for blood-glucose and weight management.</item>
+        <item>Limit it and monitor total daily energy intake.</item>
+        <item>It can be eaten in moderation. Eat slowly and combine it with other high-fiber foods.</item>
+        <item>It can be eaten in moderation. Eat slowly and choose fresh fruit.</item>
+        <item>It can be eaten, but avoid eating it on many consecutive days.</item>
+        <item>Use caution. It can be eaten in a limited portion with high-fiber food.</item>
+        <item>It can be eaten, preferably after a meal or with protein.</item>
+        <item>It can be eaten in a small portion. Avoid dried figs because their sugar is more concentrated.</item>
+        <item>It can be eaten in an appropriate portion.</item>
+        <item>It can be eaten in a small portion, preferably with protein or healthy fat.</item>
+        <item>It can be eaten often in a portion of one-half to one fruit per day, divided into smaller servings.</item>
+        <item>Not recommended. Avoid it because blood glucose may rise quickly.</item>
+        <item>It can be eaten often in a portion of one-half to one fruit, or used to season food or drinks.</item>
+        <item>It can be eaten in a portion of one fruit per day when strict blood-glucose control is needed.</item>
+        <item>It can be eaten in a portion of one fruit per day. Avoid eating more than that in one meal.</item>
+        <item>It can be eaten in an appropriate portion, but avoid eating too much.</item>
+    </string-array>
+
+    <string-array name="fruit_general_advice_en" translatable="false">
+        <item>Avoid it when diabetes is poorly controlled or complications are present, such as eye, kidney, or blood-lipid complications.</item>
+        <item>Avoid it when blood glucose is poorly controlled.</item>
+        <item>Avoid it when blood glucose is poorly controlled or complications are present.</item>
+        <item>Avoid it when blood glucose is poorly controlled or complications are present.</item>
+        <item>Use caution with kidney problems. Starfruit is high in oxalate and may be toxic to people with kidney disease, so avoid it when kidney disease is also present.</item>
+        <item>Avoid it when blood glucose is poorly controlled or complications are present because its high sugar and low fiber can make control difficult.</item>
+        <item>Avoid it when blood glucose is poorly controlled or complications are present.</item>
+        <item>It may be eaten when blood glucose is poorly controlled because it contains no sugar and is high in fiber.</item>
+        <item>It may be eaten when blood glucose is poorly controlled because its low sugar and high fiber may support glucose control.</item>
+        <item>Avoid it when blood glucose is poorly controlled or complications are present because its combined carbohydrate and fat content may affect blood glucose and blood lipids.</item>
+        <item>Avoid it when blood glucose is poorly controlled or complications are present.</item>
+        <item>It may be eaten even during difficult periods of blood-glucose control.</item>
+        <item>Limit the portion and avoid processed forms when blood glucose is poorly controlled or complications are present.</item>
+        <item>Limit the portion and do not exceed the recommended amount when blood glucose is poorly controlled or complications are present.</item>
+        <item>Avoid it when blood glucose is poorly controlled or complications are present because high sugar and carbohydrate may raise glucose quickly.</item>
+        <item>Limit the portion and do not exceed the recommended amount when blood glucose is poorly controlled or complications are present.</item>
+        <item>Avoid it when blood glucose is poorly controlled or complications are present because it may cause a substantial glucose spike.</item>
+        <item>Avoid it when blood glucose is poorly controlled or complications are present because it may cause a substantial glucose spike.</item>
+        <item>Avoid it when blood glucose is poorly controlled or complications are present because it may cause a substantial glucose spike.</item>
+        <item>Avoid it when blood glucose is poorly controlled or complications are present because glucose may rise easily and increase complication risk.</item>
+        <item>Not recommended when blood glucose is poorly controlled or complications are present because low fiber can make glucose control difficult.</item>
+        <item>Avoid it when blood glucose is poorly controlled or complications are present because glucose may rise easily.</item>
+        <item>It can be eaten, but keep the portion within the recommendation when blood glucose is poorly controlled or complications are present.</item>
+        <item>Avoid it when blood glucose is poorly controlled or complications are present because its sugar content makes control difficult.</item>
+        <item>Limit it and do not exceed the recommended amount when blood glucose is poorly controlled or complications are present.</item>
+        <item>Limit it and do not exceed the recommended amount when blood glucose is poorly controlled or complications are present.</item>
+        <item>Avoid it when blood glucose is poorly controlled or complications are present.</item>
+        <item>Limit the portion and do not exceed the recommended amount when blood glucose is poorly controlled or complications are present.</item>
+        <item>Limit the portion and avoid eating too much when blood glucose is poorly controlled or complications are present.</item>
+        <item>It can be eaten and may support blood-glucose and cardiovascular management when blood glucose is poorly controlled or complications are present.</item>
+        <item>Limit the portion to avoid excessive carbohydrate or energy intake when blood glucose is poorly controlled or complications are present.</item>
+        <item>Limit it when blood glucose is poorly controlled or complications are present.</item>
+        <item>It can be eaten and may provide nutritional benefit without rapidly raising blood glucose.</item>
+        <item>It can be eaten and does not tend to cause a rapid blood-glucose spike.</item>
+        <item>Avoid it when blood glucose is poorly controlled or complications are present because accumulated sugar may raise glucose.</item>
+        <item>Avoid it or control it strictly when blood glucose is unstable.</item>
+        <item>It can be eaten, but limit the portion and monitor blood glucose after eating.</item>
+        <item>Avoid it, especially when blood glucose is poorly controlled.</item>
+        <item>Avoid it when blood glucose is poorly controlled or complications are present.</item>
+        <item>Avoid it or greatly reduce the portion while blood glucose remains uncontrolled.</item>
+        <item>Avoid it when blood glucose is poorly controlled or complications are present because it may cause a rapid and substantial spike.</item>
+        <item>It can be eaten in moderation when blood glucose is poorly controlled or complications are present.</item>
+        <item>Avoid it when blood glucose is poorly controlled or complications are present, especially pomegranate juice or extracted fruit juice.</item>
+        <item>It can be eaten and may support blood-glucose and heart health. Ask a doctor about medicine interactions because grapefruit interacts with several medicines, including some statins and blood-pressure medicines.</item>
+        <item>Avoid it when blood glucose is poorly controlled or complications are present because it may cause a high glucose spike.</item>
+        <item>It can be eaten when blood glucose is poorly controlled or complications are present.</item>
+        <item>Limit the portion and eat it with high-fiber food to help manage blood glucose.</item>
+        <item>Limit the portion and eat it with high-fiber food.</item>
+        <item>It can be eaten in an appropriate portion while carefully monitoring blood glucose.</item>
+    </string-array>
+</resources>
