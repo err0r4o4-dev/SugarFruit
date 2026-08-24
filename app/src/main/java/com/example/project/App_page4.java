@@ -50,6 +50,12 @@ public class App_page4 extends BaseActivity {
     private String fruitName;
 
     @Override
+    public void finish() {
+        super.finish();
+        ScreenTransitions.applyBackward(this);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ui_page4);

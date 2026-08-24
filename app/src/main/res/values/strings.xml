@@ -178,6 +178,7 @@
     <string name="saved_title">บันทึกแล้ว</string>
     <string name="saved_subtitle">ผลไม้ที่คุณบันทึกไว้เพื่อเข้าถึงได้อย่างรวดเร็ว</string>
     <string name="saved_sort_title">จัดเรียงผลไม้ที่บันทึก</string>
+    <string name="saved_sort_description">เรียงตามลำดับที่บันทึกผลไม้ไว้ในอุปกรณ์นี้</string>
     <string name="saved_sort_default">จัดเรียง: ปกติ ▼</string>
     <string name="saved_sort_newest">จัดเรียง: ล่าสุด ▼</string>
     <string name="saved_sort_oldest">จัดเรียง: ไม่ล่าสุด ▼</string>

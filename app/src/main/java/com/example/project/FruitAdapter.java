@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import android.content.Intent;
 import android.content.Context;
+import android.app.Activity;
 import android.content.res.Configuration;
 import android.content.res.ColorStateList;
 import androidx.core.content.ContextCompat;
@@ -113,7 +114,12 @@ public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.FruitViewHol
             intent.putExtra(AppContracts.EXTRA_FRUIT_IMAGE, f.getImageResId());
             intent.putExtra(AppContracts.EXTRA_FRUIT_ID, fruitId);
             intent.putExtra(AppContracts.EXTRA_LEVEL, level);
-            v.getContext().startActivity(intent);
+            Context context = v.getContext();
+            if (context instanceof Activity) {
+                ScreenTransitions.startForward((Activity) context, intent);
+            } else {
+                context.startActivity(intent);
+            }
         });
     }
 

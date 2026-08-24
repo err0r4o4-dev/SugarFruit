@@ -36,16 +36,20 @@ public final class BottomNavigationCoordinator {
                 return true;
             }
 
-            Intent intent = new Intent(activity, activityClassFor(target));
-            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            if (target == Destination.HOME) {
-                intent.putExtra(
-                        AppContracts.EXTRA_LEVEL,
-                        AppSettings.getDiabetesType(activity).getCode());
-            }
-            activity.startActivity(intent);
+            navigate(activity, target);
             return true;
         });
+    }
+
+    public static void navigate(Activity activity, Destination target) {
+        Intent intent = new Intent(activity, activityClassFor(target));
+        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        if (target == Destination.HOME) {
+            intent.putExtra(
+                    AppContracts.EXTRA_LEVEL,
+                    AppSettings.getDiabetesType(activity).getCode());
+        }
+        ScreenTransitions.startTopLevel(activity, intent);
     }
 
     public static void selectCurrent(BottomNavigationView navigationView,

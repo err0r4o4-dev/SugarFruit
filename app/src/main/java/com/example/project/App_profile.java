@@ -178,7 +178,7 @@ public class App_profile extends BaseActivity {
         Intent intent = new Intent(this, App_page2.class);
         intent.putExtra(AppContracts.EXTRA_EDIT_PROFILE, true);
         intent.putExtra(AppContracts.EXTRA_PROFILE_EDIT_SECTION, section);
-        startActivity(intent);
+        ScreenTransitions.startForward(this, intent);
     }
 
     private void showFontSizeDialog() {

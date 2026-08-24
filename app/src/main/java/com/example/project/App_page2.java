@@ -145,10 +145,16 @@ public class App_page2 extends BaseActivity {
             intent.putExtra(AppContracts.EXTRA_BIRTH_DATE, date);
             intent.putExtra(AppContracts.EXTRA_SEX, selectedSex);
             intent.putExtra(AppContracts.EXTRA_LEVEL, diabetesTypeCode);
-            startActivity(intent);
+            ScreenTransitions.startForward(this, intent);
         });
 
 
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        ScreenTransitions.applyBackward(this);
     }
 
     private DiabetesType diabetesTypeForLabel(String selectedLabel, String[] labels) {

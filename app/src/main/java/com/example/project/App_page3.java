@@ -237,18 +237,29 @@ public class App_page3 extends BaseActivity {
         View contentView = getLayoutInflater().inflate(R.layout.bottom_sheet_fruit_sort, null);
         RadioGroup sortOptions = contentView.findViewById(R.id.sortOptions);
 
+        ((TextView) contentView.findViewById(R.id.sortSheetTitle))
+                .setText(R.string.sort_sheet_title);
+        ((TextView) contentView.findViewById(R.id.sortSheetDescription))
+                .setText(R.string.sort_sheet_description);
+        ((TextView) contentView.findViewById(R.id.sortOptionPrimary))
+                .setText(R.string.sort_option_suitability);
+        ((TextView) contentView.findViewById(R.id.sortOptionSecondary))
+                .setText(R.string.sort_option_name);
+        ((TextView) contentView.findViewById(R.id.sortOptionTertiary))
+                .setText(R.string.sort_option_default);
+
         if (sortMode == SORT_NAME) {
-            sortOptions.check(R.id.sortName);
+            sortOptions.check(R.id.sortOptionSecondary);
         } else if (sortMode == SORT_DEFAULT) {
-            sortOptions.check(R.id.sortDefault);
+            sortOptions.check(R.id.sortOptionTertiary);
         } else {
-            sortOptions.check(R.id.sortSuitability);
+            sortOptions.check(R.id.sortOptionPrimary);
         }
 
         sortOptions.setOnCheckedChangeListener((group, checkedId) -> {
-            if (checkedId == R.id.sortName) {
+            if (checkedId == R.id.sortOptionSecondary) {
                 sortMode = SORT_NAME;
-            } else if (checkedId == R.id.sortDefault) {
+            } else if (checkedId == R.id.sortOptionTertiary) {
                 sortMode = SORT_DEFAULT;
             } else {
                 sortMode = SORT_SUITABILITY;
@@ -259,6 +270,7 @@ public class App_page3 extends BaseActivity {
         });
 
         dialog.setContentView(contentView);
+        dialog.setDismissWithAnimation(true);
         dialog.show();
     }
 

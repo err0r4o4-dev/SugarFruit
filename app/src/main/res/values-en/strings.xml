@@ -182,6 +182,7 @@
     <string name="saved_title">Saved</string>
     <string name="saved_subtitle">Fruits you’ve saved for quick access</string>
     <string name="saved_sort_title">Sort saved fruits</string>
+    <string name="saved_sort_description">Sort by when each fruit was saved on this device</string>
     <string name="saved_sort_default">Sort: Default ▼</string>
     <string name="saved_sort_newest">Sort: Newest ▼</string>
     <string name="saved_sort_oldest">Sort: Oldest ▼</string>

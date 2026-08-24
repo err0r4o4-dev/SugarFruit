@@ -1,8 +1,8 @@
 package com.example.project;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +41,7 @@ public class App_saved extends BaseActivity {
         emptyState = findViewById(R.id.savedEmptyState);
         resultCountText = findViewById(R.id.savedResultCount);
         sortLabel = findViewById(R.id.savedSortLabel);
-        sortLabel.setOnClickListener(view -> showSortDialog());
+        sortLabel.setOnClickListener(view -> showSortBottomSheet());
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new FruitAdapter(
@@ -112,22 +112,46 @@ public class App_saved extends BaseActivity {
                 count));
     }
 
-    private void showSortDialog() {
-        CharSequence[] options = {
-                getString(R.string.saved_sort_option_default),
-                getString(R.string.saved_sort_option_newest),
-                getString(R.string.saved_sort_option_oldest)
-        };
-        new MaterialAlertDialogBuilder(this)
-                .setTitle(R.string.saved_sort_title)
-                .setSingleChoiceItems(options, sortMode, (dialog, which) -> {
-                    sortMode = which;
-                    updateSortLabel();
-                    refreshSavedFruits();
-                    dialog.dismiss();
-                })
-                .setNegativeButton(android.R.string.cancel, null)
-                .show();
+    private void showSortBottomSheet() {
+        BottomSheetDialog dialog = new BottomSheetDialog(this);
+        View contentView = getLayoutInflater().inflate(R.layout.bottom_sheet_fruit_sort, null);
+        RadioGroup sortOptions = contentView.findViewById(R.id.sortOptions);
+
+        ((TextView) contentView.findViewById(R.id.sortSheetTitle))
+                .setText(R.string.saved_sort_title);
+        ((TextView) contentView.findViewById(R.id.sortSheetDescription))
+                .setText(R.string.saved_sort_description);
+        ((TextView) contentView.findViewById(R.id.sortOptionPrimary))
+                .setText(R.string.saved_sort_option_default);
+        ((TextView) contentView.findViewById(R.id.sortOptionSecondary))
+                .setText(R.string.saved_sort_option_newest);
+        ((TextView) contentView.findViewById(R.id.sortOptionTertiary))
+                .setText(R.string.saved_sort_option_oldest);
+
+        if (sortMode == SORT_NEWEST) {
+            sortOptions.check(R.id.sortOptionSecondary);
+        } else if (sortMode == SORT_OLDEST) {
+            sortOptions.check(R.id.sortOptionTertiary);
+        } else {
+            sortOptions.check(R.id.sortOptionPrimary);
+        }
+
+        sortOptions.setOnCheckedChangeListener((group, checkedId) -> {
+            if (checkedId == R.id.sortOptionSecondary) {
+                sortMode = SORT_NEWEST;
+            } else if (checkedId == R.id.sortOptionTertiary) {
+                sortMode = SORT_OLDEST;
+            } else {
+                sortMode = SORT_DEFAULT;
+            }
+            updateSortLabel();
+            refreshSavedFruits();
+            dialog.dismiss();
+        });
+
+        dialog.setContentView(contentView);
+        dialog.setDismissWithAnimation(true);
+        dialog.show();
     }
 
     private void updateSortLabel() {
@@ -144,11 +168,8 @@ public class App_saved extends BaseActivity {
     }
 
     private void openHome() {
-        Intent intent = new Intent(this, App_page3.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        intent.putExtra(
-                AppContracts.EXTRA_LEVEL,
-                AppSettings.getDiabetesType(this).getCode());
-        startActivity(intent);
+        BottomNavigationCoordinator.navigate(
+                this,
+                BottomNavigationCoordinator.Destination.HOME);
     }
 }

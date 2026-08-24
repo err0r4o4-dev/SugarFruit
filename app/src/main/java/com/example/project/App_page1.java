@@ -23,7 +23,7 @@ public class App_page1 extends BaseActivity {
                             AppContracts.EXTRA_LEVEL,
                             AppSettings.getDiabetesType(App_page1.this).getCode());
                 }
-                startActivity(intent);
+                ScreenTransitions.startForward(App_page1.this, intent);
             }
         });
     }
